@@ -33,7 +33,7 @@ public class MainController extends HttpServlet{
 		
 		if(path.equals("main.do")) {
 			//main.jsp로 이동
-			RequestDispatcher dis = req.getRequestDispatcher("/mainview/main.jsp");
+			RequestDispatcher dis = req.getRequestDispatcher("/mainview/main1.jsp");
 			dis.forward(req, resp);
 		}else if(path.equals("boardview.do")) {
 			//boardservlet으로 이동
