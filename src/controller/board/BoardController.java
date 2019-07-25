@@ -33,15 +33,11 @@ public class BoardController extends HttpServlet{
 		
 		if(path.equals("main.do")) {
 			//mainservlet로 이동
-			resp.sendRedirect("../main/main.do");
+			//resp.sendRedirect("../main/main.do");
 		}else if(path.equals("boardview.do")) {
 			//index.jsp로 이동
 			RequestDispatcher dis = req.getRequestDispatcher("/boardview/index.jsp");
 			dis.forward(req, resp);
-		}else if(path.equals("lecture.do")) {
-			resp.sendRedirect("../main/lecture.do");
-		}else if(path.equals("login.do")) {
-			resp.sendRedirect("../main/login.do");
 		}
 			
 		if(next!="") { 

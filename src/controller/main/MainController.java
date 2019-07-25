@@ -31,19 +31,15 @@ public class MainController extends HttpServlet{
 		String next="";
 		System.out.println(path);
 		
-		if(path.equals("main.do")) {
+		if(path.equals("main.do") || path.equals("*")) {
 			//main.jsp로 이동
 			RequestDispatcher dis = req.getRequestDispatcher("/mainview/main.jsp");
 			dis.forward(req, resp);
-		}else if(path.equals("boardview.do")) {
-			//boardservlet으로 이동
-			resp.sendRedirect("../board/boardview.do");
-			
 		}else if(path.equals("lecture.do")) {
 			RequestDispatcher dis = req.getRequestDispatcher("/mainview/lecture.jsp");
 			dis.forward(req, resp);
 		}else if(path.equals("login.do")){
-			RequestDispatcher dis = req.getRequestDispatcher("/mainview/login.jsp");
+			RequestDispatcher dis = req.getRequestDispatcher("/mainview/LoginForm.jsp");
 			dis.forward(req, resp);
 		}
 			

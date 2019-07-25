@@ -10,25 +10,33 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+
 <script type="text/javascript">
-	$(document).ready(function(){
-		$("#btn").on("click",function(){
-			alert("hi");
-		})
-	})
+$(document).ready(function(){
+	$('.bxslider').bxSlider({ 
+		auto: true, 
+		speed: 500, 
+		pause: 4000, 
+		mode:'fade', 
+		autoControls: true, 
+		pager:true, });
+});
+
 </script>
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:include page="nav.jsp"></jsp:include>
-<div class="container">
-	<div class="jumbotron">
-	<h1 class="text-center">축제알림 홈페이지</h1>
-	<p class="text-center">축제정보 알려주는 홈페이지 입니다.</p>
-	<p class="text-center"><a class="btn btn-primary btn-lg" href="#" role="button" >자세히 알아보기</a></p>
+<div class="container-fluid ">
+	<div class="jumbotron mb-0">
+	<!-- <h1 class="text-center">축제알림 홈페이지</h1> -->
+	<!-- <p class="text-center">축제정보 알려주는 홈페이지 입니다.</p> -->
+	<!-- <p class="text-center"><a class="btn btn-primary btn-lg" href="#" role="button" >자세히 알아보기</a></p> -->
 	</div>
 	<!-- lecture -->
-	<div class="row"> 
+	<!-- <div class="row"> 
 		<div class="col-md-4"> 
 			<h4>HTML & CSS</h4> 
 			<p>HTML과 CSS는 웹페이지에서 정적인 요소들을 표현하는 언어이다. 버튼이나 텍스트 등의 요소는 HTMl로 표현되며, 해당 요소들의 색상이나 크기 등은 CSS로 표현한다.</p> 
@@ -44,11 +52,16 @@
 			<p>Django는 Python 기반의 프레임워크로, 데이터를 필요로 하거나 서버의 자원을 필요로 하는 사용자 요청을 서버에서 처리한다.</p> 
 			<p><a class="btn btn-default" href="#" style="color:blue">자세히 알아보기</a> </p> 
 		</div>
-	</div>
-	<hr>
+	</div> -->
 </div>
+<jsp:include page="nav.jsp"></jsp:include>
+<ul class="bxslider">
+		<li><img src="../images/bx1.jpg"  class="bximg"/></li>
+		<li><img src="../images/bx2.jpg" class="bximg"/></li>
+		<li><img src="../images/bx3.jpg" class="bximg"/></li>
+</ul>
 <!-- card -->
-	<div class="card"> 
+	<!-- <div class="card"> 
 		<h5 class="card-header text-white bg-primary mb-3">최신 강의 목록</h5> 
 		<ul class="list-group list-group-flush"> 
 			<div class="list-group-item"> 
@@ -76,12 +89,12 @@
 				</div> 
 			</div> 
 		</ul> 
-	</div> 
-	<br>
+	</div>  -->
+<br>
 
 
 <jsp:include page="footer.jsp"></jsp:include>
-<div class="modal fade" id="modal-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"> 
+<!-- <div class="modal fade" id="modal-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"> 
 	<div class="modal-dialog" role="document"> 
 		<div class="modal-content"> 
 			<div class="modal-header"> 
@@ -96,7 +109,7 @@
 			</div> 
 		</div> 
 	</div> 
-</div> 
+</div>  -->
 
 </body>
 </html>
