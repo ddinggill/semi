@@ -64,4 +64,34 @@ public class UserDAO {
 		
 		return chk;
 	}//end loginCheck
-}
+	
+	public UserDTO userInfo(UserDTO dto) {
+		try {
+			conn = JdbcTemplate.getConnection();
+			String sql = "select * from member where userid=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getUserid());
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				dto.setName(rs.getString("name"));
+				dto.setNickname(rs.getString("nickname"));
+				dto.setPhonenumber(rs.getString("phonenumber"));
+				dto.setUsercode(Integer.parseInt(rs.getString("usercode")));
+				dto.setUseremail(rs.getString("useremail"));
+				dto.setUserlevel(rs.getInt("userlevel"));
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				exit();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return dto;
+	}//end userInfo
+	
+}//end class

@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.main.MainAction;
+
 @WebServlet("/main/*")
 public class MainController extends HttpServlet{
 
@@ -33,6 +35,8 @@ public class MainController extends HttpServlet{
 		
 		if(path.equals("main.do") || path.equals("*")) {
 			//main.jsp로 이동
+			MainAction main = new MainAction();
+			main.execute(req, resp);
 			RequestDispatcher dis = req.getRequestDispatcher("/mainview/main.jsp");
 			dis.forward(req, resp);
 		}else if(path.equals("lecture.do")) {

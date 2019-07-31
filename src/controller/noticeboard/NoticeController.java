@@ -1,4 +1,4 @@
-package controller.board;
+package controller.noticeboard;
 
 import java.io.IOException;
 
@@ -9,8 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/board/*")
-public class BoardController extends HttpServlet{
+import model.noticeboard.ListAction;
+
+
+
+@WebServlet("/notice/*")
+public class NoticeController extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -34,13 +38,13 @@ public class BoardController extends HttpServlet{
 		if(path.equals("main.do")) {
 			//mainservlet로 이동
 			//resp.sendRedirect("../main/main.do");
-		}else if(path.equals("boardview.do")) {
-			//index.jsp로 이동
-			RequestDispatcher dis = req.getRequestDispatcher("/boardview/index.jsp");
-			dis.forward(req, resp);
-		}else if(path.equals("notice.do")) {
-			//index.jsp로 이동
-			RequestDispatcher dis = req.getRequestDispatcher("/boardview/notice.jsp");
+		}else if(path.equals("list.do")) {
+			ListAction list = new ListAction();
+			list.execute(req, resp);
+			next = "/noticeview/notice.jsp";
+			
+		}else if(path.equals("write.do")) {
+			RequestDispatcher dis = req.getRequestDispatcher("/noticeview/write.jsp");
 			dis.forward(req, resp);
 		}
 			
