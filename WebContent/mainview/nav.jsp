@@ -1,10 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+
+
+</script>
 </head>
 <body>
 <!-- navigation -->
@@ -35,29 +40,39 @@
 				<a class="nav-link" href="extra.html" style="color: white">후기게시판</a> 
 			</li> 
 			<li class="nav-item"> 
-				<a class="nav-link" href="#" data-target="#modal-1" data-toggle="modal" style="color: white">미완성 기능</a> 
+				<a class="nav-link" href="/semi/board/notice.do" style="color: white">공지사항</a> 
 			</li> 
 		</ul>
 		
 		 <!-- search bar -->
 		 <form class="form-inline my-2 my-lg-0 mr-auto" id="my_searchbar"> 
-		 	<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> 
-		 	<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+		 	<!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> 
+		 	<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
 		  </form>
 		  <!-- login components --> 
 		  <ul class="navbar-nav"> 
 		  	<li class="nav-item dropdown">
 		  		<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white"> 내 정보 
 		  		</a> 
-		  		<div class="dropdown-menu" aria-labelledby="navbarDropdown"> 
-		  			<a class="dropdown-item" href="/semi/main/login.do">로그인</a> 
-		  			<a class="dropdown-item" href="#">회원가입</a> 
-		  		</div> 
+		  		<c:choose>
+		  			<c:when test="${empty sessionScope.userid}">
+				  		<div class="dropdown-menu" aria-labelledby="navbarDropdown"> 
+				  			<a class="dropdown-item" href="/semi/main/login.do">로그인</a> 
+				  			<a class="dropdown-item" href="/semi/main/join.do">회원가입</a> 
+				  		</div> 
+		  			</c:when>
+		  			<c:otherwise>
+		  				<div class="dropdown-menu" aria-labelledby="navbarDropdown"> 
+				  			<a class="dropdown-item" href="/semi/main/mypage.do">My Page</a> 
+				  			<a class="dropdown-item" href="/semi/logout">로그아웃</a>
+				  		</div> 
+		  			</c:otherwise>
+		  		</c:choose>
 		  	</li> 
 		  </ul>
 	</div>
 </nav>
-<div class="modal fade" id="modal-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"> 
+<!-- <div class="modal fade" id="modal-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"> 
 	<div class="modal-dialog" role="document"> 
 		<div class="modal-content"> 
 			<div class="modal-header"> 
@@ -72,6 +87,6 @@
 			</div> 
 		</div> 
 	</div> 
-</div> 
+</div>  -->
 </body>
 </html>

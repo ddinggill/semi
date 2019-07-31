@@ -38,6 +38,10 @@ public class BoardController extends HttpServlet{
 			//index.jsp로 이동
 			RequestDispatcher dis = req.getRequestDispatcher("/boardview/index.jsp");
 			dis.forward(req, resp);
+		}else if(path.equals("notice.do")) {
+			//index.jsp로 이동
+			RequestDispatcher dis = req.getRequestDispatcher("/boardview/notice.jsp");
+			dis.forward(req, resp);
 		}
 			
 		if(next!="") { 
