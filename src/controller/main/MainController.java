@@ -41,6 +41,15 @@ public class MainController extends HttpServlet{
 		}else if(path.equals("login.do")){
 			RequestDispatcher dis = req.getRequestDispatcher("/mainview/LoginForm.jsp");
 			dis.forward(req, resp);
+		}else if(path.equals("join.do")) {
+			RequestDispatcher dis = req.getRequestDispatcher("/mainview/joinForm.jsp");
+			dis.forward(req, resp);
+		}else if(path.equals("pwfind.do")) {
+			RequestDispatcher dis = req.getRequestDispatcher("/mainview/pwfindForm.jsp");
+			dis.forward(req, resp);
+		}else if(path.equals("mypage.do")) {
+			RequestDispatcher dis = req.getRequestDispatcher("/mainview/mypage.jsp");
+			dis.forward(req, resp);
 		}
 			
 		if(next!="") { 
