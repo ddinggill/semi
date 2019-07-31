@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,31 +44,61 @@ div.write:hover{
 <div class="container" id="notice">
 		<h2>공지사항</h2>
 		<!-- 글쓰기 버튼 -->
-		<a href="#"><div class="write">글쓰기</div></a> 
+		<a href="/semi/notice/write.do"><div class="write">글쓰기</div></a> 
 		<table class="table table-striped"> 
 			<thead> 
 				<tr> 
 					<th>번호</th>
 					<th>제목</th> 
 					<th>작성자</th> 
-					<th>날짜</th>
+					<th>작성날짜</th>
 				</tr> 
 			</thead>
 		 	<!-- 테이블 내용 -->
 		 	<tbody> 
-		 		<tr> 
-		 			<td>번호</td> 
-		 			<td>제목</td> 
-		 			<td>작성자</td> 
-		 			<td>날짜</td>
-		 		</tr> 
+		 	<c:forEach items="${requestScope.aList }" var="dto" varStatus="status">
+				<tr>
+					<!--<td>${cnt }</td>-->
+					<td>${pdto.number-status.count+1}</td>
+					<td><a href="view.do?boardkey=${dto.boardkey }">${dto.title }</a></td>
+					<td>${dto.usercode }</td>
+					<td>${dto.day }</td>
+				<!-- <c:set var="cnt" value="${cnt-1 }"></c:set> -->
+					<%-- <td>
+						<form action="updateForm.do">
+							<input type="hidden" name="num" value="${dto.num }">
+							<input type="submit" value="수정">			
+						</form>
+					</td>
+					<td>
+						<form action="delete.do">
+							<input type="hidden" name="num" value="${dto.num }">
+							<input type="hidden" name="pageNum" value="${pdto.currentPage }"> 
+							<input type="submit" value="삭제">			
+						</form>
+					</td> --%>
+				</tr>
+		</c:forEach>
+		 		
 		 	</tbody> 
 		</table>
 		<div class="text-conter">
 		<ul class="pagination">
-		<li><a href="#">이전</a></li>
-		<li><a href="#">페이지</a></li>
-		<li><a href="#">다음</a></li>
+			<c:if test="${requestScope.pdto.startPage != 1 }" >
+				<li>
+					<a href="list.do?pageNum=${requestScope.pdto.startPage- requestScope.pdto.blockPage}">이전</a>
+				</li>
+			</c:if>
+				<li><c:forEach begin="${requestScope.pdto.startPage }" end="${requestScope.pdto.endPage }" var="i">
+					<a href="list.do?pageNum=${i }">${i }</a>
+					</c:forEach>
+				</li>
+		
+				<li>
+					<c:if test="${requestScope.pdto.totalPage > requestScope.pdto.endPage }" >
+					<a href="list.do?pageNum=${requestScope.pdto.endPage+1 }">다음</a>
+					</c:if>
+				</li>
 		</ul>
 		<%-- <!-- 이전 -->
 		<c:if test="${pdto.startPage > 1 }">

@@ -43,9 +43,10 @@ public class LoginController extends HttpServlet{
 			
 			if(UserDAO.getInstance().loginCheck(user)) {
 				HttpSession session = req.getSession();
-				Cookie cookie = new Cookie("userCookie", req.getParameter("userid"));
+				//Cookie cookie = new Cookie("userCookie", req.getParameter("userid"));
 				session.setMaxInactiveInterval(300);//5분
-				session.setAttribute("userid", user.getUserid());
+				user= UserDAO.getInstance().userInfo(user);
+				session.setAttribute("loginOk", user);
 				resp.sendRedirect("/semi/main/main.do");
 			}else {
 				RequestDispatcher dis = req.getRequestDispatcher("/mainview/LoginForm.jsp");

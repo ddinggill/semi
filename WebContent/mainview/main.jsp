@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -133,29 +133,35 @@
 		<div class="col-md-4">
 			<ul>
 				<li class="new_list"><h1 class="new_title">공지사항</h1></li>
-				<li class="new_list"><a href="" class="new_text">[공지사항]공지사항 관련된 내용입니다.</a><span
-					class="new_date">2019-07-25</span></li>
-				<li class="new_list"><a href="" class="new_text">[공지사항]공지사항 관련된 내용입니다.</a><span
-					class="new_date">2019-07-25</span></li>
-				<li class="new_list"><a href="" class="new_text">[공지사항]공지사항 관련된 내용입니다.</a><span
-					class="new_date">2019-07-25</span></li>
-				<li class="new_list"><a href="" class="new_text">[공지사항]공지사항 관련된 내용입니다.</a><span
-					class="new_date">2019-07-25</span></li>
-				<li class="new_list"><a href="" class="new_text">[공지사항]공지사항 관련된 내용입니다.</a><span
-					class="new_date">2019-07-25</span></li>
+				<c:forEach items="${requestScope.noticeList }" var="notice">
+				<li class="new_list"><a href="/semi/notice/view.do?boardkey=" class="new_text">${notice.title }</a><span
+					class="new_date">${notice.day }</span></li>
+				<%--  <li class="new_list"><a href="" class="new_text">${notice.title }</a><span
+					class="new_date">${notice.day }</span></li>
+				<li class="new_list"><a href="" class="new_text">${notice.title }</a><span
+					class="new_date">${notice.day }</span></li>
+				<li class="new_list"><a href="" class="new_text">${notice.title }</a><span
+					class="new_date">${notice.day }</span></li>
+				<li class="new_list"><a href="" class="new_text">${notice.title }</a><span
+					class="new_date">${notice.day }</span></li>  --%>
+			</c:forEach>
 			</ul>
 			<ul>
 				<li class="new_list"><h1 class="new_title">후기게시판</h1></li>
-				<li class="new_list"><a href="" class="new_text">[후기]후기 관련된 내용입니다.</a><span
-					class="new_date">2019-07-25</span></li>
-				<li class="new_list"><a href="" class="new_text">[후기]후기 관련된 내용입니다.</a><span
-					class="new_date">2019-07-25</span></li>
-				<li class="new_list"><a href="" class="new_text">[후기]후기 관련된 내용입니다.</a><span
-					class="new_date">2019-07-25</span></li>
-				<li class="new_list"><a href="" class="new_text">[후기]후기 관련된 내용입니다.</a><span
-					class="new_date">2019-07-25</span></li>
-				<li class="new_list"><a href="" class="new_text">[후기]후기 관련된 내용입니다.</a><span
-					class="new_date">2019-07-25</span></li>
+			<c:forEach items="${requestScope.reviewList }" var="review">
+			
+				<li class="new_list"><a href="" class="new_text">${review.title }</a><span
+					class="new_date">${review.day }</span></li>
+				<%--  <li class="new_list"><a href="" class="new_text">${review.title }</a><span
+					class="new_date">${review.day }</span></li>
+				<li class="new_list"><a href="" class="new_text">${review.title }</a><span
+					class="new_date">${review.day }</span></li>
+				<li class="new_list"><a href="" class="new_text">${review.title }</a><span
+					class="new_date">${review.day }</span></li>
+				<li class="new_list"><a href="" class="new_text">${review.title }</a><span
+			
+					class="new_date">${review.day }</span></li> --%>
+					</c:forEach>
 			</ul>
 		</div>
 	</div>
