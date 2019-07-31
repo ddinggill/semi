@@ -31,13 +31,6 @@ $(document).ready(function(){
 		   $('.register-form').animate({height: "hide", opacity: "hide"}, "slow");	
 		}); */
 	
-	$("button").on('click',function(){
-		$('form').submit();
-	})
-		
-	if("${requestScope.loginCheck}" == "fail"){
-		alert("로그인 실패했습니다 다시 입력하세요");
-	}
 });
 
 </script>
@@ -115,11 +108,11 @@ $(document).ready(function(){
   text-decoration: none;
 }
 .form .register-form {
-  display: none;
+  /* display: none; */
 }
 
 .form .pw-find{
-	display: none;
+	/* display: none; */
 }
 
 .container {
@@ -185,32 +178,14 @@ body {
 <jsp:include page="nav.jsp"></jsp:include>
 <div class="login-page">
   <div class="form">
-    <!-- <form class="register-form">
-      <input type="text" name="userid" placeholder="id"/>
-      <input type="text" name="name" placeholder="username"/>
-      <input type="text" name="nickname" placeholder="nickname" />
-      <input type="password" name="password" placeholder="password"/>
-      <input type="text" name="phonenumber" placeholder="phone number"/>
-      <input type="text" name="useremail" placeholder="email address"/>
-      <button>create</button>
-      <p class="message">Already registered? <a href="">Sign In</a></p>
-      <p class="message3">Forget Password? <a href="">Click this</a></p>
-    </form> -->
-    	<form class="login-form" method="post" action="/semi/login/loginCheck.do">
-      		<input type="text" name="userid" placeholder="userid" required="required"/>
-      		<input type="password" name="userpw" placeholder="password" required="required"/>
-      		<button>login</button>
-      		<p class="message2">Not registered? <a href="/semi/main/join.do">Create an account</a></p>
-      		<p class="message3">Forget Password? <a href="/semi/main/pwfind.do">Click this</a></p>
-   	 	</form>
-    <!-- <form class="pw-find">
+    <form class="pw-find">
   	<input type="text" placeholder="userid" />
   	<input type="text" placeholder="useremail" />
   	<button>find password</button>
-  	<p class="message2">Not registered? <a href="">Create an account</a></p>
-  	<p class="message">Already registered? <a href="">Sign In</a></p>
-  	</form> -->
-	</div>
+  	<p class="message2">Not registered? <a href="/semi/main/join.do">Create an account</a></p>
+  	<p class="message">Already registered? <a href="/semi/main/login.do">Sign In</a></p>
+  	</form>
+</div>
 </div>
 <jsp:include page="footer.jsp"></jsp:include>
 </body>

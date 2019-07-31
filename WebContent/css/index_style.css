@@ -11,6 +11,7 @@
 }
 
 
+
 /* nav */
 #my_searchbar{
 	margin-left: 1.5rem;
@@ -152,4 +153,86 @@
 .forgot-password:focus{ 
 	color: rgb(12, 97, 33);
 }
+/* 메인 이미지 슬라이더 */
+#bx1{
+	height: 600px;
+	
+}
+/* 광고배너 */
+#bx2{
+	float: left;
+}
+/* 최근글 */
+/*font-family: Sunflower;  */
+@import url(https://fonts.googleapis.com/css?family=Jua);
+
+.new_text {
+	list-style: none;
+}
+.new_text {
+	text-decoration: none;
+	color: black;
+	margin-left: 5px;
+	font-family: Jua;
+}
+
+.new_text:hover {
+	font-weight: bold;
+}
+
+.new_date {
+	float: right;
+	margin-right: 5px;
+	
+}
+.new_title {
+	color: #663E3D;
+	background-color: #EB8F8C;
+	font-family: Sunflower;
+}
+.col-md-4 ul li{
+/* background-color: #EB8F8C; */
+ 
+display: block;
+}
+* {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+.new_list{
+	list-style: none;
+	
+}
+
+/* 추천 축제 */
+#recommend{
+	margin-top: 50px;
+	/* width: 100%;*/
+	/* height: 400px; */
+/* 	border:1px solid black; */
+	
+	
+}
+
+.col-md-3{
+	border: 1px solid black;
+}
+
+.re_link:hover {
+	opacity: 0.5;
+	/* background-image: url("/semi/images/호버1.PNG"); */
+	background-color: red;
+	
+}
+
+
+
+#test{
+	
+}
+
+
+
+
 
