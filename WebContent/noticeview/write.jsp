@@ -53,7 +53,7 @@ table {
 			action="#">
 			<table>
 				<tr>
-					<td align="right" colspan="2"><a href="list.do">리스트</a></td>
+					<td align="right" colspan="2"><a href="/semi/notice/list.do">리스트</a></td>
 				</tr>
 				<tr>
 					<td align="center">제목</td>
@@ -61,7 +61,7 @@ table {
 				</tr>
 				<tr>
 					<td align="center">내용</td>
-					<td><textarea name="content" class="content" col="20"
+					<td><textarea name="content" class="content" cols="20"
 							rows="23" style="resize: none"></textarea></td>
 				</tr>
 				<tr>

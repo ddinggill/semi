@@ -22,10 +22,10 @@
 		<!-- nav components -->
 		<ul class="navbar-nav"> 
 			<li class="nav-item active"> 
-				<a class="nav-link" href="/semi/board/boardview.do" style="color: white">인기축제</a> 
+				<a class="nav-link" href="#" style="color: white">인기축제</a> 
 			</li> 
 			<li class="nav-item active"> 
-				<a class="nav-link" href="extra.html" style="color: white">지역/기간별검색</a> 
+				<a class="nav-link" href="#" style="color: white">지역/기간별검색</a> 
 			</li> 
 			<!-- <li class="nav-item dropdown"> 
 				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> 기능 리스트 </a> 
@@ -37,10 +37,10 @@
 				</div> 
 			</li>  -->
 			<li class="nav-item active"> 
-				<a class="nav-link" href="extra.html" style="color: white">후기게시판</a> 
+				<a class="nav-link" href="#" style="color: white">후기게시판</a> 
 			</li> 
 			<li class="nav-item"> 
-				<a class="nav-link" href="/semi/board/notice.do" style="color: white">공지사항</a> 
+				<a class="nav-link" href="/semi/notice/list.do" style="color: white">공지사항</a> 
 			</li> 
 		</ul>
 		
@@ -55,7 +55,7 @@
 		  		<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white"> 내 정보 
 		  		</a> 
 		  		<c:choose>
-		  			<c:when test="${empty sessionScope.userid}">
+		  			<c:when test="${empty sessionScope.loginOk}">
 				  		<div class="dropdown-menu" aria-labelledby="navbarDropdown"> 
 				  			<a class="dropdown-item" href="/semi/main/login.do">로그인</a> 
 				  			<a class="dropdown-item" href="/semi/main/join.do">회원가입</a> 
