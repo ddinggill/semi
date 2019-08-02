@@ -3,7 +3,7 @@ package model.main;
 import java.sql.Date;
 
 public class NoticeDTO {
-	private int boardkey;
+	private String boardkey;
 	private int usercode;
 	private String title;
 	private String contents;
@@ -13,11 +13,11 @@ public class NoticeDTO {
 	public NoticeDTO() {
 	}
 
-	public int getBoardkey() {
+	public String getBoardkey() {
 		return boardkey;
 	}
 
-	public void setBoardkey(int boardkey) {
+	public void setBoardkey(String boardkey) {
 		this.boardkey = boardkey;
 	}
 

@@ -17,7 +17,7 @@ public class JdbcTemplate {
 	public static Connection getConnection() throws ClassNotFoundException, SQLException {
 		Class.forName("oracle.jdbc.OracleDriver");
 		String url = "jdbc:oracle:thin://@192.168.30.74:1521:xe";
-		String user = "sm";
+		String user = "sm2";
 		String password = "a1234";
 		
 		return DriverManager.getConnection(url, user, password);

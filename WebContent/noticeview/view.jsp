@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,42 +35,90 @@ div.container {
 }
 
 table {
-	width: 100%
+	width: 100%;
+	border-collapse: separate;
+    border-spacing: 0 10px;
+    border: 1px solid #8C8C8C;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .title{
 	height : 50px;
 	font-family: 'Do Hyeon', sans-serif;
 	font-size: 30px;
+	border-bottom: 1px dotted #BDBDBD;
+}
+
+.frm {
+	margin-top: 20px;
+	margin-bottom: 125px;
+}
+
+.view_content {
+	height: 300px;
+	vertical-align: top;
+}
+
+.day{
+   color: #BDBDBD;
+}
+
+.writer{
+   font-weight: bold;
 }
 </style>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#list").on('click',function(){
+			$("form").attr("action","list.do");
+			$("form").submit();
+		});
+		
+		$("#change").on('click',function(){
+			$("form").attr("action","updateForm.do");
+			$("form").submit();
+		});
+		
+		$("#delete").on('click',function(){
+			$("form").attr("action","delete.do");
+			$("form").submit();
+		});
+	});
+
+</script>
 </head>
 <body>
 	<jsp:include page="../mainview/nav.jsp"></jsp:include>
 	<div class="container" id="view">
 		<table>
 			<tr>
-				<td colspan="2" class="title">제목 테스트</td>
+				<td colspan="2" class="title">${dto.title }</td>
 			</tr>
 			
 			<tr>
-				<td>글쓴이</td>
-				<td align="right">날짜 테스트</td>
+				<td class="writer">관리자</td>
+				<td align="right" class="day">${dto.day }</td>
 			</tr>
 
 			<tr>
-				<td colspan="2">내용 테스트</td>
+				<td colspan="2" class="view_content">${dto.contents }</td>
 			</tr>
 			<tr>
-				<td>첨부파일</td>
-				<td><a href="download.do?filename=${dto.upload}">${dto.upload}</a></td>
+				<td width="70">첨부파일</td>
+				<td><a href="download.do?filename=${dto.filename}">${dto.filename}</a></td>
 			</tr>
 		</table>
 		
-		<form name="frm" method="post">		
-		<input type="button" value="목록" class="list" /> 			
-		<input type="button" value="수정" class="update" />
-		<input type="button" value="삭제" class="del" />
+	<form name="frm" method="post" class="frm">		
+		<input type="hidden" name="pageNum" value="${param.pageNum }">
+		<input type="hidden" name="boardkey" value="${dto.boardkey }"/>
+		<input type="button" value="목록" class="btn btn-danger" id="list"/> 	
+		<c:if test="${sessionScope.loginOk.userlevel == 0 }">	
+			<input type="button" value="수정" class="btn btn-danger" id="change"/>
+			<input type="button" value="삭제" class="btn btn-danger" id="delete"/>
+		</c:if>
 	</form>
 	</div>
 	<jsp:include page="../mainview/footer.jsp"></jsp:include>

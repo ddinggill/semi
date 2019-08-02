@@ -63,7 +63,7 @@
 		  			</c:when>
 		  			<c:otherwise>
 		  				<div class="dropdown-menu" aria-labelledby="navbarDropdown"> 
-				  			<a class="dropdown-item" href="/semi/main/mypage.do">My Page</a> 
+				  			<a class="dropdown-item" href="/semi/mypage/mypage.do">My Page</a> 
 				  			<a class="dropdown-item" href="/semi/logout">로그아웃</a>
 				  		</div> 
 		  			</c:otherwise>

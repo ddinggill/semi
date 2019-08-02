@@ -20,9 +20,9 @@ h2{
 	font-family: 'Do Hyeon', sans-serif;
 }
 
-.pagination a {
-color: black
-}
+.pagination a:hover {
+	color: red;
+} 
 
 ul.pagination {width:150px; margin:0 auto}
 
@@ -36,6 +36,10 @@ div.write a{color:#fff}
 div.write:hover{
 	background:#e74742;
 }
+
+.pagecolor{
+	color: red;
+}
 </style>
 <title>공지사항</title>
 </head>
@@ -44,7 +48,9 @@ div.write:hover{
 <div class="container" id="notice">
 		<h2>공지사항</h2>
 		<!-- 글쓰기 버튼 -->
-		<a href="/semi/notice/write.do"><div class="write">글쓰기</div></a> 
+		<c:if test="${sessionScope.loginOk.userlevel == 0 }">
+			<a href="/semi/notice/writeform.do"><div class="write">글쓰기</div></a> 
+		</c:if>
 		<table class="table table-striped"> 
 			<thead> 
 				<tr> 
@@ -60,8 +66,8 @@ div.write:hover{
 				<tr>
 					<!--<td>${cnt }</td>-->
 					<td>${pdto.number-status.count+1}</td>
-					<td><a href="view.do?boardkey=${dto.boardkey }">${dto.title }</a></td>
-					<td>${dto.usercode }</td>
+					<td><a href="view.do?boardkey=${dto.boardkey }&pageNum=${pdto.currentPage}">${dto.title }</a></td>
+					<td>관리자</td>
 					<td>${dto.day }</td>
 				<!-- <c:set var="cnt" value="${cnt-1 }"></c:set> -->
 					<%-- <td>
@@ -89,8 +95,16 @@ div.write:hover{
 					<a href="list.do?pageNum=${requestScope.pdto.startPage- requestScope.pdto.blockPage}">이전</a>
 				</li>
 			</c:if>
-				<li><c:forEach begin="${requestScope.pdto.startPage }" end="${requestScope.pdto.endPage }" var="i">
-					<a href="list.do?pageNum=${i }">${i }</a>
+				<li>
+					<c:forEach begin="${requestScope.pdto.startPage }" end="${requestScope.pdto.endPage }" var="i">
+						<c:choose>
+							<c:when test="${i == requestScope.pdto.currentPage }">
+								<a href="list.do?pageNum=${i }" class="pagecolor">${i }</a>
+							</c:when>
+							<c:otherwise>
+								<a href="list.do?pageNum=${i }">${i }</a>
+							</c:otherwise>
+						</c:choose>
 					</c:forEach>
 				</li>
 		

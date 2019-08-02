@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class ReviewDTO {
 
-	private int boardkey;
+	private String boardkey;
 	private int usercode;
 	private int fcode;
 	private String title;
@@ -16,10 +16,10 @@ public class ReviewDTO {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public int getBoardkey() {
+	public String getBoardkey() {
 		return boardkey;
 	}
-	public void setBoardkey(int boardkey) {
+	public void setBoardkey(String boardkey) {
 		this.boardkey = boardkey;
 	}
 	public int getUsercode() {
