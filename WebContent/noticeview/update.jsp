@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,41 +50,48 @@ table {
 
 <script type="text/javascript">
   	$(document).ready(function(){
-  		$('form').on('submit',function(){
-  			//입력한 내용의 엔터가 있으면 br로 줄바꿈
+  		$('form').on('click',function(){
   			$('[name=contents]').val($('[name=contents]').val().replace(/\n/gi,'<br/>'));
+  		    
   		});
   	});
 </script>
 </head>
 <body>
+<jsp:scriptlet>
+pageContext.setAttribute("cr", "\r"); //Space
+pageContext.setAttribute("cn", "\n"); //Enter
+pageContext.setAttribute("crcn","\r\n");//Space,Enter
+</jsp:scriptlet>
 	<jsp:include page="../mainview/nav.jsp"></jsp:include>
 	<div class="container" id="write">
 		<h2>글쓰기</h2>
 		<form name="frm" method="post" enctype="multipart/form-data"
-			action="/semi/notice/write.do">
-			<input type="text" name="usercode" value="${sessionScope.loginOk.usercode }">
+			action="/semi/notice/updatePro.do">
+			<input type="hidden" name="usercode" value="${sessionScope.loginOk.usercode }">
+			<input type="hidden" name="pageNum" value="${param.pageNum}" />
+	    	<input type="hidden" name="boardkey" value="${dto.boardkey}" />	
 			<table>
 				<tr>
-					<td align="right" colspan="2"><a href="/semi/notice/list.do">리스트</a></td>
+					<td align="right" colspan="2"><a href="/semi/notice/list.do?pageNum=${param.pageNum}">리스트</a></td>
 				</tr>
 				<tr>
 					<td align="center">제목</td>
-					<td><input type="text" name="title" class="subject" required="required"/></td>
+					<td><input type="text" name="title" class="subject" value="${dto.title}"/></td>
 				</tr>
 				<tr>
 					<td align="center">내용</td>
 					<td><textarea name="contents" class="content" cols="20"
-							rows="23" style="resize: none" required="required"></textarea></td>
+							rows="23" style="resize: none">${fn:replace(dto.contents,'<br/>',crcn)}</textarea></td>
 				</tr>
 				<tr>
 					<td align="center">파일첨부</td>
-					<td id="fileDiv"><input type="file" name="upload" /></td>
+					<td id="fileDiv"><input type="file" name="filename" />${dto.filename}</td>
 				</tr>
 				<tr>
-					<td colspan="2" align="center"><input type="submit"
-						class="btn btn-danger" value="글쓰기" /> <input type="reset"
-						value="취소" class="btn btn-danger" /></td>
+					<td colspan="2" align="center">
+						<input type="submit" class="btn btn-danger" value="수정" /> &nbsp;&nbsp;
+						<input type="reset" value="취소" class="btn btn-danger" /></td>
 				</tr>
 			</table>
 		</form>
