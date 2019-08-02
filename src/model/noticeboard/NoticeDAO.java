@@ -71,7 +71,7 @@ public class NoticeDAO {
 			String sql = "select b.* from " + 
 					"(select rownum as rn ,a.* from " + 
 					"(select * from noticeboard " + 
-					"order by boardkey  desc)a)b " + 
+					"order by day desc)a)b " + 
 					"where b.rn>=? and b.rn<=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, pdto.getStartRow());
@@ -81,10 +81,11 @@ public class NoticeDAO {
 			while(rs.next()) {
 				NoticeDTO dto = new NoticeDTO( );
 				dto.setUsercode(rs.getInt("usercode"));
-				dto.setBoardkey(rs.getInt("boardkey"));
+				dto.setBoardkey(rs.getString("boardkey"));
 				dto.setTitle(rs.getString("title"));
 				dto.setContents(rs.getString("contents"));
 				dto.setDay(rs.getDate("day"));
+				dto.setFilename(rs.getString("filename"));
 				aList.add(dto);
 			}
 		} catch (ClassNotFoundException | SQLException e) {
@@ -99,13 +100,17 @@ public class NoticeDAO {
 		return aList;
 	}//end listMethod()
 	
+
 	public void insertMethod(NoticeDTO dto) {
 		try {
 			conn = JdbcTemplate.getConnection();
-			String sql = "insert into notice values(notice_num_seq.nextval,?,?,sysdate)";
+			String sql = "insert into noticeboard values('n'||notice_sq.nextval,?,?,?,?,sysdate)";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, dto.getTitle());
-			//pstmt.setString(2, dto.getContent());
+			//유저코드,타이틀,컨텐츠,filename
+			pstmt.setInt(1, dto.getUsercode());
+			pstmt.setString(2, dto.getTitle());
+			pstmt.setString(3, dto.getContents());
+			pstmt.setString(4, dto.getFilename());
 			pstmt.executeUpdate();
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
@@ -118,18 +123,22 @@ public class NoticeDAO {
 		}
 	}//end insertMethod()
 	
-	public NoticeDTO oneSelect(int num) {
+	public NoticeDTO viewMethod(String boardkey) {
 		NoticeDTO dto = new NoticeDTO();
 		try {
 			conn = JdbcTemplate.getConnection();
-			String sql = "select * from notice where num=?";
+			String sql = "select * from noticeboard where boardkey=?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, num);
+			pstmt.setString(1, boardkey);
 			rs = pstmt.executeQuery();
+			
 			if(rs.next()) {
-				//dto.setNum(rs.getInt("num"));
+				dto.setBoardkey(rs.getString("boardkey"));
+				dto.setContents(rs.getString("contents"));
+				dto.setDay(rs.getDate("day"));
+				dto.setFilename(rs.getString("filename"));
 				dto.setTitle(rs.getString("title"));
-				//dto.setContent(rs.getString("content"));
+				dto.setUsercode(rs.getInt("usercode"));
 			}
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
@@ -141,16 +150,42 @@ public class NoticeDAO {
 			}
 		}
 		return dto;
-	}//end oneSelect()
+	}//end viewMethod();
+	
+	
+	public String fileMethod(String boardkey) {
+		String fileName = null;
+		
+		try {
+			conn = JdbcTemplate.getConnection();
+			String sql = "select filename from noticeboard where boardkey=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, boardkey);
+			rs = pstmt.executeQuery();
+			if(rs.next())
+				fileName = rs.getString("filename");
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				exit();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return fileName;
+	}//end fileMethod()
 	
 	public void updateMethod(NoticeDTO dto) {
 		try {
 			conn = JdbcTemplate.getConnection();
-			String sql="update notice set title=?,content=?,today=sysdate where num=?";
+			String sql="update noticeboard set title=?,contents=?,filename=?,day=sysdate where boardkey=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getTitle());
-			//pstmt.setString(2, dto.getContent());
-			//pstmt.setInt(3, dto.getNum());
+			pstmt.setString(2, dto.getContents());
+			pstmt.setString(3, dto.getFilename());
+			pstmt.setString(4, dto.getBoardkey());
 			pstmt.executeUpdate();
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
@@ -163,12 +198,12 @@ public class NoticeDAO {
 		}
 	}//end updateMethod()
 	
-	public void deleteMethod(int num){
+	public void deleteMethod(String boardkey){
 		try {
 			conn = JdbcTemplate.getConnection();
-			String sql = "delete from notice where num=?";
+			String sql = "delete from noticeboard where boardkey=?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, num);
+			pstmt.setString(1, boardkey);
 			pstmt.executeUpdate();
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
@@ -180,5 +215,7 @@ public class NoticeDAO {
 			}
 		}
 	}//end deleteMethod()
+
+
 
 }//end class

@@ -9,7 +9,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.oreilly.servlet.MultipartRequest;
+
+import model.noticeboard.DeleteAction;
+import model.noticeboard.FileDownLoadAction;
 import model.noticeboard.ListAction;
+import model.noticeboard.UpdateFormAction;
+import model.noticeboard.UpdateProAction;
+import model.noticeboard.ViewAction;
+import model.noticeboard.WriteAction;
 
 
 
@@ -42,10 +50,33 @@ public class NoticeController extends HttpServlet{
 			ListAction list = new ListAction();
 			list.execute(req, resp);
 			next = "/noticeview/notice.jsp";
-			
+		}else if(path.equals("writeform.do")) {
+			next = "/noticeview/write.jsp";
 		}else if(path.equals("write.do")) {
-			RequestDispatcher dis = req.getRequestDispatcher("/noticeview/write.jsp");
-			dis.forward(req, resp);
+			WriteAction write = new WriteAction();
+			write.execute(req, resp);
+			resp.sendRedirect("list.do");
+		}else if(path.equals("view.do")) {
+			ViewAction view = new ViewAction();
+			view.execute(req, resp);
+			next = "/noticeview/view.jsp";
+		}else if(path.equals("download.do")) {
+			FileDownLoadAction download = new FileDownLoadAction();
+			download.execute(req, resp);
+		}else if(path.equals("updateForm.do")) {
+			UpdateFormAction update = new UpdateFormAction();
+			update.execute(req, resp);
+			next = "/noticeview/update.jsp";
+		}else if(path.equals("updatePro.do")) {
+			UpdateProAction updatepro = new UpdateProAction();
+			MultipartRequest multi = updatepro.executeMulti(req);
+			String param="pageNum="+multi.getParameter("pageNum");
+			resp.sendRedirect("list.do?"+param);
+		}else if(path.equals("delete.do")) {
+			DeleteAction delete = new DeleteAction();
+			delete.execute(req, resp);
+			String param="pageNum="+req.getAttribute("pageNum");
+			resp.sendRedirect("list.do?"+param);
 		}
 			
 		if(next!="") { 

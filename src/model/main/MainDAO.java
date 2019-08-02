@@ -41,18 +41,20 @@ public class MainDAO {
 		List<NoticeDTO> aList = new ArrayList<NoticeDTO>();
 		try {
 			conn=JdbcTemplate.getConnection();
-			 String sql = "select a.boardkey, a.title ,a.day from (select * from NOTICEBOARD order by boardkey desc)a where rownum <= 6";		 
+			 String sql = "select a.boardkey, a.title ,a.day from (select * from NOTICEBOARD order by day desc)a where rownum <= 6";		 
 			pstmt = conn.prepareStatement(sql);
 			//pstmt.setInt(1, 5);
 			rs = pstmt.executeQuery();
 			System.out.println(sql);
 			while(rs.next()) {
 				NoticeDTO dto = new NoticeDTO();
-				dto.setBoardkey(rs.getInt("boardkey"));
+				dto.setBoardkey(rs.getString("boardkey"));
 				dto.setTitle(rs.getString("title"));
 				dto.setDay(rs.getDate("day"));
-				System.out.println("제목:"+rs.getString("title"));
-				System.out.println("키= "+rs.getInt("boardkey"));
+				/*
+				 * System.out.println("제목:"+rs.getString("title"));
+				 * System.out.println("키= "+rs.getInt("boardkey"));
+				 */
 				aList.add(dto);
 			}
 			System.out.println("공지사항 DAO");
@@ -82,11 +84,13 @@ public class MainDAO {
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				ReviewDTO dto = new ReviewDTO();
-				dto.setBoardkey(rs.getInt("boardkey"));
+				dto.setBoardkey(rs.getString("boardkey"));
 				dto.setTitle(rs.getString("title"));
 				dto.setDay(rs.getDate("day"));
-				System.out.println("제목:"+rs.getString("title"));
-				System.out.println("키= "+rs.getInt("boardkey"));
+				/*
+				 * System.out.println("제목:"+rs.getString("title"));
+				 * System.out.println("키= "+rs.getInt("boardkey"));
+				 */
 				aList.add(dto);
 			}
 			System.out.println("리뷰 DAO");

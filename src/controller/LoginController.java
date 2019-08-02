@@ -44,7 +44,7 @@ public class LoginController extends HttpServlet{
 			if(UserDAO.getInstance().loginCheck(user)) {
 				HttpSession session = req.getSession();
 				//Cookie cookie = new Cookie("userCookie", req.getParameter("userid"));
-				session.setMaxInactiveInterval(300);//5분
+				session.setMaxInactiveInterval(30*60);//5분
 				user= UserDAO.getInstance().userInfo(user);
 				session.setAttribute("loginOk", user);
 				resp.sendRedirect("/semi/main/main.do");

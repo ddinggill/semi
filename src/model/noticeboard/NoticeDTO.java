@@ -4,19 +4,27 @@ import java.util.Date;
 
 public class NoticeDTO {
 
-	private int boardkey;
+	private String boardkey;
 	private int usercode;
 	private String title;
 	private String contents;
 	private Date day;
+	private String filename;
 	
 	
-	public int getBoardkey() {
+	public String getFilename() {
+		return filename;
+	}
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
+	public String getBoardkey() {
 		return boardkey;
 	}
-	public void setBoardkey(int boardkey) {
+	public void setBoardkey(String boardkey) {
 		this.boardkey = boardkey;
 	}
+	
 	public int getUsercode() {
 		return usercode;
 	}
