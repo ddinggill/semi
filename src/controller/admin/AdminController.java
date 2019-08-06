@@ -13,6 +13,8 @@ import javax.servlet.http.HttpSession;
 
 import model.UserDAO;
 import model.UserDTO;
+import model.admin.AdminDAO;
+import model.join.joinDAO;
 import model.mypage.MypageAction;
 
 @WebServlet("/admin/*")
@@ -46,6 +48,15 @@ public class AdminController extends HttpServlet{
 			
 			RequestDispatcher dis = req.getRequestDispatcher("/mainview/adminPage.jsp");
 			dis.forward(req, resp);
+		}else if(path.equals("update.do")) {
+			System.out.println("유저레벨 변경요청");
+			String usercode = req.getParameter("usercode");
+			String userlevel = req.getParameter("userlevel");
+			System.out.println(usercode+" "+userlevel);
+			AdminDAO dao = AdminDAO.getInstance();
+			dao.userlevelUpdate(Integer.parseInt(usercode), Integer.parseInt(userlevel));
+			resp.setContentType("text/html;charset=UTF-8");
+			resp.getWriter().append(userlevel);
 		}
 		
 		if(next!="") { 

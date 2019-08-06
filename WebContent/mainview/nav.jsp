@@ -10,7 +10,7 @@
 <script type="text/javascript">
 function timecount(){
 	
-		var minute = 5;
+		var minute = 30;
 		var second = 30;
 		
 		$("#time").html("남은로그인 유지시간:");
