@@ -30,7 +30,15 @@ $(document).ready(function(){
 		   $('.pw-find').animate({height: "show", opacity: "toggle"}, "slow");
 		   $('.register-form').animate({height: "hide", opacity: "hide"}, "slow");	
 		}); */
+		
+	/* $("button").on('click', function(){
+		$('form').submit();
+	}); */
 	
+	if("${requestScope.find}" == 2)
+		alert("비밀번호초기화: ${requestScope.newPW} 로그인  페이지로 이동하세요.");
+	else if("${requestScope.find}" == 3)
+		alert("아이디나 이메일을 잘못입력하셨습니다.");
 });
 
 </script>
@@ -178,10 +186,10 @@ body {
 <jsp:include page="nav.jsp"></jsp:include>
 <div class="login-page">
   <div class="form">
-    <form class="pw-find">
-  	<input type="text" placeholder="userid" />
-  	<input type="text" placeholder="useremail" />
-  	<button>find password</button>
+    <form class="pw-find" action="/semi/help/pwfind.do" method="post">
+  	<input type="text" placeholder="userid" name="userid"/>
+  	<input type="email" placeholder="useremail" name="useremail"/>
+  	<button>Reset password</button>
   	<p class="message2">Not registered? <a href="/semi/main/join.do">Create an account</a></p>
   	<p class="message">Already registered? <a href="/semi/main/login.do">Sign In</a></p>
   	</form>

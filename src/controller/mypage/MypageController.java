@@ -42,7 +42,7 @@ public class MypageController extends HttpServlet{
 			 */
 			HttpSession session = req.getSession();
 			UserDTO dto = (UserDTO)session.getAttribute("loginOk");
-			System.out.println(dto.getName());
+			//System.out.println(dto.getName());
 			MypageAction mypage = new MypageAction();
 			mypage.execute(req, resp);
 			RequestDispatcher dis = req.getRequestDispatcher("/mypageview/mypage.jsp");
