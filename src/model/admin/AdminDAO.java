@@ -62,4 +62,25 @@ public class AdminDAO {
 		}
 	}//end insert()	
 	
+	public void userdelete(int usercode) {
+		try {
+			conn = JdbcTemplate.getConnection();
+			String sql = "delete from member where usercode=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, usercode);
+			pstmt.executeUpdate();
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				exit();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+	}
+	
 }//end class

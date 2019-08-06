@@ -70,10 +70,10 @@ function isSessionExpired(){
 		<!-- nav components -->
 		<ul class="navbar-nav"> 
 			<li class="nav-item active"> 
-				<a class="nav-link" href="#" style="color: white">인기축제</a> 
+				<a class="nav-link" href="/semi/district/hotList.do" style="color: white">인기축제</a> 
 			</li> 
 			<li class="nav-item active"> 
-				<a class="nav-link" href="#" style="color: white">지역/기간별검색</a> 
+				<a class="nav-link" href="/semi/district/list.do" style="color: white">지역/기간별검색</a> 
 			</li> 
 			<!-- <li class="nav-item dropdown"> 
 				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> 기능 리스트 </a> 
@@ -85,13 +85,16 @@ function isSessionExpired(){
 				</div> 
 			</li>  -->
 			<li class="nav-item active"> 
-				<a class="nav-link" href="#" style="color: white">후기게시판</a> 
+				<a class="nav-link" href="/semi/district/reviewList.do" style="color: white">후기게시판</a> 
 			</li> 
 			<li class="nav-item"> 
 				<a class="nav-link" href="/semi/notice/list.do" style="color: white">공지사항</a> 
 			</li> 
 			
 			<c:if test="${sessionScope.loginOk.userlevel eq 0 }">
+			<li class="nav-item"> 
+				<a class="nav-link" href="/semi/festival/InsertFestival.jsp" style="color: yellow">축제등록</a> 
+			</li>
 			<li class="nav-item"> 
 				<a class="nav-link" href="/semi/admin/membermanage.do" style="color: yellow">회원관리</a> 
 			</li>
@@ -131,7 +134,8 @@ function isSessionExpired(){
 		  					timecount();
 		  				</script>
 		  				<div class="dropdown-menu" aria-labelledby="navbarDropdown"> 
-				  			<a class="dropdown-item" href="/semi/mypage/mypage.do">My Page</a> 
+				  			<a class="dropdown-item" href="/semi/mypage/mypage.do">My Page</a>
+				  			<a class="dropdown-item" href="/semi/promotion/promotion.do">홍보문의</a> 
 				  			<a class="dropdown-item" href="/semi/logout">로그아웃</a>
 				  		</div> 
 		  			</c:otherwise>
