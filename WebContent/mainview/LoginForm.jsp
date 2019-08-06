@@ -31,9 +31,9 @@ $(document).ready(function(){
 		   $('.register-form').animate({height: "hide", opacity: "hide"}, "slow");	
 		}); */
 	
-	$("button").on('click',function(){
+	/* $("button").on('click',function(){
 		$('form').submit();
-	})
+	}) */
 		
 	if("${requestScope.loginCheck}" == "fail"){
 		alert("로그인 실패했습니다 다시 입력하세요");

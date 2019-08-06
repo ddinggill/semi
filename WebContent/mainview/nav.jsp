@@ -1,13 +1,61 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
+function timecount(){
+	
+		var minute = 5;
+		var second = 30;
+		
+		$("#time").html("남은로그인 유지시간:");
+		$("#countTimerMinute").html(minute+"분");
+		$("#countTimerSecond").html(second+"초");
+		
+		var timer = setInterval(function(){
+			$("#time").html("남은로그인 유지시간:");
+			$("#countTimerMinute").html(minute+"분");
+			$("#countTimerSecond").html(second+"초");
+			
+			if(second==0 && minute==0){
+				alert("로그인 시간이 만료되었습니다.다시 로그인 해주세요.");
+				clearInterval(timer);
+				location.href = "/semi/logout";
+			}else{
+				second--;
+				if(second==0){
+					minute--;
+					if(minute<0){
+						minute = 0;
+					}else{
+						second=59;
+					}
+				}
+				
+			}
+		},1000);
+	
+}
+/* function setTimeOffsetBetweenServerAndClien(){
+	var latestTouch = $.cookie('latestTouch');
+	latestTouch = latestTouch==null ? null : Math.abs(latestTouch);
+	var clientTime = (new Date()).getTime();
+	var clientTimeOffset = clientTime - latestTouch;
+	setCookie("clientTimeOffset", clientTimeOffset);
+}
 
+function isSessionExpired(){
+	 var sessionExpiry = Math.abs($.cookie('sessionExpiry'));
+	 var timeOffset = Math.abs($.cookie('clientTimeOffset'));
+	 var localTime = (new Date()).getTime();
+	 $.cookie('remainTime', (sessionExpiry - (localTime - timeOffset)));
+	 return localTime - timeOffset > (sessionExpiry-(offset||0));
+} */
 
 </script>
 </head>
@@ -42,6 +90,12 @@
 			<li class="nav-item"> 
 				<a class="nav-link" href="/semi/notice/list.do" style="color: white">공지사항</a> 
 			</li> 
+			
+			<c:if test="${sessionScope.loginOk.userlevel eq 0 }">
+			<li class="nav-item"> 
+				<a class="nav-link" href="/semi/admin/membermanage.do" style="color: yellow">회원관리</a> 
+			</li>
+			</c:if>
 		</ul>
 		
 		 <!-- search bar -->
@@ -51,6 +105,17 @@
 		  </form>
 		  <!-- login components --> 
 		  <ul class="navbar-nav"> 
+		  	<c:if test="${!empty sessionScope.loginOk}">
+		  		<li class="nav-item"> 
+					<a class="nav-link" href="" style="color: white" id="time"></a> 
+				</li> 
+			  	<li class="nav-item"> 
+					<a class="nav-link" href="" style="color: white" id="countTimerMinute"></a> 
+				</li> 
+				<li class="nav-item"> 
+					<a class="nav-link" href="" style="color: white" id="countTimerSecond"></a> 
+				</li> 
+		  	</c:if>
 		  	<li class="nav-item dropdown">
 		  		<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white"> 내 정보 
 		  		</a> 
@@ -62,6 +127,9 @@
 				  		</div> 
 		  			</c:when>
 		  			<c:otherwise>
+		  				<script type="text/javascript">
+		  					timecount();
+		  				</script>
 		  				<div class="dropdown-menu" aria-labelledby="navbarDropdown"> 
 				  			<a class="dropdown-item" href="/semi/mypage/mypage.do">My Page</a> 
 				  			<a class="dropdown-item" href="/semi/logout">로그아웃</a>
