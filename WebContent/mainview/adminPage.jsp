@@ -11,6 +11,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <style type="text/css">
 div.container {
 margin-top:50px 
@@ -44,19 +45,38 @@ div.write:hover{
 
 <script type="text/javascript">
 $(document).ready(function(){
-	
+	$('button').each(function(){ 
+		$(this).click(function(){
+			var usercode = $(this).parents("tr").find("#usercode").val();
+			var userlevel = $(this).parents("tr").find("select").val();
+			//alert("usercode:"+usercode+"  val:"+selectedval);
+			updateprocess(usercode,userlevel)
+		});
+	});
+
 });
+
+function updateprocess(usercode,userlevel){
+	
+	//alert("usercode:"+usercode+"  userlevel:"+userlevel);
+	$.ajax({
+		type:'POST',
+		dataType:'text',
+		//data:'id='+id+'&pass='+pass,
+		data:'usercode='+usercode+'&userlevel='+userlevel,
+		url:'/semi/admin/update.do',
+		success: function(res){
+			$(this).parents("tr").find("select").val(res);
+		}
+	});
+}
 </script>
 <title>공지사항</title>
 </head>
 <body>
 <jsp:include page="../mainview/nav.jsp"></jsp:include>
 <div class="container" id="notice">
-		<h2>공지사항</h2>
-		<!-- 글쓰기 버튼 -->
-		<c:if test="${sessionScope.loginOk.userlevel == 0 }">
-			<a href="/semi/notice/writeform.do"><div class="write">글쓰기</div></a> 
-		</c:if>
+		<h2>회원관리</h2>
 		<table class="table table-striped"> 
 			<thead> 
 				<tr> 
@@ -74,6 +94,7 @@ $(document).ready(function(){
 		 	<tbody> 
 		 	<c:forEach items="${requestScope.userlist }" var="dto">
 				<tr>
+					<input type="hidden" id="usercode" value="${dto.usercode }">
 					<td>${dto.userid }</td>
 					<td>${dto.phonenumber }</td>
 					<td>${dto.name }</td>
