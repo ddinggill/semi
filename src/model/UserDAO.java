@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import templet.JdbcTemplate;
 
@@ -94,4 +96,39 @@ public class UserDAO {
 		return dto;
 	}//end userInfo
 	
+	public List<UserDTO> userAllInfo() {
+		
+		List<UserDTO> alist = new ArrayList<UserDTO>();
+		
+		try {
+			conn = JdbcTemplate.getConnection();
+			String sql = "select * from member";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				UserDTO dto = new UserDTO();
+				dto.setUserid(rs.getString("userid"));
+				dto.setName(rs.getString("name"));
+				dto.setNickname(rs.getString("nickname"));
+				dto.setPhonenumber(rs.getString("phonenumber"));
+				dto.setUsercode(Integer.parseInt(rs.getString("usercode")));
+				dto.setUseremail(rs.getString("useremail"));
+				dto.setUserlevel(rs.getInt("userlevel"));
+				
+				alist.add(dto);
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				exit();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return alist;
+	}//end userInfo
 }//end class

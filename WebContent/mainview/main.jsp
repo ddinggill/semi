@@ -47,7 +47,8 @@
 			pause : 3000,
 			mode : 'vertical',
 			autoControls : true,
-			pager : true
+			pager : true,
+			touchEnabled : false
 		});
 		   
 	});
@@ -134,7 +135,7 @@
 			<ul>
 				<li class="new_list"><h1 class="new_title">공지사항</h1></li>
 				<c:forEach items="${requestScope.noticeList }" var="notice">
-				<li class="new_list"><a href="/semi/notice/view.do?boardkey=" class="new_text">${notice.title }</a><span
+				<li class="new_list"><a href="/semi/notice/view.do?boardkey=${notice.boardkey }&pageNum=1" class="new_text">${notice.title }</a><span
 					class="new_date">${notice.day }</span></li>
 				<%--  <li class="new_list"><a href="" class="new_text">${notice.title }</a><span
 					class="new_date">${notice.day }</span></li>
