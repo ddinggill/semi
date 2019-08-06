@@ -45,12 +45,22 @@ div.write:hover{
 
 <script type="text/javascript">
 $(document).ready(function(){
-	$('button').each(function(){ 
+	$('button[id=update]').each(function(){ 
 		$(this).click(function(){
 			var usercode = $(this).parents("tr").find("#usercode").val();
 			var userlevel = $(this).parents("tr").find("select").val();
 			//alert("usercode:"+usercode+"  val:"+selectedval);
 			updateprocess(usercode,userlevel)
+		});
+	});
+	
+	$('button[id=delete]').each(function(){ 
+		$(this).click(function(){
+			var usercode = $(this).parents("tr").find("#usercode").val();
+			deleteprocess(usercode);
+			//var userlevel = $(this).parents("tr").find("select").val();
+			//alert("usercode:"+usercode+"  val:"+selectedval);
+			//updateprocess(usercode,userlevel)
 		});
 	});
 
@@ -66,9 +76,28 @@ function updateprocess(usercode,userlevel){
 		data:'usercode='+usercode+'&userlevel='+userlevel,
 		url:'/semi/admin/update.do',
 		success: function(res){
-			$(this).parents("tr").find("select").val(res);
+			//$(this).parents("tr").find("select").val(res);
+			alert("회원정보가 변경되었습니다.");
 		}
 	});
+}
+
+function refreshMemList(){
+	location.reload();
+}
+
+function deleteprocess(usercode){
+	$.ajax({
+		type:'POST',
+		dataType:'text',
+		data:'usercode='+usercode,
+		url:'/semi/admin/delete.do',
+		success: function(){
+			alert("회원이 삭제되었습니다.");
+			refreshMemList();
+		}
+	});
+	
 }
 </script>
 <title>공지사항</title>

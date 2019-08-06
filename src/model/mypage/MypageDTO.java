@@ -5,9 +5,11 @@ import java.sql.Date;
 public class MypageDTO {
 	private int usercode;
 	private String reviewTitle;
+	private String reviewcode;
 	private Date reviewDate;
 	private String comment;
 	private String promotionTitle;
+	private String promotioncode;
 	
 	
 	public MypageDTO() {
@@ -64,7 +66,24 @@ public class MypageDTO {
 		this.promotionTitle = promotionTitle;
 	}
 	
-	
+	public String getReviewcode() {
+		return reviewcode;
+	}
+
+
+	public void setReviewcode(String reviewcode) {
+		this.reviewcode = reviewcode;
+	}
+
+
+	public String getPromotioncode() {
+		return promotioncode;
+	}
+
+
+	public void setPromotioncode(String promotioncode) {
+		this.promotioncode = promotioncode;
+	}
 	
 	
 	

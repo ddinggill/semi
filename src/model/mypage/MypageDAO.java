@@ -10,6 +10,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import model.promotion.PromotionCommentDTO;
+import model.promotion.PromotionDTO;
 import templet.JdbcTemplate;
 
 public class MypageDAO {
@@ -50,6 +52,7 @@ public class MypageDAO {
 					MypageDTO mdto = new MypageDTO();
 					mdto.setReviewTitle(rs.getString("title"));
 					mdto.setReviewDate(rs.getDate("day"));
+					mdto.setReviewcode(rs.getString("boardkey"));
 					aList.add(mdto);
 				}
 			} catch (ClassNotFoundException | SQLException e) {
@@ -95,34 +98,35 @@ public class MypageDAO {
 		return aList;
 	}//end recomment/////////////////
 	
-	public List<MypageDTO> myPagepromotion(int usercode){
-		List<MypageDTO> aList = new ArrayList<MypageDTO>();
-			try {
-				conn=JdbcTemplate.getConnection();
-				String sql= "select * from promotion where usercode = ?";
-				
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1, usercode);
-				rs = pstmt.executeQuery();
-				while(rs.next()) {
-					MypageDTO mdto = new MypageDTO();	
-					mdto.setPromotionTitle(rs.getString("ftitle"));
-					aList.add(mdto);
-				}
-			} catch (ClassNotFoundException | SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}finally {
-				try {
-					exit();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		return aList;
-	}//end promotion/////////////////
-	
+//	public List<MypageDTO> myPagepromotion(int usercode){
+//		List<MypageDTO> aList = new ArrayList<MypageDTO>();
+//			try {
+//				conn=JdbcTemplate.getConnection();
+//				String sql= "select * from promotion where usercode = ?";
+//				
+//				pstmt = conn.prepareStatement(sql);
+//				pstmt.setInt(1, usercode);
+//				rs = pstmt.executeQuery();
+//				while(rs.next()) {
+//					MypageDTO mdto = new MypageDTO();	
+//					mdto.setPromotionTitle(rs.getString("ftitle"));
+//					mdto.setPromotioncode(rs.getString("boardkey"));
+//					aList.add(mdto);
+//				}
+//			} catch (ClassNotFoundException | SQLException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}finally {
+//				try {
+//					exit();
+//				} catch (SQLException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//			}
+//		return aList;
+//	}//end promotion/////////////////
+//	
 	public void mypageInfoUpdate(int usercode , MypageUpdateDTO dto) {
 		
 		try {
@@ -135,6 +139,8 @@ public class MypageDAO {
 			pstmt.setString(4, dto.getEmail());
 			pstmt.setInt(5, usercode);
 			pstmt.executeUpdate();
+		
+			
 			
 			
 		} catch (ClassNotFoundException | SQLException e) {
@@ -149,11 +155,80 @@ public class MypageDAO {
 			}
 		}
 		
-		
-		
-		
-		
 	}//end /////////////////////////////
+	
+	
+	public List<PromotionDTO> myPagepromotion(int usercode){
+		List<PromotionDTO> aList = new ArrayList<PromotionDTO>();
+		
+		try {
+			conn=JdbcTemplate.getConnection();
+			String sql = "select * from promotion where usercode = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, usercode);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				PromotionDTO dto = new PromotionDTO();
+				dto.setBoardkey(rs.getString("boardkey"));
+				dto.setUsercode(usercode);
+				dto.setfTitle(rs.getString("fTitle"));
+				dto.setfSdate(rs.getDate("fSdate"));
+				dto.setfEdate(rs.getDate("fEdate"));
+				dto.setfAddress(rs.getString("fAddress"));
+				dto.setfImgpath(rs.getString("fImgpath"));
+				dto.setfMainpath(rs.getString("fMainpath"));
+				dto.setComment(new ArrayList<PromotionCommentDTO>());
+				aList.add(dto);
+				
+			}
+			
+			
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				exit();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return aList;
+	}
+	
+	public List<PromotionCommentDTO> addComment(){
+		List<PromotionCommentDTO> commentList = new ArrayList<PromotionCommentDTO>();
+		
+		try {
+			conn=JdbcTemplate.getConnection();
+			String sql = "select * from promotioncomment order by DAY desc";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				PromotionCommentDTO dto = new PromotionCommentDTO();
+				dto.setBoardkey(rs.getString("boardkey"));
+				dto.setCommentcode(rs.getInt("commentcode"));
+				dto.setCommentContents(rs.getString("content"));
+				dto.setCommentday(rs.getDate("day"));
+				dto.setCommentTitle(rs.getString("title"));
+				commentList.add(dto);
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				exit();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return commentList;
+	}
+	
 	
 	
 	
