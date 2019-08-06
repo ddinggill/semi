@@ -19,6 +19,7 @@ import model.festival.ReviewBoardViewAction;
 import model.festival.ReviewBoardWriteAction;
 import model.festival.SearchListAction;
 import model.festival.ViewAction;
+import model.festival.WriteFestival;
 
 
 
@@ -78,6 +79,10 @@ public class districtController extends HttpServlet {
 		}else if(action.equals("/reviewDownload.do")) {
 			FileDownLoadAction download = new FileDownLoadAction();
 			download.execute(req, resp);
+		}else if(action.equals("/write.do")) {
+			WriteFestival write = new WriteFestival();
+			write.execute(req, resp);
+			path = "/festival/InsertFestival.jsp";
 		}
 		
 		

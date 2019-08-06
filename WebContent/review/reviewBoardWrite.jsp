@@ -50,18 +50,13 @@
 <body>
 <jsp:include page="../mainview/nav.jsp"></jsp:include>
 	
-	<form name="frm" method="post" enctype="multipart/form-data" action="reviewWrite.do">
+	<form name="frm" method="post" enctype="multipart/form-data" action="/semi/district/reviewWrite.do">
 		<table>
 			<tr>
 				<td align="right" colspan="2"><a href="reviewList.do">리스트</a></td>
 			</tr>
-
 			<tr>
-				<td width="20%" align="center">글쓴이</td>
-				<td width="80%"><input type="text" name="usercode" /></td>
-			</tr>
-
-			<tr>
+				<input type="hidden" name="usercode" value="${param.code}"/>
 				<td width="20%" align="center">축제</td>
 				<td width="80%"><input type="text" name="fcode" value="1" readonly="readonly" /></td>
 			</tr>

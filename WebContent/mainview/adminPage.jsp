@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="../css/index_style.css">
+<!-- <link rel="stylesheet" type="text/css" href="../css/index_style.css"> -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
@@ -82,19 +82,20 @@ function updateprocess(usercode,userlevel){
 	});
 }
 
-function refreshMemList(){
-	location.reload();
+function refreshMemList(res){
+	
+	location.href="/semi/admin/membermanage.do?pageNum="+res;
 }
 
 function deleteprocess(usercode){
 	$.ajax({
 		type:'POST',
 		dataType:'text',
-		data:'usercode='+usercode,
+		data:'usercode='+usercode+'&pageNum=${requestScope.pdto.currentPage}',
 		url:'/semi/admin/delete.do',
-		success: function(){
+		success: function(res){
 			alert("회원이 삭제되었습니다.");
-			refreshMemList();
+			refreshMemList(res);
 		}
 	});
 	
@@ -106,6 +107,7 @@ function deleteprocess(usercode){
 <jsp:include page="../mainview/nav.jsp"></jsp:include>
 <div class="container" id="notice">
 		<h2>회원관리</h2>
+		
 		<table class="table table-striped"> 
 			<thead> 
 				<tr> 
@@ -146,17 +148,17 @@ function deleteprocess(usercode){
 		<ul class="pagination">
 			<c:if test="${requestScope.pdto.startPage != 1 }" >
 				<li>
-					<a href="list.do?pageNum=${requestScope.pdto.startPage- requestScope.pdto.blockPage}">이전</a>
+					<a href="membermanage.do?pageNum=${requestScope.pdto.startPage- requestScope.pdto.blockPage}">이전</a>
 				</li>
 			</c:if>
 				<li>
 					<c:forEach begin="${requestScope.pdto.startPage }" end="${requestScope.pdto.endPage }" var="i">
 						<c:choose>
 							<c:when test="${i == requestScope.pdto.currentPage }">
-								<a href="list.do?pageNum=${i }" class="pagecolor">${i }</a>
+								<a href="membermanage.do?pageNum=${i }" class="pagecolor">${i }</a>
 							</c:when>
 							<c:otherwise>
-								<a href="list.do?pageNum=${i }">${i }</a>
+								<a href="membermanage.do?pageNum=${i }">${i }</a>
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>
@@ -164,7 +166,7 @@ function deleteprocess(usercode){
 		
 				<li>
 					<c:if test="${requestScope.pdto.totalPage > requestScope.pdto.endPage }" >
-					<a href="list.do?pageNum=${requestScope.pdto.endPage+1 }">다음</a>
+					<a href="membermanage.do?pageNum=${requestScope.pdto.endPage+1 }">다음</a>
 					</c:if>
 				</li>
 		</ul>

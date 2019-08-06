@@ -63,7 +63,7 @@ $(document).ready(function(){
 	
 	$('#write').click(function(){
 		var fcd = $('#fcd').val();
-		window.location.href="/semi_start/reviewBoardWrite.jsp?code="+fcd;
+		window.location.href="/semi/review/reviewBoardWrite.jsp?code="+fcd;
 	});
 	
 
@@ -211,13 +211,11 @@ background-color: #FBDEDE;
 	
 	<div class="container content">
 		 <div id="mainC1">
-		  ----main contents <br/>
 		 <p><c:out value="${cdata.fcontents}"/></p>
 		 <img src="/semi/images/${cdata.fmainpath}" width="400px" height="300px" />
 		 </div>
 		 <div id="mainC2" style="display:none">
-		 -----map contents <br />
-		 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3167.017626620263!2d127.88749391533396!3d37.4603057379624!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x35630c0b409fb0ab%3A0x9394e6b5cb53110e!2z6rCV7JuQ64-EIOybkOyjvOyLnCDtmLjsoIDrqbQg7Jqp6rOh66asIDM5Mw!5e0!3m2!1sko!2skr!4v1564537373469!5m2!1sko!2skr" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+		 <iframe src="https://www.google.com/maps/embed?pb=${cdata.fmap }" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
 		 </div>
 	</c:forEach>
 
@@ -249,7 +247,6 @@ background-color: #FBDEDE;
 	 		
 			<!-- 글쓰기 처리시 축제코드 -->
 			<input type="hidden" name="${param.fcode}" id="fcd" value="${param.fcode}"/>
-			<input type="button" value="검색" class="btn">
        	    <input type="button" value="글쓰기" class="btn" id="write">
 		</div>
 		
