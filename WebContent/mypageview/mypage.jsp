@@ -43,7 +43,9 @@ a{
 	font-size:20px;
 	font-weight: bold;
 }
-
+#comment_link{
+	text-indent: 20px;
+}
 </style>
 <title>Insert title here</title>
 </head>
@@ -125,8 +127,16 @@ a{
 		 	<tbody> 
 		 	<c:forEach items="${requestScope.promotionList }" var="promotionList">
 		 		<tr> 
-		 			<td>${promotionList.promotionTitle }</td> 
-		 			
+		 			<td><a href="/semi/promotion/view.do?boardkey=${promotionList.boardkey }">${promotionList.fTitle }</a>
+			 			<c:forEach items="${promotionList.comment}" var="commentlist"> 
+			 				<%-- <br/>&nbsp;&nbsp;${commentlist.commentcode} --%>
+			 				<br/>&nbsp;&nbsp;&nbsp;&nbsp;
+			 				<img  src="../images/re.gif">
+			 				 <a href="/semi/promotion/commentview.do?commentcode=${commentlist.commentcode}" id="comment_link">${commentlist.commentTitle } </a>
+			 				 <input type="hidden" value="${commentlist.commentcode}"  name="commentcode"> 
+			 				<!-- 뷰 만들고 링크달기 -->
+			 			</c:forEach>
+		 			</td> 
 		 		</tr> 
 		 		</c:forEach>	
 		 	</tbody> 

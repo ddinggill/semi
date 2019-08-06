@@ -43,7 +43,7 @@ public class AdminController extends HttpServlet{
 		if (path.equals("membermanage.do")) {
 			UserDAO dao = UserDAO.getInstance();
 			List<UserDTO> alist = dao.userAllInfo();
-			
+		
 			req.setAttribute("userlist", alist);
 			
 			RequestDispatcher dis = req.getRequestDispatcher("/mainview/adminPage.jsp");
@@ -57,6 +57,13 @@ public class AdminController extends HttpServlet{
 			dao.userlevelUpdate(Integer.parseInt(usercode), Integer.parseInt(userlevel));
 			resp.setContentType("text/html;charset=UTF-8");
 			resp.getWriter().append(userlevel);
+		}else if(path.equals("delete.do")) {
+			String usercode=req.getParameter("usercode");
+			AdminDAO dao=AdminDAO.getInstance();
+			dao.userdelete(Integer.parseInt(usercode));	
+			//resp.sendRedirect("membermanage.do");
+			RequestDispatcher dis = req.getRequestDispatcher("membermanage.do");
+			dis.forward(req, resp);
 		}
 		
 		if(next!="") { 
