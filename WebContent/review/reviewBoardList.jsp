@@ -28,9 +28,29 @@
 <script
 	src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Sunflower:300&display=swap&subset=korean" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap" rel="stylesheet">
+
 <meta charset="UTF-8">
 <title>ReviewBoardList</title>
 <style type="text/css">
+
+div.container {
+margin-top:50px 
+}
+
+h2{
+	font-family: 'Do Hyeon', sans-serif;
+}
+
+div.searchbar{
+margin-top:20px;
+margin-bottom:15px
+}
+
+.pagelist{
+text-align: center;
+}
+
 .pagelist a {
 	text-decoration: none;
 	color: black;
@@ -81,8 +101,9 @@ $(document).ready(function(){
 </head>
 <body>
 <jsp:include page="../mainview/nav.jsp"></jsp:include>
-	<div class="wrap">
-
+	<div class="wrap container">
+	<h2>후기게시판</h2>
+		<div class="searchbar search-panel">
 			<form>
 					<select name="searchKey">
 						<option value="all">검색어를 입력</option>
@@ -91,9 +112,10 @@ $(document).ready(function(){
 						<option value="userName">글쓴이</option>
 					</select>	
 					<input type="text" name="searchWord"> 
-					<input type="button" value="검색" id="searchBtn" />		
+					<input type="button" value="검색" id="searchBtn" class="btn btn-danger"/>		
 			</form>
-		<table>
+		</div>
+		<table class="table table-striped">
 			<thead>
 				<tr>
 					<th>게시글 번호</th>
@@ -105,9 +127,9 @@ $(document).ready(function(){
 			</thead>
 
 			<tbody>
-				<c:forEach items="${requestScope.aList }" var="dto">
-					<tr>
-						<td>${dto.boardkey }</td>
+				<c:forEach items="${requestScope.aList }" var="dto" varStatus="status">
+               <tr>
+                  <td>${pdto.number-status.count+1}</td>
 						<td>
 							<c:url var="cpage" value="reviewView.do">
 								<c:param name="boardkey" value="${dto.boardkey }"/>

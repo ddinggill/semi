@@ -88,18 +88,10 @@ public class AdminController extends HttpServlet{
 				PageDTO pdto = new PageDTO(currentPage, cnt);
 				if(pdto.getEndPage()<currentPage) {
 					resp.getWriter().print(currentPage-1);
-					//req.setAttribute("pageNum", currentPage-1);
-					//System.out.println(req.getAttribute("pageNum"));
 				}else {
 					resp.getWriter().print(currentPage);
-					//req.setAttribute("pageNum", currentPage);
 				}
 			}
-			//resp.sendRedirect("membermanage.do?pageNum="+req.getAttribute("pageNum"));
-			/*
-			 * RequestDispatcher dis = req.getRequestDispatcher("membermanage.do");
-			 * dis.forward(req, resp);
-			 */
 		}
 		
 		if(next!="") { 

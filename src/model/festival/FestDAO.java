@@ -72,8 +72,9 @@ public class FestDAO {
 	
 	
 	//내부내용 contents start sh add
-	public List<FestDTO> contents(int code){
-		List<FestDTO> aList = new ArrayList<FestDTO>();
+	public FestDTO contents(int code){
+		
+		FestDTO dto = null;
 		try {
 			conn = init();
 			String sql = "select * from festival where fcode=?";
@@ -81,7 +82,7 @@ public class FestDAO {
 			pstmt.setInt(1, code);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				FestDTO dto = new FestDTO();
+				dto = new FestDTO();
 				dto.setFcode(rs.getInt("fcode"));
 				dto.setFtitle(rs.getString("ftitle"));
 				dto.setFsdate(rs.getDate("fsdate"));
@@ -92,7 +93,6 @@ public class FestDAO {
 				dto.setFmap(rs.getString("fmap"));
 				dto.setFaddress(rs.getString("faddress"));
 				dto.setFview(rs.getInt("fview"));
-				aList.add(dto);	
 			}
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
@@ -106,7 +106,7 @@ public class FestDAO {
 			}	
 		}
 		
-		return aList;
+		return dto;
 	}//contents end sh add
 	
 	

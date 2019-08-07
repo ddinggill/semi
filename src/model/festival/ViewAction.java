@@ -23,7 +23,7 @@ public class ViewAction implements FestivalActionImp{
 		FestDAO dao = FestDAO.getInstance();
 		//글 조회수 증가 추가
 		dao.readCount(code);
-		List<FestDTO> cList = dao.contents(code);
+		FestDTO cList = dao.contents(code);
 		// 글조회수 end 
 		ReviewBoardDAO dao2 = ReviewBoardDAO.getInstance();
 		List<ReviewBoardDTO> rwList = dao2.ReviewSel(code);
