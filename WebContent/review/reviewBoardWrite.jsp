@@ -44,8 +44,9 @@
   		});
   		
   		$('input[value="취소"]').on('click', function() {
-  			$('form').attr('action', '/semi/district/view.do?fcode='+${param.code});
+  			$('form').attr('action', '/semi/district/view.do?fcode='+"${param.code}");
   			$('form').submit();
+  			
 		});
   	});
 </script>
@@ -66,13 +67,13 @@
 				<td width="20%" align="center">제목</td>
 				<td width="80%">	
 			   		    			  
-				   <input type="text" name="title"  />			 		
+				   <input type="text" name="title"  required="required"/>			 		
 				</td>
 			</tr>
 
 			<tr>
 				<td width="20%" align="center">내용</td>
-				<td width="80%"><textarea name="contents" rows="13" cols="40"></textarea></td>
+				<td width="80%"><textarea name="contents" rows="13" cols="40" required="required"></textarea></td>
 			</tr>
 
 			<tr>
