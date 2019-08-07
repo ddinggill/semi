@@ -23,6 +23,7 @@ import model.promotion.PromotionDTO;
 import model.promotion.PromotionDeleteAction;
 import model.promotion.PromotionDeleteTwoAction;
 import model.promotion.PromotionFileDownloadAction;
+import model.promotion.PromotionUpdateAction;
 import model.promotion.UpdateFormAction;
 import model.promotion.UpdateProAction;
 import model.promotion.ViewAction;
@@ -159,6 +160,12 @@ public class PromotionController extends HttpServlet{
 			RequestDispatcher dis = req.getRequestDispatcher("/promotion/board.do");
 			dis.forward(req, resp);
 			
+		}else if(path.equals("promotionupdate.do")) {
+			System.out.println("등록 컨트롤러 접근");
+			PromotionUpdateAction update = new PromotionUpdateAction();
+			update.execute(req, resp);
+			next = "/promotionview/promotionUpdate.jsp";
+						
 		}
 		
 		

@@ -79,7 +79,7 @@ a{
 		 	<tbody> 
 		 	<c:forEach items="${requestScope.reviewList }" var="reviewList">
 		 		<tr> 
-		 			<td><a href="" >${reviewList.reviewTitle }</a></td> 
+		 			<td><a href="/semi/district/reviewView.do?boardkey=${reviewList.reviewcode }&pageNum=1" >${reviewList.reviewTitle }</a></td> 
 		 			<td>${reviewList.reviewDate }</td> 
 		 		</tr> 
 		 		</c:forEach>	

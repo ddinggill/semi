@@ -345,7 +345,42 @@ public class PromotionDAO {
 		}
 		
 		return commentList;
+	}//////////////////////////////////////////
+  
+  public PromotionDTO updateForm(String boardkey){
+	  PromotionDTO dto = new PromotionDTO();
+	  
+	  try {
+		conn=JdbcTemplate.getConnection();
+		String sql = "select * from promotion where boardkey = ?";
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, boardkey);
+		rs = pstmt.executeQuery();
+		if(rs.next()) {
+			dto.setfTitle(rs.getString("ftitle"));
+			dto.setfSdate(rs.getDate("fsdate"));
+			dto.setfEdate(rs.getDate("fedate"));
+			dto.setfContents(rs.getString("fcontents"));
+			dto.setfAddress(rs.getString("faddress"));
+			dto.setfImgpath(rs.getString("fImgpath"));
+			dto.setfMainpath(rs.getString("fmainpath"));
+		}
+		
+	} catch (ClassNotFoundException | SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}finally {
+		try {
+			exit();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
+	 
+	  
+	  return dto;
+  }//end////////////////////////////////
   
   
   

@@ -151,7 +151,7 @@
 				<li class="new_list"><h1 class="new_title">후기게시판</h1></li>
 			<c:forEach items="${requestScope.reviewList }" var="review">
 			
-				<li class="new_list"><a href="" class="new_text">${review.title }</a><span
+				<li class="new_list"><a href="/semi/district/reviewView.do?boardkey=${review.boardkey }&pageNum=1" class="new_text">${review.title }</a><span
 					class="new_date">${review.day }</span></li>
 				<%--  <li class="new_list"><a href="" class="new_text">${review.title }</a><span
 					class="new_date">${review.day }</span></li>
