@@ -30,6 +30,9 @@
 <script
 	src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Sunflower:300&display=swap&subset=korean" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap"
+	rel="stylesheet">
 <meta charset="UTF-8">
 <title>ReviewWrite</title>
 
@@ -52,44 +55,66 @@
 		});
   	});
 </script>
-</head>
+<style type="text/css">
+div.container {
+	margin-top: 50px;
+}
 
+h2 {
+	font-family: 'Do Hyeon', sans-serif;
+}
+
+table {
+	width: 100%;
+}
+
+.subject, .content {
+	width: 100%;
+	border: solid 1px #BDBDBD;
+}
+
+.festival{
+	display:none;
+}
+
+</style>
+</head>
 <body>
 <jsp:include page="../mainview/nav.jsp"></jsp:include>
-	
+	<div class="container" id="write">
+		<h2>글쓰기</h2>
 	<form name="frm" method="post" enctype="multipart/form-data" action="/semi/district/reviewWrite.do">
 		<table>
-			<tr>
+			<tr class="festival">
 				<input type="hidden" name="usercode" value="${sessionScope.loginOk.usercode}"/>
-				<td width="20%" align="center">축제</td>
-				<td width="80%"><input type="text" name="fcode" value="${param.code}" readonly="readonly" /></td>
+				<td align="center">축제</td>
+				<td><input type="text" name="fcode" value="${param.code}" readonly="readonly" /></td>
 			</tr>
 			
 			<tr>
-				<td width="20%" align="center">제목</td>
-				<td width="80%">	
-			   		    			  
-				   <input type="text" name="title"  required="required"/>			 		
-				</td>
+				<td align="center">제목</td>
+				<td><input type="text" name="title" class="subject" required="required"/></td>
 			</tr>
 
 			<tr>
-				<td width="20%" align="center">내용</td>
-				<td width="80%"><textarea name="contents" rows="13" cols="40" required="required"></textarea></td>
+				<td align="center">내용</td>
+				<td><textarea class="content" name="contents" rows="23" cols="20" style="resize: none" required="required"></textarea></td>
 			</tr>
 
 			<tr>
-				<td width="20%" align="center">파일첨부</td>
-				<td width="80%" id="fileDiv"><input type="file" name="filename" /></td>
+				<td align="center">파일첨부</td>
+				<td id="fileDiv"><input type="file" name="filename" /></td>
 			</tr>
 
 			<tr>
 				<td colspan="2" align="center">
-				<input type="submit" value="글쓰기" />&nbsp;&nbsp;&nbsp;
-				<input type="reset" value="취소"  /></td>
+				<input type="submit" value="글쓰기" class="btn btn-danger"/>&nbsp;&nbsp;&nbsp;
+				<input type="reset" value="취소" class="btn btn-danger"/></td>
 			</tr>
+			
 		</table>
 	</form>
+	</div>
 	<jsp:include page="../mainview/footer.jsp"></jsp:include>
 </body>
 </html>
