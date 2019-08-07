@@ -36,8 +36,10 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+<!-- 깃허브 테스트 주석처리 -->
 <script type="text/javascript">
   	$(document).ready(function(){
+ 
   		$('form').on('submit', function(){
   			$('[name=contents]').val($('[name=contents]').val().replace(/\n/gi,'<br/>'));//여러개의 엔터를 <br/>로 바꿔준다.
   			
