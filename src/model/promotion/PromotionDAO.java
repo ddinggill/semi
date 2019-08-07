@@ -261,6 +261,8 @@ public class PromotionDAO {
 				dto.setCommentTitle(rs.getString("title"));
 				dto.setCommentContents(rs.getString("content"));
 				dto.setCommentday(rs.getDate("day"));
+				dto.setBoardkey(rs.getString("boardkey"));
+				dto.setCommentcode(rs.getInt("commentcode"));
 				System.out.println("답글 제목 = "+rs.getString("title"));
 				System.out.println("답글 내용 = "+rs.getString("content"));
 				System.out.println("답글 날짜 = "+rs.getDate("day"));
@@ -279,12 +281,12 @@ public class PromotionDAO {
 		return dto;
 	}//////////////////end
 	
-	public void promotionCommentDelete(String boardkey) {
+	public void promotionCommentDelete(int commentcode) {
 		try {
 			conn = JdbcTemplate.getConnection();
-			String sql = "delete from PROMOTIONCOMMENT where boardkey= ?";
+			String sql = "delete from PROMOTIONCOMMENT where commentcode= ?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, boardkey);
+			pstmt.setInt(1, commentcode);
 			pstmt.executeUpdate();
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();

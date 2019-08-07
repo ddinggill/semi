@@ -137,7 +137,7 @@ public class ReviewBoardDAO {
 		}
 		System.out.println("cnt="+cnt);
 		return cnt;
-	}// rowTotalCount() /////////////
+	}// end rowTotalCount() /////////////
 
 	public List<ReviewBoardDTO> listMethod(PageDTO pdto){
 
@@ -184,7 +184,7 @@ public class ReviewBoardDAO {
 			}
 		}
 		return aList;
-	}//////// listMethod() ////////////////////////////
+	}//////// end listMethod() ////////////////////////////
 
 	//게시판 뷰 페이지 정보 로딩
 	public ReviewBoardDTO viewMethod(String boardkey) {
@@ -216,7 +216,7 @@ public class ReviewBoardDAO {
 			}
 		}
 		return dto;
-	}//////// viewMethod() ////////////////////////////
+	}//////// end viewMethod() ////////////////////////////
 
 	//글생성
 	public void insertMethod(ReviewBoardDTO dto) {
@@ -235,7 +235,7 @@ public class ReviewBoardDAO {
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
-	}//////// insertMethod() ////////////////////////////
+	}//////// end insertMethod() ////////////////////////////
 
 	//업로드한 파일 가져오기
 	public String fileMethod(String boardkey) {
@@ -261,96 +261,76 @@ public class ReviewBoardDAO {
 		}
 
 		return fileName;
-	}//end file name//////////////////////////////////
+	}//end fileMethod()//////////////////////////////////
 
 	//수정할 뷰 페이지 정보 가져오기
-	public ReviewBoardDTO oneSelect(int num) {
+	public ReviewBoardDTO oneSelect(String boardkey) {
 		ReviewBoardDTO dto = new ReviewBoardDTO();
-
 		try {
 			conn=init();
-			String sql= "select * from reviewboard where num = ?";
+			String sql= "select * from reviewboard r, member m where r.usercode=m.usercode and boardkey = ?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, num);
+			pstmt.setString(1, boardkey);
 			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				/*
-				 * dto.setNum(rs.getInt("num")); dto.setWriter(rs.getString("writer"));
-				 * dto.setSubject(rs.getString("subject")); dto.setEmail(rs.getString("email"));
-				 * dto.setContent(rs.getString("content"));
-				 * dto.setUpload(rs.getString("upload"));
-				 */
+			if (rs.next()) {
+				dto.setBoardkey(rs.getString("boardkey"));
+				dto.setUserName(rs.getString("name"));
+				dto.setBtitle(rs.getString("title"));
+				dto.setDay(rs.getDate("day"));
+				dto.setContents(rs.getString("contents"));
+				dto.setFilename(rs.getString("filename"));
 			}
-
 		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
 			try {
 				exit();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-
-
-
-
 		return dto;
-	}
+	}//end oneSelect() ///////////////////
 
-	//수정 메소드
+	//수정 메소드 
 	public void updateMethod(ReviewBoardDTO dto) {
 
 		try {
 			conn=init();
-			String sql = "update reviewboard set subject =? , email=? , content=? , upload=? where num=?";
+			String sql = "update reviewboard set title =? , contents = ? , filename = ? where boardkey = ?";
 			pstmt = conn.prepareStatement(sql);
-			/*
-			 * pstmt.setString(1, dto.getSubject()); pstmt.setString(2, dto.getEmail());
-			 * pstmt.setString(3, dto.getContent()); pstmt.setString(4, dto.getUpload());
-			 * pstmt.setInt(5 , dto.getNum());
-			 */
+			pstmt.setString(1, dto.getBtitle());
+			pstmt.setString(2, dto.getContents());
+			pstmt.setString(3, dto.getFilename());
+			pstmt.setString(4, dto.getBoardkey());
 			pstmt.executeUpdate();
-
 		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
 			try {
 				exit();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 
+	}//end updateMethod()/////////////////////////////////////////////
 
-
-
-	}//end/////////////////////////////////////////////
-
-	public void deleteMethod(int num) {
-
+	public void deleteMethod(String boardkey) {
 		try {
 			conn=init();
-			String sql = "delete from reviewboard where num = ?";
+			String sql = "delete from reviewboard where boardkey = ?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, num);
+			pstmt.setString(1, boardkey);
 			pstmt.executeUpdate();
 		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
 			try {
 				exit();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-
-
 	}//end deleteMethod///////////////////////////////
 }

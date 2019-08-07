@@ -26,19 +26,64 @@
 <script
 	src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Sunflower:300&display=swap&subset=korean" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css?family=Jua&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
 <title>festival_list</title>
 <style type="text/css">
+#hot_list_col {
+	padding: 0;
+	border: 1px solid gray;
+	text-align: center;
+	font-family: Jua;
+	font-weight: bold;
+	/*  border-radius: 80px / 40px;  */
+	font-size: 23px;
+	margin-top: 50px;
+	margin-right: 70px;
+	margin-left: 70px;
+	background-color: #E4E2E2;
+	
+}
+
+body {
+	background-color: #F2F2F2;
+}
+
+* {
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+
 li {
 	list-style: none;
 	display: inline-block;
-	margin-right: 10px;
+	margin-right: 0;
+	
+}
+div p{
+ color: black;
+ 
 }
 
 .li_img {
-	width: 70%;
-	height: 70%;
+	width: 100%;
+	height: 220px;
+	margin: 0 auto;
+}
+
+img {
+	/* border-radius: 80px / 40px; */
+	
+}
+div p:hover{
+ color: #DC3545;
+ 
+}
+
+#hot_list_link:hover {
+	color: #DC3545;
+	text-decoration: none;
 }
 </style>
 <script
@@ -59,18 +104,28 @@ li {
 	<ul class="list">
 
 		<div id="wrap">
+		<div class="container-fluid" id="hot_list_div">
+			<div class="row" id="hot_list_row">
 			<c:forEach items="${requestScope.aList}" var="dto">
+			
+			<div class="col-sm-3" id="hot_list_col">
 				<c:url var="cpage" value="view.do">
 					<c:param name="fcode" value="${dto.fcode}" />
 					<%-- <c:param name="pageNum" value="${pdto.currentPage }"/> --%>
 				</c:url>
-				<li><a href="${cpage}">
-						<p>[${dto.fcode}] ${dto.ftitle}</p>
-						<p>
-							<img class="li_img" src="/semi/images/${dto.fimgpath}">
+				
+				<li><a href="${cpage}" id="hot_list_link">
+						<p>${dto.ftitle}</p>
+						<p></p>
+						<img class="li_img" src="/semi/images/${dto.fimgpath}" >
 						<p class="tit">${dto.fsdate}~${dto.fedate}</p>
 				</a></li>
+			
+				</div>
+				
 			</c:forEach>
+			</div>
+				</div>
 		</div>
 
 	</ul>

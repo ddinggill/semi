@@ -81,8 +81,8 @@ table {
 			$("form").submit();
 		});
 		
-		$("#delete").on('click',function(){
-			$("form").attr("action","delete.do");
+		$("#delete_promotion").on('click',function(){
+			$("form").attr("action","delete_promotion.do");
 			$("form").submit();
 		});
 		$("#comment").on('click',function(){
@@ -111,12 +111,12 @@ table {
 			</tr>
 			
 		</table>
-		
 	<form name="frm" method="post" class="frm">		
 		<input type="hidden" name="boardkey" value="${dto.boardkey }"/>
 		<input type="button" value="뒤로가기" class="btn btn-danger"  onclick="history.back(-1);"/> 	
 		<c:if test="${sessionScope.loginOk.userlevel == 0 }">	
-			<input type="button" value="삭제" class="btn btn-danger" id="delete"/>
+		<input type="hidden" name="commentcode" value="${dto.commentcode }"/>
+			<input type="button" value="삭제" class="btn btn-danger" id="delete_promotion"/>
 		</c:if>
 	</form>
 	</div>
