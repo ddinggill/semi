@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import model.UserDAO;
 import model.UserDTO;
 import model.admin.AdminDAO;
+import model.admin.PageDTO;
 import model.join.joinDAO;
 import model.mypage.MypageAction;
 
@@ -41,13 +42,27 @@ public class AdminController extends HttpServlet{
 		System.out.println(path);
 
 		if (path.equals("membermanage.do")) {
-			UserDAO dao = UserDAO.getInstance();
-			List<UserDTO> alist = dao.userAllInfo();
-		
+			AdminDAO dao = AdminDAO.getInstance();
+			String pageNum = req.getParameter("pageNum");
+			System.out.println();
+			if(pageNum==null)
+				pageNum="1";
+			
+			int currentPage = Integer.parseInt(pageNum);
+			int totalCount = dao.rowCount();
+			
+			PageDTO pdto = new PageDTO(currentPage,totalCount);
+			System.out.println("totalpage:" + pdto.getTotalPage());
+			System.out.println("startpage:" + pdto.getStartPage());
+			System.out.println("endpage:" + pdto.getEndPage());
+			
+			List<UserDTO> alist = dao.userAllInfo(pdto);
 			req.setAttribute("userlist", alist);
+			req.setAttribute("pdto", pdto);
 			
 			RequestDispatcher dis = req.getRequestDispatcher("/mainview/adminPage.jsp");
 			dis.forward(req, resp);
+			
 		}else if(path.equals("update.do")) {
 			System.out.println("유저레벨 변경요청");
 			String usercode = req.getParameter("usercode");
@@ -57,13 +72,26 @@ public class AdminController extends HttpServlet{
 			dao.userlevelUpdate(Integer.parseInt(usercode), Integer.parseInt(userlevel));
 			resp.setContentType("text/html;charset=UTF-8");
 			resp.getWriter().append(userlevel);
+			
 		}else if(path.equals("delete.do")) {
 			String usercode=req.getParameter("usercode");
+			String pageNum = req.getParameter("pageNum");
+			//System.out.println(pageNum);
 			AdminDAO dao=AdminDAO.getInstance();
 			dao.userdelete(Integer.parseInt(usercode));	
-			//resp.sendRedirect("membermanage.do");
-			RequestDispatcher dis = req.getRequestDispatcher("membermanage.do");
-			dis.forward(req, resp);
+			
+			int currentPage = Integer.parseInt(pageNum);
+			int cnt = dao.rowCount();
+			
+			resp.setContentType("text/html;charset=UTF-8");
+			if(cnt>0) {
+				PageDTO pdto = new PageDTO(currentPage, cnt);
+				if(pdto.getEndPage()<currentPage) {
+					resp.getWriter().print(currentPage-1);
+				}else {
+					resp.getWriter().print(currentPage);
+				}
+			}
 		}
 		
 		if(next!="") { 

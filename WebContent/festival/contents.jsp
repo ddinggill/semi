@@ -29,9 +29,7 @@
 <script
 	src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Sunflower:300&display=swap&subset=korean" rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap" rel="stylesheet">
 	
 <script type="text/javascript">
 $(document).ready(function(){
@@ -63,7 +61,7 @@ $(document).ready(function(){
 	
 	$('#write').click(function(){
 		var fcd = $('#fcd').val();
-		window.location.href="/semi_start/reviewBoardWrite.jsp?code="+fcd;
+		window.location.href="/semi/review/reviewBoardWrite.jsp?code="+fcd;
 	});
 	
 
@@ -144,30 +142,31 @@ button:hover:before,button:hover:after{
 
 
 /* add sector */
+
 .mainimg{
-border: 1px solid black;
 text-align: center;
 margin-top: 50px;
 }
 
 .name{
 	text-align: center;
-	border: 1px solid black;
 }
 
 .content{
 width: 100%;
 height: 1000px;
 text-align: center;
+border: 1px dotted #B0C4DE;
 }
 
 a{
  list-style: none;
 }
 
-tr td{
- border:1px solid black;
-}
+ tr td{
+ border:1px dotted #B0C4DE;
+} 
+
 
 #mainC3{
  margin-top: 20px;
@@ -177,18 +176,70 @@ tr td{
 background-color: #FBDEDE;
 }
 
+#expla{
+ margin-top: 50px;
+ margin-bottom: 50px;
+}
 
+body{
+background-color: #FFFFE0;
+font-family: 'Do Hyeon', sans-serif;
+}
+
+
+/* 내용보기 start  */
+
+.wrap{
+display:none; 
+background-color:#FFF5EE; 
+margin-top:80px; 
+}
+
+table {
+    border: 1px dotted #B0C4DE;
+	width: 100%;
+    border-spacing: 0 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.title{
+	height : 50px;
+	font-family: 'Do Hyeon', sans-serif;
+	font-size: 30px;
+	border-bottom: 1px dotted #BDBDBD;
+}
+
+.view_content {
+	height: 300px;
+	vertical-align: top;
+	text-align: left;
+}
+
+.day{
+   color: #BDBDBD;
+}
+
+.writer{
+   font-weight: bold;
+}
+
+#mainC2 iframe{
+	
+}
+/* 내용보기 end  */
 </style>
 
 </head>
 <body>
 <jsp:include page="../mainview/nav.jsp"></jsp:include>
 
-	<c:forEach var="cdata" items="${requestScope.cList}">
+	<c:set var="cdata" value="${requestScope.cList}" />
 	
 	<div class="container mainimg">
 		<img src="/semi/images/${cdata.fimgpath}" height="300px" width="400px"/>
 	</div>
+	
 	
 	<div class="container-fluid name"><h1><c:out value="${cdata.ftitle}" /></h1>
 	<c:out value="${cdata.fsdate}" /> ~ <c:out value="${cdata.fedate}" /><br/>
@@ -198,28 +249,25 @@ background-color: #FBDEDE;
 	
 	<!-- btn area -->
 	<div class="container-fluid name">
-	<div class="col-md-2 btn"></div>
+	<!-- <div class="col-md-2 btn"></div> -->
 		 <div id="mbutton">
 		 <button id="mCon">상세보기</button>
 		 <button id="mMap">지도&약도</button>
 		 <%-- <button id="mReView"><a href="contents.do?key=${cdata.code}">리뷰</a></button> --%>
 		 <button id="mReView">리뷰</button>
 		 </div>
-	<div class="col-md-2 btn"></div>
+	<!-- <div class="col-md-2 btn"></div> -->
 	</div>
 	<!-- btn area end -->
 	
 	<div class="container content">
 		 <div id="mainC1">
-		  ----main contents <br/>
-		 <p><c:out value="${cdata.fcontents}"/></p>
-		 <img src="/semi/images/${cdata.fmainpath}" width="400px" height="300px" />
+		 <div id="expla"><c:out value="${cdata.fcontents}"/></div>
+		 <img src="/semi/images/${cdata.fmainpath}" width="500px" height="500px" />
 		 </div>
-		 <div id="mainC2" style="display:none">
-		 -----map contents <br />
-		 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3167.017626620263!2d127.88749391533396!3d37.4603057379624!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x35630c0b409fb0ab%3A0x9394e6b5cb53110e!2z6rCV7JuQ64-EIOybkOyjvOyLnCDtmLjsoIDrqbQg7Jqp6rOh66asIDM5Mw!5e0!3m2!1sko!2skr!4v1564537373469!5m2!1sko!2skr" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+		  <div id="mainC2" style="display:none; height: 100%">
+		 <iframe src="https://www.google.com/maps/embed?pb=${cdata.fmap }" width="100%" height=100%" frameborder="0" style="border:0" allowfullscreen></iframe>
 		 </div>
-	</c:forEach>
 
 		 <div id="mainC3" style="display:none">
 			<table class="table table-bordered">
@@ -249,40 +297,38 @@ background-color: #FBDEDE;
 	 		
 			<!-- 글쓰기 처리시 축제코드 -->
 			<input type="hidden" name="${param.fcode}" id="fcd" value="${param.fcode}"/>
-			<input type="button" value="검색" class="btn">
-       	    <input type="button" value="글쓰기" class="btn" id="write">
+       	    <div style="background-color: #1AAB8A; float:right; width:120px; color: white"><input type="button" value="글쓰기" class="btn" id="write" ></div>
 		</div>
 		
 		<!-- 글내용보기 시작 -->
 		<c:forEach var="data" items="${requestScope.rwList }">
-		<div class="wrap" style="display:none" id="${data.boardkey}" value="${data.boardkey}">
-		<table class="table table-bordered">
-			<tbody>
-			<tr class="danger" id="danger">
-				<tr>
-				<td colspan="1">제목</td>
-				<td colspan="3"><div id="title" name="${data.btitle}" value="${data.btitle}">${data.btitle}</div>
-				<div id="cd" name="${data.boardkey}" style="display:none" value="boardkey">${data.boardkey}</div></td>
-				</tr>
-				
-				<tr>
-				<td>작성자</td>
-				<td><div id="nm" name="${data.userName}" value="${data.userName}">${data.userName}</div></td>
-				<td>작성일</td>
-				<td><div id="regday" name="${data.day}" value="${data.day}">${data.day}</div></td>
-				</tr>
-				
-				<tr>
-				<td colspan="4"><div id="contents" name="${data.contents}" >${data.contents}</div></td>
-				</tr>
-				
-				<tr>
-				<td colspan="4"><div id="attach" name="${data.filename}"><a href="reviewDownload.do?filename=${data.filename}">${data.filename}</a></div></td>
-				</tr>
-			</tr>
-			</tbody>
-			</table>
-			</div> <!-- 글내용보기 end  -->
+			
+			<!-- add sector -->
+			<div class="wrap" id="${data.boardkey}" value="${data.boardkey}" >
+				<table>
+					<tr>
+						<td colspan="2" class="title">${data.btitle}</td>
+					</tr>
+					<tr>
+						<td class="writer">${data.userName}</td>
+						<td align="right" class="day">${data.day}</td>
+					</tr>
+			
+					<tr>		
+						<td colspan="2" class="view_content">${data.contents }</td>
+					</tr>
+			
+					<tr>
+						<td width="70">파일</td>
+						<c:if test="${data.filename != null}">
+						<td colspan="3"><a href="reviewDownload.do?filename=${data.filename}" >${data.filename}</a></td>
+						</c:if>
+					</tr>
+				</table>
+			</div>
+						
+			<!-- add sector end -->
+			
 		</c:forEach>
 	</div> <!-- container end -->
 		

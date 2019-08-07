@@ -21,6 +21,7 @@ import model.promotion.ListAction;
 import model.promotion.PromotionDAO;
 import model.promotion.PromotionDTO;
 import model.promotion.PromotionDeleteAction;
+import model.promotion.PromotionDeleteTwoAction;
 import model.promotion.PromotionFileDownloadAction;
 import model.promotion.UpdateFormAction;
 import model.promotion.UpdateProAction;
@@ -149,6 +150,14 @@ public class PromotionController extends HttpServlet{
 			down.execute(req, resp);
 			//next = "/promotionview/view.jsp";
 			
+			
+		}else if(path.equals("delete_promotion.do")) {
+			System.out.println("답글삭제 컨트롤러 접근");
+			PromotionDeleteTwoAction delete = new PromotionDeleteTwoAction();
+			delete.execute(req, resp);
+			
+			RequestDispatcher dis = req.getRequestDispatcher("/promotion/board.do");
+			dis.forward(req, resp);
 			
 		}
 		

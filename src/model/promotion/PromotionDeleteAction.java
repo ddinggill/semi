@@ -10,9 +10,10 @@ public class PromotionDeleteAction implements PromotionAction{
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		String boardkey = req.getParameter("boardkey");
+		int commentcode = Integer.parseInt(req.getParameter("commentcode"));
 		PromotionDAO dao = PromotionDAO.getInstance();
 		
-		dao.promotionCommentDelete(boardkey); // 코멘트 먼저 삭제
+		dao.promotionCommentDelete(commentcode); // 코멘트 먼저 삭제
 		dao.promotionDelete(boardkey); // 문의 삭제
 		
 		

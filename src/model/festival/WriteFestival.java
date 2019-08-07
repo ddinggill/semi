@@ -2,7 +2,9 @@ package model.festival;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -18,13 +20,10 @@ public class WriteFestival {
 
 	
 	
-	
-	
-	
 	public MultipartRequest execute(HttpServletRequest req, HttpServletResponse resp) {
 		MultipartRequest multi = null;
 		//저장경로
-		String saveDirectory="C:/study/workspace/semipj/WebContent/festival/img";
+		String saveDirectory="C:/study/workspace/semi/WebContent/images";
 		//C:/study/workspace/SemiPJ/WebContent/Festival/img
 
 				
@@ -45,23 +44,31 @@ public class WriteFestival {
 		
 			
 		  FestDAO dao = FestDAO.getInstance(); 
-		  FestDTO dto = new FestDTO(); 
+		  FestDTO dto = new FestDTO();
 		  
-		  SimpleDateFormat trans = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss");
-		  Date csdate = transFormat(multi.getParameter("sdate"));
-		  Date cedate = transFormat(multi.getParameter("sdate"));
-			
+		  String sdate = multi.getParameter("edate");
+		  String edate = multi.getParameter("sdate");
+		  
 		  dto.setFaddress(multi.getParameter("address"));
 		  dto.setFtitle(multi.getParameter("title"));
-		  dto.setFsdate(csdate);
-		  dto.setFedate(cedate);
-		  dto.setFcontents(multi.getParameter("contents")); 
+		/*
+		 * dto.setFsdate(multi.getParameter("sdate"));
+		 * dto.setFedate(multi.getParameter("edate"));
+		 */
+		  dto.setFcontents(multi.getParameter("contents"));
+		  dto.setFmap(multi.getParameter("fmap"));
+		  System.out.println(multi.getParameter("fmap") + " : 지도주소");
 		  dto.setFmainpath(multi.getFilesystemName("mainImg")); //컨텐츠 안에 mainImg가 보일 내용
 		  dto.setFimgpath(multi.getFilesystemName("subImg"));  //subimg가 보일내용
-		  
-		  dao.insertFestival(dto);
-		 
+			
+		  dao.insertFestival(dto,sdate,edate );
+			 
+
+		
 		return null;
+			
+		  
+		 
 	}
 
 	private Date transFormat(String parameter) {

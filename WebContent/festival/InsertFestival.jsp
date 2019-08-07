@@ -360,30 +360,35 @@ input {
             <div class="card card-1">
                 <div class="card-body">
                     <h2 class="title">축제 등록</h2>
-                    <form action="/semipj/Festival/write.do" method="post" enctype="multipart/form-data">
+                    <form action="/semi/district/write.do" method="post" enctype="multipart/form-data">
                         <div class="input-group">
-                            <input class="input--style-1" type="text" placeholder="축제명" name="title">
+                            <input class="input--style-1" type="text" placeholder="축제명" name="title" />
                         </div>
                         <div class="input-group">
-                            <input class="input--style-1" type="text" placeholder="시작일자  ex) 19/01/01" name="sdate">
+                            <input class="input--style-1" type="text" placeholder="시작일자  ex) 19/01/01" name="sdate" />
                         </div>
                         <div class="input-group">
-                            <input class="input--style-1" type="text" placeholder="종료일자  ex) 19/12/31" name="edate">
+                            <input class="input--style-1" type="text" placeholder="종료일자  ex) 19/12/31" name="edate" />
                         </div>
                         <div class="input-group">
-                            <input class="input--style-1" type="text" placeholder="내용" name="contents">
+                            <input class="input--style-1" type="text" placeholder="내용" name="contents" />
                         </div>
+                        
+                         <div class="input-group">
+                            <input class="input--style-1" type="text" placeholder="지도주소" name="fmap" />
+                        </div>
+                        
                           <div class="input-group">
-                            <input class="input--style-1" type="text" placeholder="주소" name="address">
+                            <input class="input--style-1" type="text" placeholder="주소" name="address" />
                         </div>
                         
                         <div class="input-group">
                         	<td>메인 이미지</td>
-                            <input class="input--style-1" type="file"  name="mainImg">
+                            <input class="input--style-1" type="file"  name="mainImg" />
                         </div>
                         <div class="input-group">
                         	<td>서브 이미지</td>
-                            <input class="input--style-1" type="file"  name="subImg">
+                            <input class="input--style-1" type="file"  name="subImg" />
                         </div>
                    
                         <div class="p-t-20">

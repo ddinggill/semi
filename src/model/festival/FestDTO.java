@@ -11,12 +11,25 @@ public class FestDTO {
 	private String  fcontents;
 	private String  fimgpath;
 	private String  fmainpath;
+	private String fmap;
 	private int fview;
 	private int floc;
 	private int recommend;
 	
 	public FestDTO() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	
+	public String getFmap() {
+		return fmap;
+	}
+
+
+
+
+	public void setFmap(String fmap) {
+		this.fmap = fmap;
 	}
 
 	public int getFcode() {

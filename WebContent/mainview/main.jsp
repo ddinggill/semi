@@ -209,12 +209,12 @@
 
 <div class="container col-md-12" id="recommend">
 	<div class="row">
-		<div class="col-md-2"><a href="" ><img  src="../images/추천1.jpg" class="re_link"></a></div>
-		<div class="col-md-2"><a href="" ><img  src="../images/추천2.jpg" class="re_link"></a></div>
-		<div class="col-md-2"><a href="" ><img  src="../images/추천3.jpg" class="re_link"></a></div>
-		<div class="col-md-2"><a href=""><img  src="../images/추천4.png" class="re_link"></a></div>
-		<div class="col-md-2"><a href="" ><img  src="../images/추천5.jpg" class="re_link"></a></div>
-		<div class="col-md-2"><a href="" ><img  src="../images/추천6.jpg"  class="re_link" ></a></div>
+		<div class="col-md-2"><a href="https://hangang.seoul.go.kr/project" ><img  src="../images/추천1.jpg" class="re_link"></a></div>
+		<div class="col-md-2"><a href="http://www.bonghwafestival.com/eunuh/" ><img  src="../images/추천2.jpg" class="re_link"></a></div>
+		<div class="col-md-2"><a href="https://tofly.tistory.com/entry/%EC%A3%BC%EB%A7%90%EA%B0%80%EC%A1%B1%EC%B2%B4%ED%97%98-2018-%EC%84%9C%EC%9A%B8%EB%A1%9C-%EC%97%AC%EB%A6%84%EC%B6%95%EC%A0%9C-%EC%84%9C%EC%9A%B8%EB%A1%9C-GO" ><img  src="../images/추천3.jpg" class="re_link"></a></div>
+		<div class="col-md-2"><a href="http://www.bfo.or.kr/festival_sea/info/01.asp?MENUDIV=1"><img  src="../images/추천4.png" class="re_link"></a></div>
+		<div class="col-md-2"><a href="http://www.cultureexpo.or.kr/open.content/ko/community/press/?i=3026" ><img  src="../images/추천5.jpg" class="re_link"></a></div>
+		<div class="col-md-2"><a href="https://mapo.go.kr/CmsWeb/viewPage.req?idx=PG0000002199&CP0000000001_BD0000002533_action=viewContent&CP0000000001_BD0000002533_atcId=BA0000361664" ><img  src="../images/추천6.jpg"  class="re_link" ></a></div>
 	</div>
 
 
