@@ -111,18 +111,20 @@ table {
 </head>
 <body>
 	<jsp:include page="../mainview/nav.jsp"></jsp:include>
-	<input type="text" name="boardkey" value="${dto.boardkey}" />	
+	<input type="hidden" name="boardkey" value="${dto.boardkey}" />	
 	<div class="container" id="view">
 		<table>
+		
 			<tr>
 				<td colspan="60" class="title">${dto.fTitle }</td>
 			</tr>
 			
+			<c:if test="${sessionScope.loginOk.userlevel == 0 }">
 			<tr>
 				<td class="writer">등록유저</td>
 				<td align="left" class="content">${dto.usercode }</td>
 			</tr>
-			
+			</c:if>
 			<tr>
 				<td colspan="2" class="view_content">시작일</td>
 				<td align="left" class="content">${dto.fSdate }</td>
