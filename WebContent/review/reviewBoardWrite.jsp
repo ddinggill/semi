@@ -47,7 +47,6 @@
   			$('form').attr('action', '/semi/district/view.do?fcode='+${param.code});
   			$('form').submit();
 		});
-  		
   	});
 </script>
 </head>
