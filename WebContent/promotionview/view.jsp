@@ -101,6 +101,10 @@ table {
 			$("form").attr("action","promotion/promotionwrite.do");
 			$("form").submit();
 		});
+		$("#update").on('click',function(){
+			$("form").attr("action","promotion/promotionupdate.do");
+			$("form").submit();
+		});
 	});
 
 </script>
@@ -153,6 +157,7 @@ table {
 		<c:if test="${sessionScope.loginOk.userlevel == 0 }">	
 			<input type="button" value="삭제" class="btn btn-danger" id="delete"/>
 			<input type="button" value="답글" class="btn btn-danger" id="comment"/>
+			<input type="button" value="등록" class="btn btn-danger" id="update"/>
 		</c:if>
 		<c:if test="${sessionScope.loginOk.usercode == dto.usercode }">
 			<input type="button" value="수정" class="btn btn-danger" id="change"/>
