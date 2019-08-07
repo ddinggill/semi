@@ -43,6 +43,11 @@
   			
   		});
   		
+  		$('input[value="취소"]').on('click', function() {
+  			$('form').attr('action', '/semi/district/view.do?fcode='+${param.code});
+  			$('form').submit();
+		});
+  		
   	});
 </script>
 </head>
@@ -79,7 +84,7 @@
 			<tr>
 				<td colspan="2" align="center">
 				<input type="submit" value="글쓰기" />&nbsp;&nbsp;&nbsp;
-				<input type="reset" value="취소" /></td>
+				<input type="reset" value="취소"  /></td>
 			</tr>
 		</table>
 	</form>
