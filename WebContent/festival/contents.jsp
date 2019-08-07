@@ -64,9 +64,12 @@ $(document).ready(function(){
 		window.location.href="/semi/review/reviewBoardWrite.jsp?code="+fcd;
 	});
 	
-
-
-		
+	// 비로그인시 리뷰 글쓰기 버튼 비활성화
+	if("${sessionScope.loginOk.usercode}"==""){
+  		$('input#write').attr('type','hidden');
+	}else{
+	    $('input#write').attr('type','button');
+	}
 
 	
 });

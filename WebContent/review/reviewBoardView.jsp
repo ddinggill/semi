@@ -96,7 +96,7 @@ table {
 			$('form').submit();
 		});
 		
-		if(${sessionScope.loginOk.usercode}==(${requestScope.dto.usercode})){
+		if("${sessionScope.loginOk.usercode}"==("${requestScope.dto.usercode}")){
 	         $('.update').attr('type','button');
 	         $('.del').attr('type','button');
 	      }else{
