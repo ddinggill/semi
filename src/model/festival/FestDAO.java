@@ -235,7 +235,7 @@ public class FestDAO {
 	public List<FestDTO> getHotList() {
 		List<FestDTO> list = new ArrayList<FestDTO>();
 		try {
-			int view_num = 10;
+			int view_num = 9;
 			conn = init();
 			String sql = "select * from(select rownum rnum, a.* from (select * from festival order by fview desc) a) b where rnum<=?";
 			pstmt = conn.prepareStatement(sql);
