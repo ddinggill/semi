@@ -50,15 +50,12 @@ public class AdminDAO {
 			pstmt.setInt(2, usercode);
 		
 			res= pstmt.executeUpdate();
-			//System.out.println(res);
 		} catch (ClassNotFoundException | SQLException e) {
-				// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			try {
 				exit();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

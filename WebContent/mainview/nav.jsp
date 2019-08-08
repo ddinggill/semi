@@ -41,21 +41,6 @@ function timecount(){
 		},1000);
 	
 }
-/* function setTimeOffsetBetweenServerAndClien(){
-	var latestTouch = $.cookie('latestTouch');
-	latestTouch = latestTouch==null ? null : Math.abs(latestTouch);
-	var clientTime = (new Date()).getTime();
-	var clientTimeOffset = clientTime - latestTouch;
-	setCookie("clientTimeOffset", clientTimeOffset);
-}
-
-function isSessionExpired(){
-	 var sessionExpiry = Math.abs($.cookie('sessionExpiry'));
-	 var timeOffset = Math.abs($.cookie('clientTimeOffset'));
-	 var localTime = (new Date()).getTime();
-	 $.cookie('remainTime', (sessionExpiry - (localTime - timeOffset)));
-	 return localTime - timeOffset > (sessionExpiry-(offset||0));
-} */
 
 </script>
 </head>
@@ -75,15 +60,7 @@ function isSessionExpired(){
 			<li class="nav-item active"> 
 				<a class="nav-link" href="/semi/district/list.do" style="color: white">지역/기간별검색</a> 
 			</li> 
-			<!-- <li class="nav-item dropdown"> 
-				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> 기능 리스트 </a> 
-				<div class="dropdown-menu" aria-labelledby="navbarDropdown"> 
-					<a class="dropdown-item" href="/semi/main/lecture.do">강좌</a>
-					<a class="dropdown-item" href="#">Another action</a> 
-					<div class="dropdown-divider"></div> 
-					<a class="dropdown-item" href="#">Something else here</a> 
-				</div> 
-			</li>  -->
+		
 			<li class="nav-item active"> 
 				<a class="nav-link" href="/semi/district/reviewList.do" style="color: white">후기게시판</a> 
 			</li> 
@@ -144,21 +121,6 @@ function isSessionExpired(){
 		  </ul>
 	</div>
 </nav>
-<!-- <div class="modal fade" id="modal-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"> 
-	<div class="modal-dialog" role="document"> 
-		<div class="modal-content"> 
-			<div class="modal-header"> 
-				<h5 class="modal-title" id="exampleModalLabel">알림창</h5> 
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"> 
-					<span aria-hidden="true">×</span> 
-				</button> 
-			</div> 
-			<div class="modal-body"> 아직 구현이 완료되지 않은 서비스입니다. </div> 
-			<div class="modal-footer"> 
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">확인</button> 
-			</div> 
-		</div> 
-	</div> 
-</div>  -->
+
 </body>
 </html>

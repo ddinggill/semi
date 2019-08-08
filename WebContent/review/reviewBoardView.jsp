@@ -186,10 +186,7 @@ table {
 		</div>
 		
 		<!--  댓글영역 끝 -->
-		
 		</div>
-		
-	
 	</div>
 	<jsp:include page="../mainview/footer.jsp"></jsp:include>
 </body>

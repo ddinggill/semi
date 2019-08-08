@@ -17,7 +17,6 @@
 	text-align: center;
 	font-family: Jua;
 	font-weight: bold;
-	/*  border-radius: 80px / 40px;  */
 	font-size: 23px;
 	margin-top: 50px;
 	margin-right: 70px;
@@ -53,10 +52,7 @@ div p{
 	margin: 0 auto;
 }
 
-img {
-	/* border-radius: 80px / 40px; */
-	
-}
+
 div p:hover{
  color: #DC3545;
  
@@ -89,19 +85,6 @@ div p:hover{
 			</c:forEach>
 		</div>
 		</div>
-		<%-- <c:forEach items="${requestScope.aList}" var="dto">
-			<c:url var="cpage" value="view.do">
-				<c:param name="fcode" value="${dto.fcode}" />
-				<c:param name="pageNum" value="${pdto.currentPage }"/>
-			</c:url>
-			<li><a href="${cpage}">
-					<p>[${dto.fcode}] ${dto.ftitle}</p>
-					<p>
-						<img class="li_img" src="/semi/images/${dto.fimgpath}">
-					<p class="tit">${dto.fsdate}~ ${dto.fedate}</p>
-			</a></li>
-		</c:forEach> --%>
-
 	</table>
 </body>
 </html>

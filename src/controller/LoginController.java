@@ -20,7 +20,6 @@ public class LoginController extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		super.doGet(req, resp);
 	}
 	
@@ -33,18 +32,13 @@ public class LoginController extends HttpServlet{
 		String next="";
 		System.out.println(path);
 		
-		
-		if(path.equals("lecture.do")) {
-			RequestDispatcher dis = req.getRequestDispatcher("/mainview/lecture.jsp");
-			dis.forward(req, resp);
-		}else if(path.equals("loginCheck.do")){
+		if(path.equals("loginCheck.do")){
 			UserDTO user = new UserDTO();
 			user.setUserid(req.getParameter("userid"));
 			user.setUserpw(req.getParameter("userpw"));
 			
 			if(UserDAO.getInstance().loginCheck(user)) {
 				HttpSession session = req.getSession();
-				/* Cookie cookie = new Cookie("user", req.getParameter("userid")); */
 				session.setMaxInactiveInterval(30*60);//5분
 				user= UserDAO.getInstance().userInfo(user);
 				session.setAttribute("loginOk", user);
@@ -67,7 +61,6 @@ public class LoginController extends HttpServlet{
 		if(next!="") { 
 			 RequestDispatcher dis = req.getRequestDispatcher(next);
 			 dis.forward(req, resp);
-			 //
 		}
 
 	}

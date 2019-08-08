@@ -10,11 +10,6 @@ public class ViewAction implements NoticeAction{
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
-		/*
-		 * int num = Integer.parseInt(req.getParameter("num")); BoardDAO dao =
-		 * BoardDAO.getInstance(); dao.readCountMethod(num); req.setAttribute("dto",
-		 * dao.viewMethod(num));
-		 */
 		
 		String boardkey = req.getParameter("boardkey");
 		NoticeDAO dao =  NoticeDAO.getInstance();

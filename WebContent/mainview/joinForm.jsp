@@ -23,7 +23,6 @@ $(document).ready(function(){
 		var userid = $("[name=userid]").val();
 		idchkprocess(userid);
 	});
-		//alert($("[name=userid]").val());
 
 	//password: 4글자 이상 12글자 이하 소문자,숫자(둘다 반드시 포함)
 	$("[name=password]").on('change',function(){
@@ -52,6 +51,15 @@ $(document).ready(function(){
 			});
 		}
 	});//password check
+	
+	$("button").on('click',function(){
+		var pwd1=$("[name=password]").val();
+        var pwd2=$("[name=password2]").val();
+        if(pwd1 != pwd2){
+        	alert("비밀번호가 일치하지 않습니다.")
+        	return false;
+        }
+	});
 		
 	if("${requestScope.joinOK}" == 1){
 	      alert("회원가입 성공했습니다.로그인 페이지로 이동하세요.");
@@ -62,7 +70,6 @@ $(document).ready(function(){
 
 function idchkprocess(userid){
 	
-	//alert(userid);
 	$.ajax({
 		type:'POST',
 		dataType:'text',
@@ -76,7 +83,6 @@ function idchkprocess(userid){
 			}else{
 				$(".id_check").text("이미 존재하는 아이디입니다. 다른 아이디를 입력하세요.");
 			}
-			//alert(res);
 		}
 	});
 }///////////////////////////////////
@@ -221,16 +227,6 @@ body {
   -moz-osx-font-smoothing: grayscale;      
 } 
 
-/* .container-fluid {
-  background: #EB6864; /* fallback for old browsers 
-  background: -webkit-linear-gradient(right, #EB6864, #e05c58);
-  background: -moz-linear-gradient(right, #EB6864, #e05c58);
-  background: -o-linear-gradient(right, #EB6864, #e05c58);
-  background: linear-gradient(to left, #EB6864, #e05c58);
-  font-family: "Roboto", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;      
-}  */
  
 .id_check,.pw_check, .confirmpw{
 	/* visibility: hidden; */
@@ -246,16 +242,16 @@ body {
 <div class="login-page">
   <div class="form">
     <form class="register-form" action="/semi/help/join.do" method="post">
-      <input type="text" name="userid" placeholder="id" class="input1"/>
+      <input type="text" name="userid" placeholder="id" class="input1" required="required"/>
       <div class="id_check">&nbsp;</div>
-      <input type="text" name="name" placeholder="username"/>
-      <input type="text" name="nickname" placeholder="nickname" />
-      <input type="password" name="password" placeholder="password" class="input1"/>
+      <input type="text" name="name" placeholder="username" required="required"/>
+      <input type="text" name="nickname" placeholder="nickname" required="required"/>
+      <input type="password" name="password" placeholder="password" class="input1" required="required"/>
       <div class="pw_check">&nbsp;</div>
-      <input class="input1" type="password" name="password2" placeholder="confirm password"/>
+      <input class="input1" type="password" name="password2" placeholder="confirm password" required="required"/>
       <div class="confirmpw">&nbsp;</div>
-      <input type="text" name="phonenumber" placeholder="phone number"/>
-      <input type="text" name="useremail" placeholder="email address"/>
+      <input type="text" name="phonenumber" placeholder="phone number" required="required"/>
+      <input type="text" name="useremail" placeholder="email address" required="required"/>
       <button>create</button>
       <p class="message">Already registered? <a href="/semi/main/login.do">Sign In</a></p>
       <p class="message3">Forget Password? <a href="/semi/main/pwfind.do">Click this</a></p>

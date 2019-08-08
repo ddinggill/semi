@@ -105,8 +105,6 @@ div.write:hover{
 				</li>
 		</ul>
 		
-		
-		
 		</div> 
 </div>
 <jsp:include page="../mainview/footer.jsp"></jsp:include>

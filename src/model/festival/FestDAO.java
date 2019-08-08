@@ -146,21 +146,9 @@ public class FestDAO {
 	
 	
 	
-	
-	
-	
-	
 	//sh add sector stop 
 	
 	
-	/*
-	 * //조회수 증가 public void readCountMethod(int fcode) { try { conn=init(); String
-	 * sql="update festival set fview = fview+1 where fcode=?";
-	 * pstmt=conn.prepareStatement(sql); pstmt.setInt(1, fcode);
-	 * pstmt.executeUpdate(); } catch (ClassNotFoundException | SQLException e) { //
-	 * TODO Auto-generated catch block e.printStackTrace(); } }// readCountMethod()
-	 * /////////////
-	 */		
 	public List<FestDTO> getFestList(String place, String month) {
 		List<FestDTO> list = new ArrayList<FestDTO>();
 		System.out.println(place + ","+ month);
@@ -179,8 +167,6 @@ public class FestDAO {
 			edate+= year + "/" + month+"/1";
 			//System.out.println(sdate + ","+edate);
 			
-			//if(place.equals("0") && date.equals("0")) {
-				//System.out.println("지역 월 모두 0");
 			if(!(place.equals("0")) && !(month.equals("0"))) {
 				//System.out.println("지역 월 모두 0이 아님");
 				sql+=" where (fsdate <= ? and fedate >= ?) and floc = ?";
@@ -217,7 +203,6 @@ public class FestDAO {
 				dto.setFedate(rs.getDate("fedate"));
 				dto.setFtitle(rs.getString("ftitle"));
 				dto.setFimgpath(rs.getString("fimgpath"));
-				//System.out.println(dto.getFcode()+","+dto.getFsdate()+","+dto.getFedate()+","+dto.getFtitle()+","+dto.getFimgpath());
 				list.add(dto);
 			}
 		} catch (ClassNotFoundException | SQLException e) {
@@ -287,7 +272,6 @@ public class FestDAO {
 				dto.setFview(rs.getInt("fview"));
 				dto.setFloc(rs.getInt("floc"));
 				dto.setRecommend(rs.getInt("recommend"));
-				//System.out.println(dto.getFcode()+","+dto.getFsdate()+","+dto.getFedate()+","+dto.getFtitle()+","+dto.getFimgpath());
 			}
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();

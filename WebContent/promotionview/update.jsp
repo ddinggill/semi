@@ -75,12 +75,8 @@ font-size: 30px;
 		<h2>글쓰기</h2>
 		<form name="frm" method="post" enctype="multipart/form-data"
 			action="/semi/promotion/updatepro.do">
-			<%-- <input type="text" name="usercode" value="${sessionScope.loginOk.usercode }"> --%>
 			<input type="text" name="boardkey" value="${dto.boardkey}" />
 			<table>
-				<!-- <tr>
-					<td align="right" colspan="2" ><a href="/semi/main/main.do" >뒤로가기</a></td>
-				</tr> -->
 				<tr>
 					<td align="center"><strong>축제명</strong></td>
 					<td><input type="text" name="fTitle" class="subject" required="required" value="${dto.fTitle }"/></td>

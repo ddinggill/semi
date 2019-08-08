@@ -9,7 +9,6 @@ public class CommentViewAction implements PromotionAction{
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
-		System.out.println("답변글 액션 접근");
 		int commentcode =Integer.parseInt( req.getParameter("commentcode"));
 		System.out.println("답변코드= " +commentcode);
 	

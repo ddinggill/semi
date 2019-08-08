@@ -62,7 +62,6 @@ table {
   	$(document).ready(function(){
   		$('form').on('click',function(){
   			$('[name=contents]').val($('[name=contents]').val().replace(/\n/gi,'<br/>'));
-  		    
   		});
   	});
 </script>
@@ -110,13 +109,7 @@ table {
 				<td colspan="3"><input type="file" name="filename" /><span>${dto.filename}</span>
 				</td>
 			</tr>
-			<!-- <tr>
-			<td colspan="2">
-				<input type="submit" value="수정" id="btnUpdate" class="btn btn-danger"/>&nbsp;&nbsp;
-				<input type="reset" value="취소" class="btn btn-danger"/></td>
-			</tr> -->
 
-			
 		</table>
 		<div class="buttom">
 		<input type="submit" value="수정" id="btnUpdate" class="btn btn-danger"/>&nbsp;&nbsp;

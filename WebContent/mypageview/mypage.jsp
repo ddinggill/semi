@@ -64,11 +64,7 @@ a{
 	<div class="container">
 	<div class="card border-danger mt-3 mb-3"> 
 		<h5>후기 게시판</h5> 
-		<!-- <div class="card-body"> 
-			<img class="lecture-logo" src="../images/js_logo.png" alt="JS Logo"> 
-				<h5 class="card-title">최준영</h5> 
-				<p class="card-text">쌍문동 웹 프론트엔드 강사</p> 
-		</div>  -->
+		
 		<table class="table table-hover"> 
 			<thead> 
 				<tr> 
@@ -89,11 +85,7 @@ a{
 	</div>
 	<div class="card border-danger mt-3 mb-3"> 
 		<h5>댓글</h5> 
-		<!-- <div class="card-body"> 
-			<img class="lecture-logo" src="../images/js_logo.png" alt="JS Logo"> 
-				<h5 class="card-title">최준영</h5> 
-				<p class="card-text">쌍문동 웹 프론트엔드 강사</p> 
-		</div>  -->
+	
 		<table class="table table-hover"> 
 			<thead> 
 				<tr> 
@@ -103,7 +95,7 @@ a{
 		 	<tbody> 
 		 	<c:forEach items="${requestScope.recommentList }" var="recommentList">
 		 		<tr> 
-		 			<td>${recommentList.comment }</td> 
+		 			<td><a href="/semi/district/reviewView.do?boardkey=${recommentList.reviewcode }&pageNum=1" >${recommentList.comment }</a></td> 
 		 		</tr> 	
 		 		</c:forEach>
 		 	</tbody> 
@@ -112,11 +104,7 @@ a{
 	</div>
 	<div class="card border-danger mt-3 mb-3"> 
 		<h5>홍보 문의 게시판</h5> 
-		<!-- <div class="card-body"> 
-			<img class="lecture-logo" src="../images/js_logo.png" alt="JS Logo"> 
-				<h5 class="card-title">최준영</h5> 
-				<p class="card-text">쌍문동 웹 프론트엔드 강사</p> 
-		</div>  -->
+		
 		<table class="table table-hover"> 
 			<thead> 
 				<tr> 
@@ -129,7 +117,6 @@ a{
 		 		<tr> 
 		 			<td><a href="/semi/promotion/view.do?boardkey=${promotionList.boardkey }">${promotionList.fTitle }</a>
 			 			<c:forEach items="${promotionList.comment}" var="commentlist"> 
-			 				<%-- <br/>&nbsp;&nbsp;${commentlist.commentcode} --%>
 			 				<br/>&nbsp;&nbsp;&nbsp;&nbsp;
 			 				<img  src="../images/re.gif">
 			 				 <a href="/semi/promotion/commentview.do?commentcode=${commentlist.commentcode}" id="comment_link">${commentlist.commentTitle } </a>

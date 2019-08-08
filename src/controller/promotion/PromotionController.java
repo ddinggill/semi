@@ -56,7 +56,7 @@ public class PromotionController extends HttpServlet{
 			//홍보문의 클릭시 일반사용자와 관리자별로 다른 페이지를 보여줌
 			
 			HttpSession session = req.getSession();
-			int userlevel ;
+			int userlevel;
 			UserDTO dto = (UserDTO) session.getAttribute("loginOk");
 			userlevel = dto.getUserlevel();
 			
@@ -73,7 +73,6 @@ public class PromotionController extends HttpServlet{
 			write.execute(req, resp);
 			RequestDispatcher dis = req.getRequestDispatcher("/main/main.do");
 			dis.forward(req, resp);
-			
 			
 		}else if(path.equals("board.do")) {
 			//관리자가 홍보문의를 클릭시
@@ -102,8 +101,7 @@ public class PromotionController extends HttpServlet{
 			resp.sendRedirect("view.do?boardkey="+ boardkey);	
 			
 		}else if (path.equals("promotionwrite.do")) {
-			////////////////////////////////답변글 write
-			req.setCharacterEncoding("utf-8");
+			//답변글 write
 			RequestDispatcher dis = req.getRequestDispatcher("/promotionview/commentwrite.jsp");
 			dis.forward(req, resp);
 			
@@ -111,7 +109,6 @@ public class PromotionController extends HttpServlet{
 			
 		}else if (path.equals("commentinsert.do")) {
 			//write에서 가져온 값 insert후 목록으로 돌아가기
-			req.setCharacterEncoding("utf-8");
 			CommentWriteAction write = new CommentWriteAction();
 			write.execute(req, resp);
 			System.out.println("답변글 insert 접근");
@@ -120,12 +117,10 @@ public class PromotionController extends HttpServlet{
 			
 			
 		}else if(path.equals("commentview.do")) {
-			req.setCharacterEncoding("utf-8");
 			CommentViewAction view = new CommentViewAction();
 			view.execute(req, resp);
 			System.out.println("답변글 뷰 접근");
 			next = "/promotionview/commentview.jsp";
-			
 			
 			
 		}else if(path.equals("delete.do")) {
@@ -141,7 +136,6 @@ public class PromotionController extends HttpServlet{
 			if(userlevel == 1) {
 			RequestDispatcher dis = req.getRequestDispatcher("/mypage/mypage.do");
 			dis.forward(req, resp);
-			//resp.sendRedirect("/mypage/mypage.do");
 			}else if(userlevel ==0) {
 				RequestDispatcher dis = req.getRequestDispatcher("/promotion/board.do");
 				dis.forward(req, resp);
@@ -149,8 +143,6 @@ public class PromotionController extends HttpServlet{
 		}else if (path.equals("download.do")) {
 			PromotionFileDownloadAction down = new PromotionFileDownloadAction();
 			down.execute(req, resp);
-			//next = "/promotionview/view.jsp";
-			
 			
 		}else if(path.equals("delete_promotion.do")) {
 			System.out.println("답글삭제 컨트롤러 접근");
@@ -169,18 +161,11 @@ public class PromotionController extends HttpServlet{
 		}
 		
 		
-		
-		
 		if(next!="") { 
 			 RequestDispatcher dis = req.getRequestDispatcher(next);
 			 dis.forward(req, resp);
-			 //
 		}
-		
-		
 		
 	}//doprocess()////////////////////////////
 	
-	
-
 }//end class

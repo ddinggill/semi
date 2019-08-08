@@ -106,10 +106,6 @@ div p{
 	margin: 0 auto;
 }
 
-img {
-	/* border-radius: 80px / 40px; */
-	
-}
 div p:hover{
  color: #DC3545;
  
@@ -141,12 +137,6 @@ div p:hover{
 		}
 		
 		
-	/* 	$('.con li a').hover(function(){
-			$('.con li a').css({'cursor':'pointer'}),
-			function(){
-				
-			}
-		}); */
 		
 		$('.con li a').on('click',function() {
 			if ($(this).parent().parent().attr('id') == 'ul_place') {		
@@ -187,7 +177,7 @@ div p:hover{
 	}
 	
 	function viewMessage(result) {
-		 $('#wrap').html(result);/* .trigger("create"); */
+		 $('#wrap').html(result);
 	}
 </script>
 </head>

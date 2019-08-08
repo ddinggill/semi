@@ -37,27 +37,18 @@ public class MypageController extends HttpServlet{
 		System.out.println(path);
 		
 		if(path.equals("mypage.do")||path.equals("*")) {
-			/*
-			 * req.getAttribute("loginOK"); System.out.println(req.getAttribute("loginOK"));
-			 */
 			HttpSession session = req.getSession();
 			UserDTO dto = (UserDTO)session.getAttribute("loginOk");
-			//System.out.println(dto.getName());
 			MypageAction mypage = new MypageAction();
 			mypage.execute(req, resp);
 			RequestDispatcher dis = req.getRequestDispatcher("/mypageview/mypage.jsp");
 			dis.forward(req, resp);
-			/*
-			 * MypageDAO dao = MypageDAO.getInstance(); dao.memberInfo();
-			 */
 			
 		}else if(path.equals("memberinfo.do")) {
 			RequestDispatcher dis = req.getRequestDispatcher("/mypageview/memberinfo.jsp");
 			dis.forward(req, resp);
 			
 		}else if(path.equals("memberupdate.do")){
-			req.setCharacterEncoding("utf-8");
-
 			
 			HttpSession session = req.getSession();
 			int usercode;
@@ -72,12 +63,8 @@ public class MypageController extends HttpServlet{
 			
 			dao.mypageInfoUpdate(usercode, dto);
 			resp.sendRedirect("/semi/logout");
-			//resp.sendRedirect("mypage.do");
 			
 		}
-		
-		
-		
 		
 		if(next!="") { 
 			 RequestDispatcher dis = req.getRequestDispatcher(next);
@@ -85,15 +72,6 @@ public class MypageController extends HttpServlet{
 			 //
 		}
 		
-		
-		
-		
-		
-		
 	}//end doprocess()//////////////////////////////////////////
-	
-	
-	
-	
 	
 }//end controller///////////////////

@@ -14,27 +14,6 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	
-
-	/* $('.message a').click(function(){ //Already registered?
-		   $('.login-form').animate({height: "show", opacity: "show"}, "slow");
-		   $('.pw-find').animate({height: "hide", opacity: "hide"}, "slow");
-		   $('.register-form').animate({height: "hide", opacity: "hide"}, "slow");	   
-		});
-	$('.message2 a').click(function(){ //Not registered?
-		   $('.login-form').animate({height: "hide", opacity: "hide"}, "slow");
-		   $('.pw-find').animate({height: "hide", opacity: "hide"}, "slow");
-		   $('.register-form').animate({height: "show", opacity: "show"}, "slow");	
-		});
-	$('.message3 a').click(function(){ //Forget Password?
-		   $('.login-form').animate({height: "hide", opacity: "hide"}, "slow");
-		   $('.pw-find').animate({height: "show", opacity: "toggle"}, "slow");
-		   $('.register-form').animate({height: "hide", opacity: "hide"}, "slow");	
-		}); */
-		
-	/* $("button").on('click', function(){
-		$('form').submit();
-	}); */
-	
 	if("${requestScope.find}" == 2)
 		alert("비밀번호초기화: ${requestScope.newPW} 로그인  페이지로 이동하세요.");
 	else if("${requestScope.find}" == 3)
@@ -166,18 +145,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;      
 } 
-
-/* .container-fluid {
-  background: #EB6864; /* fallback for old browsers 
-  background: -webkit-linear-gradient(right, #EB6864, #e05c58);
-  background: -moz-linear-gradient(right, #EB6864, #e05c58);
-  background: -o-linear-gradient(right, #EB6864, #e05c58);
-  background: linear-gradient(to left, #EB6864, #e05c58);
-  font-family: "Roboto", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;      
-}  */
- 
 
 
 </style>

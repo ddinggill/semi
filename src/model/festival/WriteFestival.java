@@ -52,10 +52,7 @@ public class WriteFestival {
 		  dto.setFaddress(multi.getParameter("address"));
 		  dto.setFtitle(multi.getParameter("title"));
 		  dto.setFloc(Integer.parseInt(multi.getParameter("loc")));
-		/*
-		 * dto.setFsdate(multi.getParameter("sdate"));
-		 * dto.setFedate(multi.getParameter("edate"));
-		 */
+		
 		  dto.setFcontents(multi.getParameter("contents"));
 		  dto.setFmap(multi.getParameter("fmap"));
 		  System.out.println(multi.getParameter("fmap") + " : 지도주소");
@@ -65,15 +62,9 @@ public class WriteFestival {
 		  dao.insertFestival(dto,sdate,edate );
 			 
 
-		
 		return null;
 			
-		  
 		 
 	}
 
-	private Date transFormat(String parameter) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

@@ -26,15 +26,14 @@ public class CommentAdd implements FestivalActionImp{
 			dto.setUsercode(ucd);
 			dto.setFcode(fcd);	
 			ReviewBoardDAO dao = ReviewBoardDAO.getInstance();
-			 dao.recommendInsert(dto);
+			dao.recommendInsert(dto);
 			 
 			
 			
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-	}
+	}//end execute()
 	
 }

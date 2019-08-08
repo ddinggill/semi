@@ -13,27 +13,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	
-
-	/* $('.message a').click(function(){ //Already registered?
-		   $('.login-form').animate({height: "show", opacity: "show"}, "slow");
-		   $('.pw-find').animate({height: "hide", opacity: "hide"}, "slow");
-		   $('.register-form').animate({height: "hide", opacity: "hide"}, "slow");	   
-		});
-	$('.message2 a').click(function(){ //Not registered?
-		   $('.login-form').animate({height: "hide", opacity: "hide"}, "slow");
-		   $('.pw-find').animate({height: "hide", opacity: "hide"}, "slow");
-		   $('.register-form').animate({height: "show", opacity: "show"}, "slow");	
-		});
-	$('.message3 a').click(function(){ //Forget Password?
-		   $('.login-form').animate({height: "hide", opacity: "hide"}, "slow");
-		   $('.pw-find').animate({height: "show", opacity: "toggle"}, "slow");
-		   $('.register-form').animate({height: "hide", opacity: "hide"}, "slow");	
-		}); */
-	
-	/* $("button").on('click',function(){
-		$('form').submit();
-	}) */
 		
 	if("${requestScope.loginCheck}" == "fail"){
 		alert("로그인 실패했습니다 다시 입력하세요");
@@ -185,17 +164,6 @@ body {
 <jsp:include page="nav.jsp"></jsp:include>
 <div class="login-page">
   <div class="form">
-    <!-- <form class="register-form">
-      <input type="text" name="userid" placeholder="id"/>
-      <input type="text" name="name" placeholder="username"/>
-      <input type="text" name="nickname" placeholder="nickname" />
-      <input type="password" name="password" placeholder="password"/>
-      <input type="text" name="phonenumber" placeholder="phone number"/>
-      <input type="text" name="useremail" placeholder="email address"/>
-      <button>create</button>
-      <p class="message">Already registered? <a href="">Sign In</a></p>
-      <p class="message3">Forget Password? <a href="">Click this</a></p>
-    </form> -->
     	<form class="login-form" method="post" action="/semi/login/loginCheck.do">
       		<input type="text" name="userid" placeholder="userid" required="required"/>
       		<input type="password" name="userpw" placeholder="password" required="required"/>
@@ -203,13 +171,6 @@ body {
       		<p class="message2">Not registered? <a href="/semi/main/join.do">Create an account</a></p>
       		<p class="message3">Forget Password? <a href="/semi/main/pwfind.do">Click this</a></p>
    	 	</form>
-    <!-- <form class="pw-find">
-  	<input type="text" placeholder="userid" />
-  	<input type="text" placeholder="useremail" />
-  	<button>find password</button>
-  	<p class="message2">Not registered? <a href="">Create an account</a></p>
-  	<p class="message">Already registered? <a href="">Sign In</a></p>
-  	</form> -->
 	</div>
 </div>
 <jsp:include page="footer.jsp"></jsp:include>

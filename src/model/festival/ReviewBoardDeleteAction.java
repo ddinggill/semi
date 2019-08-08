@@ -27,7 +27,6 @@ public class ReviewBoardDeleteAction implements BoardActionImp{
 
    @Override
    public void execute(HttpServletRequest req, HttpServletResponse resp) {
-      // TODO Auto-generated method stub
    }
 
 }

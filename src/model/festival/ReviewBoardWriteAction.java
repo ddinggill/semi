@@ -30,8 +30,6 @@ public class ReviewBoardWriteAction implements BoardMultiImp{
 		ReviewBoardDAO dao = ReviewBoardDAO.getInstance();
 		ReviewBoardDTO dto = new ReviewBoardDTO();
 		
-		//pstmt.setString(5, dto.getFilename());
-		
 		dto.setUsercode(Integer.parseInt(multi.getParameter("usercode")));
 		dto.setFcode(Integer.parseInt(multi.getParameter("fcode")));
 		dto.setBtitle(multi.getParameter("title"));

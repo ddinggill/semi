@@ -43,10 +43,7 @@ public class NoticeController extends HttpServlet{
 		String next="";
 		System.out.println(path);
 		
-		if(path.equals("main.do")) {
-			//mainservlet로 이동
-			//resp.sendRedirect("../main/main.do");
-		}else if(path.equals("list.do")) {
+		if(path.equals("list.do")) {
 			ListAction list = new ListAction();
 			list.execute(req, resp);
 			next = "/noticeview/notice.jsp";

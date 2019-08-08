@@ -20,11 +20,8 @@ public class FileDownLoadAction implements NoticeAction{
 	public void execute(HttpServletRequest req, 
 			HttpServletResponse resp)  {
 		
-		//int num = Integer.parseInt(req.getParameter("num"));
 		NoticeDAO dao=NoticeDAO.getInstance();
-		//String filename=dao.fileMethod(num);
 		String filename = req.getParameter("filename");
-		//System.out.println("filename"+filename);
 		
 		try {
 			//파일명 한글처리

@@ -101,24 +101,8 @@ public class PromotionFileDownloadAction implements PromotionAction{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-			
 		 
 	 }
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		
 	}//end execute
 

@@ -22,13 +22,11 @@ import model.mypage.MypageAction;
 public class AdminController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doProcess(req, resp);
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doProcess(req, resp);
 	}
 	
@@ -44,7 +42,6 @@ public class AdminController extends HttpServlet{
 		if (path.equals("membermanage.do")) {
 			AdminDAO dao = AdminDAO.getInstance();
 			String pageNum = req.getParameter("pageNum");
-			System.out.println();
 			if(pageNum==null)
 				pageNum="1";
 			
@@ -52,9 +49,6 @@ public class AdminController extends HttpServlet{
 			int totalCount = dao.rowCount();
 			
 			PageDTO pdto = new PageDTO(currentPage,totalCount);
-			System.out.println("totalpage:" + pdto.getTotalPage());
-			System.out.println("startpage:" + pdto.getStartPage());
-			System.out.println("endpage:" + pdto.getEndPage());
 			
 			List<UserDTO> alist = dao.userAllInfo(pdto);
 			req.setAttribute("userlist", alist);
@@ -67,7 +61,6 @@ public class AdminController extends HttpServlet{
 			System.out.println("유저레벨 변경요청");
 			String usercode = req.getParameter("usercode");
 			String userlevel = req.getParameter("userlevel");
-			System.out.println(usercode+" "+userlevel);
 			AdminDAO dao = AdminDAO.getInstance();
 			dao.userlevelUpdate(Integer.parseInt(usercode), Integer.parseInt(userlevel));
 			resp.setContentType("text/html;charset=UTF-8");
@@ -76,7 +69,6 @@ public class AdminController extends HttpServlet{
 		}else if(path.equals("delete.do")) {
 			String usercode=req.getParameter("usercode");
 			String pageNum = req.getParameter("pageNum");
-			//System.out.println(pageNum);
 			AdminDAO dao=AdminDAO.getInstance();
 			dao.userdelete(Integer.parseInt(usercode));	
 			

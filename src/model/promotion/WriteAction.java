@@ -53,7 +53,6 @@ public class WriteAction implements PromotionAction{
 		
 		dao.insertMethod(dto);
 			
-		
 	}
 
 	@Override

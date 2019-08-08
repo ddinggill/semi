@@ -16,12 +16,6 @@ public class PromotionUpdateAction implements PromotionAction{
 		 System.out.println("문의글 업데이트 보드키 = " + boardkey);
 		 req.setAttribute("dto", dao.updateForm(boardkey));
 		
-		
-		
-		
-		
-		
-		
 	}
 
 	@Override
