@@ -11,6 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.oreilly.servlet.MultipartRequest;
 
+import model.festival.CommentAdd;
+import model.festival.CommentDel;
+import model.festival.CommentList;
+import model.festival.CommentUpdate;
 import model.festival.FileDownLoadAction;
 import model.festival.HotListAction;
 import model.festival.ListAction;
@@ -110,6 +114,21 @@ public class districtController extends HttpServlet {
 			}else {
 				resp.sendRedirect("reviewList.do?pageNum=" + req.getParameter("pageNum")+param); 
 			}
+		}else if(action.equals("/commentAdd.do")) {
+			CommentAdd coa = new CommentAdd();
+			coa.execute(req, resp);
+		}//댓글리스트 출력 
+		else if(action.equals("/commentList.do")) {
+			CommentList col = new CommentList();
+			col.execute(req, resp);
+		}//댓글리스트 출력 
+		else if(action.equals("/CommentDel.do")) {
+			CommentDel cod = new CommentDel();
+			cod.execute(req, resp);
+		}//댓글리스트 수정 
+		else if(action.equals("/CommentUpdate.do")) {
+			CommentUpdate cou = new CommentUpdate();
+			cou.execute(req, resp);
 		}
 		
 		

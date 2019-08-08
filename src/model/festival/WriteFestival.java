@@ -46,8 +46,8 @@ public class WriteFestival {
 		  FestDAO dao = FestDAO.getInstance(); 
 		  FestDTO dto = new FestDTO();
 		  
-		  String sdate = multi.getParameter("edate");
-		  String edate = multi.getParameter("sdate");
+		  String sdate = multi.getParameter("sdate");
+		  String edate = multi.getParameter("edate");
 		  
 		  dto.setFaddress(multi.getParameter("address"));
 		  dto.setFtitle(multi.getParameter("title"));
