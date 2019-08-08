@@ -75,10 +75,15 @@ table {
 	margin-top: 10px;
 }
 
+.comment>p{
+	font-weight: bold;
+}
+
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
+<!--댓글입력으로 js 추가  -->
+<script type="text/javascript" src="/semi/review/jquery.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('.list').on('click', function(){
@@ -103,6 +108,10 @@ table {
 	         $('.update').attr('type','hidden');
 	         $('.del').attr('type','hidden');
 	     }
+		
+		if ("${sessionScope.loginOk.usercode }" == ""){
+		      $('#commentAdd').css('display','none');
+		}
 		
 	});
 </script>
@@ -133,17 +142,48 @@ table {
 
 	<form name="frm" method="post">		
 		<input type="hidden" name="pageNum" value="${param.pageNum}" /> 
-		<input type="hidden" name="boardkey" value="${dto.boardkey}" />
-		<input type="hidden" name="fcode" value="${dto.fcode}" />
+		<input type="hidden" id="boardkey" name="boardkey" value="${dto.boardkey}" />
+		<input type="hidden" id="fcode" name="fcode" value="${dto.fcode}" />
 		<input type="hidden" name="number" value="${param.number}" />
 		<input type="hidden" name="searchKey" value="${param.searchKey }"/>
 		<input type="hidden" name="searchWord" value="${param.searchWord }"/>
+		<input type="hidden" id="ucd" name="ucd" value="${sessionScope.loginOk.usercode }"/>
 		<div class="button">
-		<input type="button" value="목록" class="list btn btn-danger" /> 
-		<input type="button" value="수정" class="update btn btn-danger"  />
-		<input type="button" value="삭제" class="del btn btn-danger" />
+		<input type="button" style="float:right; margin-right: 3px;" value="목록" class="list btn btn-danger" /> 
+		<input type="button" style="float:right; margin-right: 3px;" value="수정" class="update btn btn-danger"  />
+		<input type="button" style="float:right; margin-right: 3px;" value="삭제" class="del btn btn-danger" />
 		</div>
 	</form>
+		<!-- 댓글영역 시작 -->
+		
+			<!--댓글 목록 출력  -->
+		 <div class="comment" style="margin-top: 30px;"> 
+			<p>댓글</p>
+			<div id="commentList">
+			<script type="text/javascript">
+				listView("${dto.boardkey}");
+			</script>
+			</div>
+		
+		<!-- 댓글수정 -->
+		<div id="divUpdate" style="display:none;" >
+			<input type="hidden" id="textCol" />
+			<textarea rows="10" cols="20" id="textUpdate"></textarea>
+			<input type="button" id="btnUpdate" value="수정"/>
+		</div>
+		
+				
+			<!-- 댓글입력 -->	
+		<div id="commentAdd" style="margin-top: 15px;">
+			<textarea id="textInput"></textarea>
+			<input type="button" id="btnInput" value="댓글입력"/>
+		</div>
+		
+		<!--  댓글영역 끝 -->
+		
+		</div>
+		
+	
 	</div>
 	<jsp:include page="../mainview/footer.jsp"></jsp:include>
 </body>

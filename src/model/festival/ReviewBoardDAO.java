@@ -333,4 +333,133 @@ public class ReviewBoardDAO {
 			}
 		}
 	}//end deleteMethod///////////////////////////////
+	
+	//원글삭제시 댓글도 삭제
+	   public void recommendDelAll(String key){
+	      
+	      try {
+	         conn = init();
+	         String sql ="delete from f_recomment where boardkey=?";
+	         pstmt = conn.prepareStatement(sql);
+	         pstmt.setString(1, key);
+	         pstmt.executeUpdate();
+	      } catch (SQLException | ClassNotFoundException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      } finally {
+	         try {
+	            exit();
+	         } catch (SQLException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	         }
+	      }
+	   
+	   }//원글삭제시 댓글도 삭제  end
+	   
+	//insert recommend start
+		public void recommendInsert(CommentDTO dto) {
+						
+			try {
+				conn = init();
+				String sql = "insert into f_recomment values(f_recomment_sq.nextval,?,?,?,?)";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, dto.getBoardkey());
+				pstmt.setInt(2, dto.getUsercode());
+				pstmt.setInt(3, dto.getFcode());
+				pstmt.setString(4, dto.getRecontents());
+				pstmt.executeUpdate();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				try {
+					exit();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+		}//insert recommend end
+		
+		//recommend List start
+			public List<CommentDTO> recommendList(String key) {
+				List<CommentDTO> aList = new ArrayList<CommentDTO>();
+				try {
+					conn = init();
+					String sql = "select ft.fcontents con, mb.name nm,ft.commentcode rkey,ft.usercode usercode \r\n" + 
+							"from f_recomment ft,member mb \r\n" + 
+							"where ft.usercode = mb.usercode and boardkey=?";
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1, key);
+					rs = pstmt.executeQuery();
+					while(rs.next()) {
+						CommentDTO dto = new CommentDTO();
+						dto.setRecontents(rs.getString("con"));
+						dto.setUserName(rs.getString("nm"));
+						dto.setRekey(rs.getInt("rkey"));
+						dto.setUsercode(rs.getInt("usercode"));
+						aList.add(dto);
+						
+					}
+					
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}finally {
+					try {
+						exit();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				
+				return aList;
+			}//recommend List end
+			
+			
+			public void recommendDel(int key) {
+				try {
+					conn = init();
+					String sql = "delete from f_recomment where commentcode = ?";
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setInt(1, key);
+					pstmt.executeUpdate();
+					} catch (SQLException | ClassNotFoundException e) {
+
+					e.printStackTrace();
+				}finally {
+					try {
+						exit();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				} 
+			}//recoomend del end
+			
+			
+			public void recommendUpdate(int key, String con) {
+				
+				try {
+					conn = init();
+					String sql="update f_recomment set fcontents= ? where commentcode = ?";
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1, con);
+					pstmt.setInt(2, key);
+					pstmt.executeUpdate();
+				} catch (ClassNotFoundException | SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}//recoomend update end
+
 }

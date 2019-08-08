@@ -8,7 +8,9 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebFilter;
 
+@WebFilter("/*")
 public class CharacterFilter implements Filter{
 	
 	//필터가 웹컨테이너에서 삭제될때 호출ㅎㄴ다.

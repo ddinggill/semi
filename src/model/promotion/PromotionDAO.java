@@ -298,6 +298,26 @@ public class PromotionDAO {
 			}
 		}
 	}//end////////////////////////////////////////////////////
+	
+	//본글삭제시 밑의 댓글 모두 삭제
+	public void promotionAllCommentDelete(String boardkey) {
+		try {
+			conn = JdbcTemplate.getConnection();
+			String sql = "delete from PROMOTIONCOMMENT where boardkey= ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, boardkey);
+			pstmt.executeUpdate();
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				exit();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}//end////////////////////////////////////////////////////
+	
   public void promotionDelete(String boardkey) {
 	  try {
 		conn = JdbcTemplate.getConnection();
