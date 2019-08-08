@@ -100,6 +100,7 @@ table {
 			$('form').attr('action', 'reviewDelete.do');
 			$('form').submit();
 		});
+
 		if("${sessionScope.loginOk.userlevel}"==""){
 			$('.update').attr('type','hidden');
 	        $('.del').attr('type','hidden');
@@ -113,6 +114,7 @@ table {
 		     }
 		}
 			
+
 		if ("${sessionScope.loginOk.usercode }" == ""){
 		      $('#commentAdd').css('display','none');
 		}

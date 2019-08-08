@@ -117,7 +117,7 @@ public class FestDAO {
 			try {
 				conn = init();
 				String sql = "insert into festival (fcode,ftitle,fsdate,fedate,faddress,fcontents,fimgpath,fmainpath,fview,floc,recommend,fmap)\r\n" + 
-						"values(festival_sq.nextval,?,?,?,?,?,?,?,1,1,1,?)";
+						"values(festival_sq.nextval,?,?,?,?,?,?,?,1,?,1,?)";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, dto.getFtitle());
 				pstmt.setString(2, sdate);
@@ -126,7 +126,8 @@ public class FestDAO {
 				pstmt.setString(5, dto.getFcontents());
 				pstmt.setString(6, dto.getFimgpath());
 				pstmt.setString(7, dto.getFmainpath());
-				pstmt.setString(8, dto.getFmap());
+				pstmt.setInt(8, dto.getFloc());
+				pstmt.setString(9, dto.getFmap());
 				pstmt.executeUpdate();
 				
 			} catch (ClassNotFoundException | SQLException e) {

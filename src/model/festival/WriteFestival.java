@@ -51,6 +51,7 @@ public class WriteFestival {
 		  
 		  dto.setFaddress(multi.getParameter("address"));
 		  dto.setFtitle(multi.getParameter("title"));
+		  dto.setFloc(Integer.parseInt(multi.getParameter("loc")));
 		/*
 		 * dto.setFsdate(multi.getParameter("sdate"));
 		 * dto.setFedate(multi.getParameter("edate"));
