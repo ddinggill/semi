@@ -17,7 +17,7 @@ public class CommentList implements FestivalActionImp{
    @Override
    public void execute(HttpServletRequest req, HttpServletResponse resp) {
       String key = req.getParameter("num");
-      int conUser = 0;
+      int conUser = -1;
       UserDTO udto = (UserDTO)req.getSession().getAttribute("loginOk");
       if(udto !=null )
          conUser = udto.getUsercode();
