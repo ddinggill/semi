@@ -100,15 +100,19 @@ table {
 			$('form').attr('action', 'reviewDelete.do');
 			$('form').submit();
 		});
-		
-		if("${sessionScope.loginOk.usercode}"==("${requestScope.dto.usercode}")){
-	         $('.update').attr('type','button');
-	         $('.del').attr('type','button');
-	      }else{
-	         $('.update').attr('type','hidden');
-	         $('.del').attr('type','hidden');
-	     }
-		
+		if("${sessionScope.loginOk.userlevel}"==""){
+			$('.update').attr('type','hidden');
+	        $('.del').attr('type','hidden');
+		}else{
+			if(("${sessionScope.loginOk.usercode}"=="${requestScope.dto.usercode}") || ("${sessionScope.loginOk.userlevel}"==0)){
+		         $('.update').attr('type','button');
+		         $('.del').attr('type','button');
+		      }else{
+		         $('.update').attr('type','hidden');
+		         $('.del').attr('type','hidden');
+		     }
+		}
+			
 		if ("${sessionScope.loginOk.usercode }" == ""){
 		      $('#commentAdd').css('display','none');
 		}
