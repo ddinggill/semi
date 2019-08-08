@@ -159,7 +159,7 @@
 
 
 			<div class="footer-icons">
-				<a href="#"><i class="fa fa-github"></i></a>
+				<a href="https://www.github.com"><i class="fa fa-github"></i></a>
 			</div>
 
 			<p class="footer-company-name">fastival &copy; 2019</p>

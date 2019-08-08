@@ -83,7 +83,7 @@ function inPutMessage(res){
 //댓글 리스트 요청
 function listView(num){
 	titleNum=num;
-	/*console.log(num + " num값임")*/
+	console.log(num + " num값임");
 	$.ajax({
 		type:'GET',
 		dataType:'json',
@@ -105,6 +105,8 @@ function viewMessage(res){
 		$(div).append(p2);
 		var p3=$('<input type="hidden" id="rkey" name="rkey" value='+res[index].rkey+'>');
 		$(div).append(p3);
+		console.log("유저코드"+res[index].usercode);
+		console.log("접속유저코드"+res[index].conUser);
 		if (res[index].usercode == res[index].conUser) {
 	         var inputupdate=$('<input type="button" value="수정"/>');
 	         $(div).append(inputupdate);

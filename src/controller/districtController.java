@@ -26,6 +26,7 @@ import model.festival.ReviewBoardViewAction;
 import model.festival.ReviewBoardWriteAction;
 import model.festival.SearchListAction;
 import model.festival.ViewAction;
+import model.festival.WriteFestival;
 
 @WebServlet("/district/*")
 public class districtController extends HttpServlet {
@@ -66,7 +67,12 @@ public class districtController extends HttpServlet {
 			hotList.execute(req, resp);
 			path= "/festival/hotList.jsp";
 			
-		}else if (action.equals("/reviewList.do")) {
+		}else if (action.equals("/write.do")) {
+	        WriteFestival write = new WriteFestival();
+	        write.execute(req, resp);
+	        resp.sendRedirect("/semi/main/main.do");
+	      }
+		else if (action.equals("/reviewList.do")) {
 			ReviewBoardListAction reviewList = new ReviewBoardListAction();
 			reviewList.execute(req);
 			path = "/review/reviewBoardList.jsp";
