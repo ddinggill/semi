@@ -221,11 +221,6 @@ public class PromotionDAO {
 	}//end //////////
 	
 	public void commentinsert(PromotionCommentDTO dto) {
-		/*
-		 * System.out.println(dto.getBoardkey());
-		 * System.out.println(dto.getCommentTitle());
-		 * System.out.println(dto.getCommentContents());
-		 */
 		
 		try {
 			conn=JdbcTemplate.getConnection();

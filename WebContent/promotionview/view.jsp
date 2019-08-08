@@ -71,11 +71,6 @@ table {
 	vertical-align: top;
 }
 
-.content{
-  
-   /* border:  1px solid #6E6E6E; */
-}
-
 .writer{
    font-weight: bold;
 }

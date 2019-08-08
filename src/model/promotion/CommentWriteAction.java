@@ -19,7 +19,6 @@ public class CommentWriteAction implements PromotionAction{
 		System.out.println("답글내용 = " + dto.getCommentContents());
 		System.out.println("답글 제목 = "+ dto.getCommentTitle());
 		
-		
 		dao.commentinsert(dto);
 		
 		

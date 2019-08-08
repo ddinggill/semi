@@ -28,8 +28,6 @@ public class MypageAction {
 		for(PromotionDTO pdto : promotionList) {
 			for(PromotionCommentDTO cdto : commentList) {
 				if(pdto.getBoardkey().equals(cdto.getBoardkey())) {
-					//System.out.println(pdto.getBoardkey());
-					//System.out.println(cdto.getBoardkey());
 					pdto.getComment().add(cdto);
 					System.out.println(cdto.getCommentContents());
 				}
@@ -38,7 +36,7 @@ public class MypageAction {
 		
 		req.setAttribute("reviewList", reviewList);
 		
-		//req.setAttribute("recommentList", recommentList);
+		req.setAttribute("recommentList", recommentList);
 		req.setAttribute("promotionList", promotionList);
 		
 		

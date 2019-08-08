@@ -50,7 +50,6 @@ public class UpdateProAction implements NoticeAction{
 				oldFile.delete();
 			}
 			dto.setFilename(multi.getFilesystemName("filename"));
-			//System.out.println("파일추가:"+multi.getFilesystemName("filename"));
 		}else {//수정 첨부파일이 없으면
 			//기존 첨부파일이 있으면
 			if(filename != null) {
@@ -60,9 +59,7 @@ public class UpdateProAction implements NoticeAction{
 		dto.setTitle(multi.getParameter("title"));
 		dto.setContents(multi.getParameter("contents"));
 		dto.setBoardkey(boardkey);
-		System.out.println(dto.getTitle());
-		System.out.println(dto.getContents());
-		System.out.println(dto.getBoardkey());
+		
 		dao.updateMethod(dto);
 		
 		return multi;

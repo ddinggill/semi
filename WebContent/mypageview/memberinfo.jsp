@@ -99,18 +99,10 @@ padding: 0;
 	 var email = $("#email").val();
 	 
 	 $("#info_btn").click(function(){
-		/* alert($("#pw").val());
-		alert($("#pw_test").val()); */
-	/* 	alert(regExp);
-	alert($("#email").val()); */
-		
 		  if(!($("#pw").val() == $("#pw_test").val())){
 				alert("비밀번호가 일치하지 않습니다.");
 				return false;
 			}
-		
-		
-		 
 	 }); 
 	 
 	 
@@ -145,12 +137,7 @@ padding: 0;
 		</table>
 		<input type="submit" value="정보수정"  id="info_btn"/>
 	</form>
-	
 	</div>
-
-
-
-
 	<jsp:include page="../mainview/footer.jsp"></jsp:include>
 </body>
 </html>

@@ -69,20 +69,7 @@ div.write:hover{
 					<td><a href="view.do?boardkey=${dto.boardkey }&pageNum=${pdto.currentPage}">${dto.title }</a></td>
 					<td>관리자</td>
 					<td>${dto.day }</td>
-				<!-- <c:set var="cnt" value="${cnt-1 }"></c:set> -->
-					<%-- <td>
-						<form action="updateForm.do">
-							<input type="hidden" name="num" value="${dto.num }">
-							<input type="submit" value="수정">			
-						</form>
-					</td>
-					<td>
-						<form action="delete.do">
-							<input type="hidden" name="num" value="${dto.num }">
-							<input type="hidden" name="pageNum" value="${pdto.currentPage }"> 
-							<input type="submit" value="삭제">			
-						</form>
-					</td> --%>
+				
 				</tr>
 		</c:forEach>
 		 		
@@ -114,29 +101,7 @@ div.write:hover{
 					</c:if>
 				</li>
 		</ul>
-		<%-- <!-- 이전 -->
-		<c:if test="${pdto.startPage > 1 }">
-			<a href="list.do?pageNum=${pdto.startPage - pdto.blockPage}&searchKey=${pdto.searchKey }&searchWord=${pdto.searchWord }">이전</a>
-		</c:if>
-		<!-- 페이지 -->
-		<c:forEach begin="${requestScope.pdto.startPage }" end="${requestScope.pdto.endPage }" var="i">
-			<span>
-			<c:choose>
-				<c:when test="${i == requestScope.pdto.currentPage }">
-				<a href="list.do?pageNum=${i }&searchKey=${pdto.searchKey }&searchWord=${pdto.searchWord }"
-                  class="pagecolor">${i }</a><!-- 페이지 컬러로 스타일 적용 -->
-				</c:when>
-				<c:otherwise>
-					<a href="list.do?pageNum=${i }&searchKey=${pdto.searchKey }&searchWord=${pdto.searchWord }">${i }</a>
-				</c:otherwise>
-			</c:choose>
-			</span>
-		</c:forEach>
-		
-		<!-- 다음 -->
-		<c:if test="${pdto.endPage<pdto.totalPage }">
-			<a href="list.do?pageNum=${pdto.startPage + pdto.blockPage}&searchKey=${pdto.searchKey }&searchWord=${pdto.searchWord }">다음</a>
-		</c:if> --%>
+	
 		</div> 
 </div>
 <jsp:include page="../mainview/footer.jsp"></jsp:include>

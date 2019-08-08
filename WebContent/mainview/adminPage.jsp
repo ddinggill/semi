@@ -49,7 +49,6 @@ $(document).ready(function(){
 		$(this).click(function(){
 			var usercode = $(this).parents("tr").find("#usercode").val();
 			var userlevel = $(this).parents("tr").find("select").val();
-			//alert("usercode:"+usercode+"  val:"+selectedval);
 			updateprocess(usercode,userlevel)
 		});
 	});
@@ -58,9 +57,6 @@ $(document).ready(function(){
 		$(this).click(function(){
 			var usercode = $(this).parents("tr").find("#usercode").val();
 			deleteprocess(usercode);
-			//var userlevel = $(this).parents("tr").find("select").val();
-			//alert("usercode:"+usercode+"  val:"+selectedval);
-			//updateprocess(usercode,userlevel)
 		});
 	});
 
@@ -68,7 +64,6 @@ $(document).ready(function(){
 
 function updateprocess(usercode,userlevel){
 	
-	//alert("usercode:"+usercode+"  userlevel:"+userlevel);
 	$.ajax({
 		type:'POST',
 		dataType:'text',
@@ -76,7 +71,6 @@ function updateprocess(usercode,userlevel){
 		data:'usercode='+usercode+'&userlevel='+userlevel,
 		url:'/semi/admin/update.do',
 		success: function(res){
-			//$(this).parents("tr").find("select").val(res);
 			alert("회원정보가 변경되었습니다.");
 		}
 	});

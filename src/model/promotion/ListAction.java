@@ -29,23 +29,14 @@ public class ListAction implements PromotionAction{
 		for(PromotionDTO prodto : aList) {
 			for(PromotionCommentDTO cdto : commentList) {
 				if(prodto.getBoardkey().equals(cdto.getBoardkey())) {
-					//System.out.println(pdto.getBoardkey());
-					//System.out.println(cdto.getBoardkey());
 					prodto.getComment().add(cdto);
 					System.out.println(cdto.getCommentContents());
 				}
 			}
 		}
 		
-		
-		
-		
-		
 		req.setAttribute("aList", aList);
 		req.setAttribute("pdto", pdto);
-		
-		
-		
 		
 	}//end execute()
 

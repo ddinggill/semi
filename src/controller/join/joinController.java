@@ -16,20 +16,17 @@ import model.join.joinDAO;
 public class joinController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doGet(req, resp);
+	
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.setCharacterEncoding("UTF-8");
 		String path = req.getRequestURI();
 
 		path = path.substring(path.lastIndexOf("/") + 1);
 		String next = "";
 
 		if (path.equals("join.do")) {
-			System.out.println("회원가입요청도착");
 			joinAction joinaction = new joinAction();
 			joinaction.execute(req, resp);
 			RequestDispatcher dis = req.getRequestDispatcher("/mainview/joinForm.jsp");

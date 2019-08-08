@@ -11,8 +11,6 @@ public class MainAction {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		System.out.println("액션 접속");
 		MainDAO dao = MainDAO.getInstance();
-		//NoticeDTO Ndto = new NoticeDTO();
-		//ReviewDTO Rdto = new ReviewDTO();
 		List<NoticeDTO> noticeList = dao.lastNoticeBoard();
 		List<ReviewDTO> reviewList = dao.lastReviewBoard();
 		

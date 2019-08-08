@@ -43,7 +43,6 @@ public class CommentList implements FestivalActionImp{
       try {
          out = resp.getWriter();
       } catch (IOException e) {
-         // TODO Auto-generated catch block
          e.printStackTrace();
       }
       

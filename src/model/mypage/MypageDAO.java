@@ -78,10 +78,12 @@ public class MypageDAO {
 				
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1,usercode);
+				
 				rs = pstmt.executeQuery();
 				while(rs.next()) {
 					MypageDTO mdto = new MypageDTO();
 					mdto.setComment(rs.getString("fcontents"));
+					mdto.setReviewcode(rs.getString("boardkey"));
 					aList.add(mdto);
 				}
 			} catch (ClassNotFoundException | SQLException e) {
@@ -98,35 +100,7 @@ public class MypageDAO {
 		return aList;
 	}//end recomment/////////////////
 	
-//	public List<MypageDTO> myPagepromotion(int usercode){
-//		List<MypageDTO> aList = new ArrayList<MypageDTO>();
-//			try {
-//				conn=JdbcTemplate.getConnection();
-//				String sql= "select * from promotion where usercode = ?";
-//				
-//				pstmt = conn.prepareStatement(sql);
-//				pstmt.setInt(1, usercode);
-//				rs = pstmt.executeQuery();
-//				while(rs.next()) {
-//					MypageDTO mdto = new MypageDTO();	
-//					mdto.setPromotionTitle(rs.getString("ftitle"));
-//					mdto.setPromotioncode(rs.getString("boardkey"));
-//					aList.add(mdto);
-//				}
-//			} catch (ClassNotFoundException | SQLException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}finally {
-//				try {
-//					exit();
-//				} catch (SQLException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//			}
-//		return aList;
-//	}//end promotion/////////////////
-//	
+
 	public void mypageInfoUpdate(int usercode , MypageUpdateDTO dto) {
 		
 		try {
@@ -140,9 +114,6 @@ public class MypageDAO {
 			pstmt.setInt(5, usercode);
 			pstmt.executeUpdate();
 		
-			
-			
-			
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

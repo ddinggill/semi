@@ -32,8 +32,6 @@ public class ReviewBoardListAction implements BoardActionImp{
 		int cnt = dao.rowTotalCount(map); //현재 테이블의 전체 레코드 수
 		if(cnt>0) {			
 			PageDTO pdto = new PageDTO(currentPage , cnt,searchKey , searchWord);
-			//System.out.println(pdto.getStartPage()); //1
-			//System.out.println(pdto.getEndPage()); //5
 			req.setAttribute("aList", dao.listMethod(pdto));
 			req.setAttribute("pdto", pdto);//pdto의 값을 넘겨준다.
 		}

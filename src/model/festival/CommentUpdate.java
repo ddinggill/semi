@@ -24,7 +24,6 @@ public class CommentUpdate implements FestivalActionImp{
 		try {
 			out = resp.getWriter();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		out.print(num);

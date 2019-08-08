@@ -13,7 +13,6 @@ public class UpdateFormAction implements PromotionAction{
 		PromotionDAO dao = PromotionDAO.getInstance();
 		req.setAttribute("dto", dao.viewMethod(boardkey));
 		
-		
 	}//end
 
 	@Override

@@ -16,10 +16,6 @@ public class PromotionDeleteTwoAction implements PromotionAction{
 		System.out.println("보드키 = " +boardkey);
 		dao.promotionCommentDelete(commentcode);
 		
-		
-		
-		
-		
 	}
 
 	@Override

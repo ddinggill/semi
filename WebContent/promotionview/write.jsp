@@ -48,12 +48,7 @@ font-size: 30px;
 	width: 100%;
 	border: solid 1px #BDBDBD;
 }
-/* #backBtn{
-	width: 100px;
-	height: 50px;
-	background-color: #DC3545;
-	font-family: Jua;
-} */
+
 </style>
 
 <script type="text/javascript">
@@ -71,11 +66,7 @@ font-size: 30px;
 		<h2>글쓰기</h2>
 		<form name="frm" method="post" enctype="multipart/form-data"
 			action="/semi/promotion/insert.do">
-			<%-- <input type="text" name="usercode" value="${sessionScope.loginOk.usercode }"> --%>
 			<table>
-				<!-- <tr>
-					<td align="right" colspan="2" ><a href="/semi/main/main.do" >뒤로가기</a></td>
-				</tr> -->
 				<tr>
 					<td align="center"><strong>축제명</strong></td>
 					<td><input type="text" name="fTitle" class="subject" required="required"/></td>

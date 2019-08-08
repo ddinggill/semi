@@ -11,12 +11,6 @@ public class ViewAction implements FestivalActionImp{
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
-		/*
-		 * FestDAO dao = FestDAO.getInstance(); int
-		 * fcode=Integer.parseInt(req.getParameter("fcode"));
-		 * dao.readCountMethod(fcode); req.setAttribute("dto", dao.getFestView(fcode));
-		 * req.setAttribute("rdto", dao.getReview(fcode));
-		 */
 		
 		int code = Integer.parseInt(req.getParameter("fcode"));
 		System.out.println(code + " code");

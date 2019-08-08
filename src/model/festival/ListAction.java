@@ -16,7 +16,6 @@ public class ListAction implements FestivalActionImp{
 			place = "0";
 		if(date == null || date.equals("null"))
 			date = "0";
-		//System.out.println(place+","+ date);
 		req.setAttribute("aList", dao.getFestList(place, date));
 	}
 }
