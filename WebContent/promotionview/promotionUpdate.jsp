@@ -351,6 +351,11 @@ input {
 }
 
 </style>
+<script type="text/javascript">
+	$(document).ready(function() {
+		alert("a");
+	});
+</script>
 </head>
 <body>
 <jsp:include page="../mainview/nav.jsp"></jsp:include>
@@ -380,6 +385,28 @@ input {
                         
                           <div class="input-group">
                             <input class="input--style-1" type="text" placeholder="주소" name="address" value="${dto.fAddress }" />
+                        </div>
+                        
+                        <div class="input-group">
+                            <select name="loc">
+                            	<option value="1">경기도</option>
+                            	<option value="2">강원도</option>
+                            	<option value="3">충청북도</option>
+                            	<option value="4">서울</option>
+                            	<option value="5">인천</option>
+                            	<option value="6">대전</option>
+                            	<option value="7">대구</option>
+                            	<option value="8">광주</option>
+                            	<option value="9">부산</option>
+                            	<option value="10">울산</option>
+                            	<option value="11">세종</option>
+                            	<option value="12">충청남도</option>
+                            	<option value="13">경상북도</option>
+                            	<option value="14">경상남도</option>
+                            	<option value="15">전라북도</option>
+                            	<option value="16">전라남도</option>
+                            	<option value="17">제주도</option>
+                            </select>
                         </div>
                         
                         <div class="input-group">
