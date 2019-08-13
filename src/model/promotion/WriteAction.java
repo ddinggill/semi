@@ -18,6 +18,7 @@ public class WriteAction implements PromotionAction{
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
+			//사용자가 홍보문의의 글을 작성하기위해 입력받은 정보를 저장
 			MultipartRequest multi = null;
 			String saveDirectory="c:/temp";
 			

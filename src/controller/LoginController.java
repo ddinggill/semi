@@ -15,6 +15,8 @@ import javax.servlet.http.HttpSession;
 import model.UserDAO;
 import model.UserDTO; 
 
+
+//로그인 처리하는 컨트롤러
 @WebServlet("/login/*")
 public class LoginController extends HttpServlet{
 	
@@ -38,8 +40,9 @@ public class LoginController extends HttpServlet{
 			user.setUserpw(req.getParameter("userpw"));
 			
 			if(UserDAO.getInstance().loginCheck(user)) {
+				//로그인 성공시 req에서 세션을 가져와서 세션영역에 그 유저의 정보 저장
 				HttpSession session = req.getSession();
-				session.setMaxInactiveInterval(30*60);//5분
+				session.setMaxInactiveInterval(30*60);//로그인유지시간 30분
 				user= UserDAO.getInstance().userInfo(user);
 				session.setAttribute("loginOk", user);
 				resp.sendRedirect("/semi/main/main.do");
@@ -49,10 +52,6 @@ public class LoginController extends HttpServlet{
 				dis.forward(req, resp);
 			}
 			
-		}else if(path.equals("logout.do")) {
-			
-			RequestDispatcher dis = req.getRequestDispatcher("/mainview/lecture.jsp");
-			dis.forward(req, resp);
 		}else if(path.equals("pwfind.do")) {
 			RequestDispatcher dis = req.getRequestDispatcher("/mainview/pwfindForm.jsp");
 			dis.forward(req, resp);

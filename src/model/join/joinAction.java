@@ -16,6 +16,7 @@ public class joinAction {
 		joinDAO dao = joinDAO.getInstance();
 		
 		int rs = dao.insert(dto);
+		//회원가입 결과값이 1 이면 가입성공
 		if (rs == 1) {
 			req.setAttribute("joinOK", 1);
 		} 

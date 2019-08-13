@@ -20,6 +20,7 @@ public class UpdateProAction implements PromotionAction{
 
 	@Override
 	public MultipartRequest executeMulti(HttpServletRequest req) {
+		//사용자가 홍보문의의 글을 수정한다.
 		System.out.println("업데이트 프로 접근");
 		MultipartRequest multi = null;
 		String saveDirectory="c:/temp"; //첨부파일 저정할 경로

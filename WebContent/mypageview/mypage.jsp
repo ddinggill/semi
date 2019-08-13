@@ -50,7 +50,9 @@ a{
 <title>Insert title here</title>
 </head>
 <body>
+<!-- 마이페이지 네비바 -->
 <jsp:include page="../mainview/nav.jsp"></jsp:include>
+	<!-- 마이페이지 회원 닉네임 출력 -->
 	<div class="container" id="card">
 		<div class="card-body">
 			<img class="lecture-logo" src="../images/user-icon.png" alt="JS Logo">
@@ -60,7 +62,8 @@ a{
 		</div>
 			<p class="mypage-active">활동내역</p>
 	</div>
-
+	
+	<!-- 본인이 작성한 후기게시글 출력 -->
 	<div class="container">
 	<div class="card border-danger mt-3 mb-3"> 
 		<h5>후기 게시판</h5> 
@@ -83,6 +86,8 @@ a{
 		</table> 
 		
 	</div>
+	
+	<!-- 본인이 작성한 댓글 출력   -->
 	<div class="card border-danger mt-3 mb-3"> 
 		<h5>댓글</h5> 
 	
@@ -102,6 +107,8 @@ a{
 		</table> 
 		
 	</div>
+	
+	<!-- 본인이 작성한 홍보문의글 출력  -->
 	<div class="card border-danger mt-3 mb-3"> 
 		<h5>홍보 문의 게시판</h5> 
 		
@@ -131,7 +138,7 @@ a{
 		
 	</div>
 </div>
-
+<!-- 풋터 -->
 <jsp:include page="../mainview/footer.jsp"></jsp:include>
 </body>
 </html>

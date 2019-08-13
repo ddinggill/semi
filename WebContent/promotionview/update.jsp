@@ -69,8 +69,10 @@ font-size: 30px;
 <body>
 			<input type="hidden" name="usercode" value="${sessionScope.loginOk.usercode }">
 			<input type="hidden" name="pageNum" value="${param.pageNum}" />
-	    	
+	    	<!-- 네비 -->
 	<jsp:include page="../mainview/nav.jsp"></jsp:include>
+	
+	<!-- 홍보문의 수정을 위해 이전의 정보를 불러와 출력 -->
 	<div class="container" id="write">
 		<h2>글쓰기</h2>
 		<form name="frm" method="post" enctype="multipart/form-data"

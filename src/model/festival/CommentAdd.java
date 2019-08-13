@@ -10,14 +10,12 @@ public class CommentAdd implements FestivalActionImp{
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		try {
+			//댓글 추가시 처리
 			req.setCharacterEncoding("UTF-8");
 			String key = req.getParameter("num");
 			String contents = req.getParameter("content");
 			int ucd = Integer.parseInt(req.getParameter("ucd")); 
 			int fcd = Integer.parseInt(req.getParameter("fcd"));
-			
-			
-			System.out.println(key + " : " + contents + " : " + ucd + " : " + fcd);
 			
 			CommentDTO dto = new CommentDTO();
 			

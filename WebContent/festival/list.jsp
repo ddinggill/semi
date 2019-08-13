@@ -121,6 +121,9 @@ div p:hover{
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <!-- <script type="text/javascript" src="list_jquery.js"></script> -->
 <script type="text/javascript">
+
+    // 검색 월,지역  초기 조건 설정  
+    
 	$(document).ready(function() {
 		var month = [ "전체", "1월", "2월", "3월", "4월", "5월", "6월","7월", "8월", "9월", "10월", "11월", "12월" ];
 		var place = [ "전체지역", "경기도", "강원도", "충청북도", "서울", "인천","대전", "대구", "광주", "부산", "울산", "세종", "충청남도",
@@ -184,28 +187,32 @@ div p:hover{
 
 <body>
 <jsp:include page="../mainview/nav.jsp"></jsp:include>
+<!-- 월 지역별 보기 영역  시작 -->
 	<input type="hidden" id="listDate" value="0" class="listState" />
 	<input type="hidden" id="listPlace" value="0" class="listState" />
 	<div class="container">
 	<div class="list_date">DATE</div>
 	<ul class="con" id="ul_date">
-
 	</ul>
 	<div class="list_place">PLACE</div>
 	<ul class="con" id="ul_place">
-
 	</ul>
 	</div>
+<!-- 월 지역별 보기 영역  끝 -->	
+
+<!-- 축제 썸네일 영역 시작  -->
 	<ul class="list">
 		<div id="wrap">
 		<div class="container-fluid" id="list_div">
 		<div class="row" id="list_row">
 			<c:forEach items="${requestScope.aList}" var="dto">
 			<div class="col-sm-3" id="list_col">
+			<!-- 조건검색시 시작 -->
 				<c:url var="cpage" value="view.do">
 					<c:param name="fcode" value="${dto.fcode}" />
 					<%-- <c:param name="pageNum" value="${pdto.currentPage }"/> --%>
 				</c:url>
+			<!-- 조건검색시 끝 -->
 				<li id="link"><a href="${cpage}" id="list_link">
 						<p><%-- [${dto.fcode}]  --%>${dto.ftitle}</p>
 						<p>
@@ -218,6 +225,7 @@ div p:hover{
 		</div>
 	</div>
 	</ul>
+<!-- 축제 썸네일 영역 끝 -->
 	<jsp:include page="../mainview/footer.jsp"></jsp:include>
 </body>
 </html>

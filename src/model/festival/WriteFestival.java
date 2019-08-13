@@ -18,9 +18,11 @@ public class WriteFestival {
 
 	public MultipartRequest execute(HttpServletRequest req, HttpServletResponse resp) {
 		MultipartRequest multi = null;
+
 		// 저장경로
 		String saveDirectory = "C:/Users/user1/git/semi/WebContent/images";
 		// C:/study/workspace/SemiPJ/WebContent/Festival/img
+
 
 		File file = new File(saveDirectory);
 		// 저장경로없으면 만들기
@@ -51,6 +53,7 @@ public class WriteFestival {
 		dto.setFimgpath(multi.getFilesystemName("subImg")); // subimg가 보일내용
 
 		dao.insertFestival(dto, sdate, edate);
+
 
 		return null;
 	}

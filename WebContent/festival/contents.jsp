@@ -34,49 +34,31 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	
+ 	
 
- 	var dp = ['#mainC1','#mainC2','#mainC3'];
-
-	
+	//상세보기  눌렀을시 액션처리
 	$('#mCon').click(function(){
 	 	$('#mainC1').css('display','block');
 	 	$('#mainC2').css('display','none');
 	 	$('#mainC3').css('display','none');
 	 	$('.wrap').css('display','none');
 	});
-	
+	//지도보기 눌렀을시 액션처리
 	$('#mMap').click(function(){
 	 	$('#mainC1').css('display','none');
 	 	$('#mainC2').css('display','block');
 	 	$('#mainC3').css('display','none');
 	 	$('.wrap').css('display','none');
 	});
-	
+	//리뷰보기 눌렀을시 액션처리
 	$('#mReView').click(function(){
 	 	$('#mainC1').css('display','none');
 	 	$('#mainC2').css('display','none');
 	 	$('#mainC3').css('display','block');
 	}); 
 	
-/* 	
-	var button=[
-		  {buttonName:'#mCon',c1:["#mainC1",'block'],c2:["#mainC2",'none'],c3:["#mainC3",'none']},
-		  {buttonName:'#mMap',c1:["#mainC1",'none'],c2:["#mainC2",'block'],c3:["#mainC3",'none']},
-		  {buttonName:'#mReView',c1:["#mainC1",'none'],c2:["#mainC2",'none'],c3:["#mainC3",'bloack']},
-		]
 
-		button.forEach(function(b,i){
-		  $(b.buttonName).click(function(){
-		       $(b.c1[0]).css('display',b.c1[0]);
-		       $(b.c1[1]).css('display',b.c1[1]);
-		       $(b.c1[2]).css('display',b.c1[2]);
-		   });
-		});
-	 */
-
-	
-	//글쓰기 이동
-	
+	//글쓰기 버튼 클릭시  액션처리
 	$('#write').click(function(){
 		var fcd = $('#fcd').val();
 		window.location.href="/semi/review/reviewBoardWrite.jsp?code="+fcd;
@@ -94,11 +76,8 @@ $(document).ready(function(){
 
 </script>
 <script type="text/javascript">
-
+//리뷰보기에서 내용 클릭시 처리부분
 function showlist(data){
-	
-	
-	console.log(data + "  data값임");
 	
 	//선택된 글값
 	var dpon = document.getElementById(data);
@@ -106,6 +85,7 @@ function showlist(data){
 	//글 class 가져옴
 	var alldp = document.getElementsByClassName('wrap');
 	
+	//선택글값만보이게 스타일 처리
 	if (dpon.style.display == "none") {;
 
 		for (var i = 0; i < alldp.length; i++) {
@@ -114,6 +94,7 @@ function showlist(data){
 		
 		dpon.style.display="block";
 	}
+	//글제목 다시 눌렀을시 글내용 사라지게
 	else {
 		dpon.style.display="none";
 	}
@@ -258,49 +239,51 @@ height: 100%; */
 </head>
 <body>
 <jsp:include page="../mainview/nav.jsp"></jsp:include>
-
+	<!-- 상단 영역 시작   -->
+	
 	<c:set var="cdata" value="${requestScope.cList}" />
 	
 	<div class="container mainimg">
+		<!-- 상단 축제 메인이미지  -->
 		<img src="/semi/images/${cdata.fimgpath}" height="300px" width="400px"/>
 	</div>
 	
 	
 	<div class="container-fluid name"><h1><c:out value="${cdata.ftitle}" /></h1>
-	<c:out value="${cdata.fsdate}" /> ~ <c:out value="${cdata.fedate}" /><br/>
+	 <c:out value="${cdata.fsdate}" /> ~ <c:out value="${cdata.fedate}" /><br/>
 	 <c:out value="${cdata.faddress}" />
 	 <input type="hidden" name="${cdata.fcode}" value="${cdata.fcode}"/>
 	</div>
 	
-	<!-- btn area -->
+	<!-- 상세보기 버튼 영역  -->
 	<div class="container-fluid name">
-	<!-- <div class="col-md-2 btn"></div> -->
 		 <div id="mbutton">
 		 <button id="mCon">상세보기</button>
 		 <button id="mMap">지도&약도</button>
-		 <%-- <button id="mReView"><a href="contents.do?key=${cdata.code}">리뷰</a></button> --%>
 		 <button id="mReView">리뷰</button>
 		 </div>
-	<!-- <div class="col-md-2 btn"></div> -->
 	</div>
-	<!-- btn area end -->
+	<!-- 상세보기 버튼 영역  -->
 	
+	<!-- 상단 영역 끝  -->
+		
+	<!-- container start  -->
 	<div class="container content">
+	
+	<!-- 상세보기 내용시작  -->	
 		 <div id="mainC1">
 		 <div id="expla"><c:out value="${cdata.fcontents}"/></div>
 		 <img src="/semi/images/${cdata.fmainpath}" width="90%;" />
-
-		
-
-		 </div>
-		  <div id="mainC2" style="display:none; height: 100%">
-
+	 </div>
+	 <!-- 상세보기 내용 끝  -->
+	 
+	 <!-- 지도 약도 내용 시작  -->
+	<div id="mainC2" style="display:none; height: 100%">
 		 <iframe src="https://www.google.com/maps/embed?pb=${cdata.fmap }" width="100%" height="800px;" frameborder="0" style="border:0" allowfullscreen></iframe>
+	</div>
+	 <!-- 지도 약도 내용 끝  -->
 
-		
-
-		 </div>
-
+	 <!-- 리뷰보기 내용 시작  -->
 		 <div id="mainC3" style="display:none">
 			<table class="table table-bordered">
 			 <thead>
@@ -331,11 +314,10 @@ height: 100%; */
 			<input type="hidden" name="${param.fcode}" id="fcd" value="${param.fcode}"/>
        	    <div style="background-color: #1AAB8A; float:right; width:120px; color: white"><input type="button" value="글쓰기" class="btn" id="write" ></div>
 		</div>
+		<!-- 리뷰보기 내용 시작  -->
 		
-		<!-- 글내용보기 시작 -->
+		<!-- 리뷰 작성글 보기 시작 -->
 		<c:forEach var="data" items="${requestScope.rwList }">
-			
-			<!-- add sector -->
 			<div class="wrap" id="${data.boardkey}" value="${data.boardkey}" >
 				<table>
 					<tr>
@@ -359,7 +341,7 @@ height: 100%; */
 				</table>
 			</div>
 						
-			<!-- add sector end -->
+			<!-- 리뷰 작성글 보기 끝 -->
 			
 		</c:forEach>
 	</div> <!-- container end -->

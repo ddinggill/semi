@@ -45,6 +45,7 @@ div.write:hover{
 
 <script type="text/javascript">
 $(document).ready(function(){
+	//회원 정보변경 요청
 	$('button[id=update]').each(function(){ 
 		$(this).click(function(){
 			var usercode = $(this).parents("tr").find("#usercode").val();
@@ -52,7 +53,7 @@ $(document).ready(function(){
 			updateprocess(usercode,userlevel)
 		});
 	});
-	
+	//회원 삭제변경 요청
 	$('button[id=delete]').each(function(){ 
 		$(this).click(function(){
 			var usercode = $(this).parents("tr").find("#usercode").val();
@@ -62,6 +63,7 @@ $(document).ready(function(){
 
 });
 
+//회원정보 요청 ajax
 function updateprocess(usercode,userlevel){
 	
 	$.ajax({
@@ -76,11 +78,13 @@ function updateprocess(usercode,userlevel){
 	});
 }
 
+//삭제하고 회원정보 다시 요청
 function refreshMemList(res){
 	
 	location.href="/semi/admin/membermanage.do?pageNum="+res;
 }
 
+//회원삭제 요청 ajax
 function deleteprocess(usercode){
 	$.ajax({
 		type:'POST',

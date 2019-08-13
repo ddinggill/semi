@@ -36,7 +36,7 @@ public class joinDAO {
 			JdbcTemplate.close(conn);
 	}
 	
-	//join
+	//join 회원가입
 	public int insert(joinDTO dto) {
 		int cnt =0;
 		try {
@@ -66,7 +66,7 @@ public class joinDAO {
 	}//end insert()
 	
 
-	//패스워드찾기//
+	//패스워드찾기
 	public boolean find(String userid,String useremail) {
 		
 		boolean result = false;
@@ -101,6 +101,7 @@ public class joinDAO {
 		return result;	
 	}//end find)()
 	
+	//비밀번호 초기화
 	public String resetPW(String userid) {
 		//새로운 패스워드 생성
 		String pw = "";
@@ -133,6 +134,7 @@ public class joinDAO {
 		return pw;
 	}//end resetPW()
 	
+	//DB에 아이디 중복체크
 	public boolean idchk(String userid) {
 		boolean chk = true;
 		

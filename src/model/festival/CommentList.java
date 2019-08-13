@@ -17,7 +17,11 @@ public class CommentList implements FestivalActionImp{
    @Override
    public void execute(HttpServletRequest req, HttpServletResponse resp) {
       String key = req.getParameter("num");
+      
+      //댓글에서 수정 삭제 보기시 비회원의 기본값  -1 처리  
       int conUser = -1;
+      
+      //본인이 댓글 쓴 글 수정,삭제 버튼 처리위해  유저코드 매칭 처리 
       UserDTO udto = (UserDTO)req.getSession().getAttribute("loginOk");
       if(udto !=null )
          conUser = udto.getUsercode();

@@ -105,8 +105,12 @@ table {
 </script>
 </head>
 <body>
+<!-- 네비 -->
 	<jsp:include page="../mainview/nav.jsp"></jsp:include>
+	
 	<input type="hidden" name="boardkey" value="${dto.boardkey}" />	
+	
+	<!-- 홍모문의의 글을 관리자나 글쓴이가보기 위한 페이지 -->
 	<div class="container" id="view">
 		<table>
 		

@@ -11,10 +11,9 @@ public class CommentUpdate implements FestivalActionImp{
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		
-		int num = Integer.parseInt(req.getParameter("num"));
-		String con = req.getParameter("content");
+		int num = Integer.parseInt(req.getParameter("num")); //축제코드
+		String con = req.getParameter("content"); //수정될 내용 
 		
-		System.out.println(num + " : " + con + " 탑니다 ");
 		
 		ReviewBoardDAO dao = ReviewBoardDAO.getInstance();
 		dao.recommendUpdate(num,con);

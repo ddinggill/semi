@@ -51,9 +51,7 @@ public class FestDAO {
 			conn.close();
 	}// end exit()
 	
-	// sh add sector start
-	
-	//조회수 증가 sh add
+	//조회수 증가 시작
 	public void readCount(int code) {
 		try {
 			conn = init();
@@ -72,10 +70,10 @@ public class FestDAO {
 					e.printStackTrace();
 				}
 			}
-	}//조회수 증가 sh add
+	}//조회수 증가 끝
 	
 	
-	//내부내용 contents start sh add
+	//축제 내부내용 contents start 
 	public FestDTO contents(int code){
 		
 		FestDTO dto = null;
@@ -111,7 +109,7 @@ public class FestDAO {
 		}
 		
 		return dto;
-	}//contents end sh add
+	}//축제 내부내용 contents end
 	
 	
 	//축제등록 start
@@ -150,9 +148,11 @@ public class FestDAO {
 	
 	
 	
+
 	//sh add sector stop 
 	
 	// 축제의 축제명, 축제이미지, 축제기간을 리스트로 출력
+
 	public List<FestDTO> getFestList(String place, String month) {
 		List<FestDTO> list = new ArrayList<FestDTO>();
 		System.out.println(place + ","+ month);
@@ -222,9 +222,11 @@ public class FestDAO {
 		}
 
 		return list;
+
 	}// end getFestList() add pjh
 	
 	// 조회수가 가장 많은 상위의 9개 인기 축제의 축제명, 축제이미지, 축제기간을 리스트로 출력
+
 	public List<FestDTO> getHotList() {
 		List<FestDTO> list = new ArrayList<FestDTO>();
 		try {
@@ -254,9 +256,11 @@ public class FestDAO {
 		}
 
 		return list;
+
 	}// end getFestList() add pjh
 	
 	// 축제의 상세 내용을 출력
+
 	public FestDTO getFestView(int fcode) {
 		FestDTO dto = null;
 		
@@ -292,6 +296,7 @@ public class FestDAO {
 		}
 
 		return dto;
+
 	}// end getFestView() add pjh
-	
+
 }

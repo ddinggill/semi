@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+//db접속 정보
 public class JdbcTemplate {
 
 	public JdbcTemplate() {

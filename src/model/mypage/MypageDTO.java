@@ -3,13 +3,13 @@ package model.mypage;
 import java.sql.Date;
 
 public class MypageDTO {
-	private int usercode;
-	private String reviewTitle;
-	private String reviewcode;
-	private Date reviewDate;
-	private String comment;
-	private String promotionTitle;
-	private String promotioncode;
+	private int usercode;    	//유저의 코드(기본키)
+	private String reviewTitle; //후기글 제목
+	private String reviewcode;	//후기글 보드키
+	private Date reviewDate;	//후기글 작성 날짜
+	private String comment;		//댓글
+	private String promotionTitle;//홍보문의글 제목
+	private String promotioncode;	//홍보문의 글 보드키
 	
 	
 	public MypageDTO() {

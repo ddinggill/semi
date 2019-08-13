@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 function timecount(){
-	
+		//로그인시 로그인유지시간 처리하는 함수
 		var minute = 30;
 		var second = 30;
 		
@@ -17,6 +17,7 @@ function timecount(){
 		$("#countTimerMinute").html(minute+"분");
 		$("#countTimerSecond").html(second+"초");
 		
+		//1초마다 함수실행되서 로그인유지시간 줄이기
 		var timer = setInterval(function(){
 			$("#time").html("남은로그인 유지시간:");
 			$("#countTimerMinute").html(minute+"분");
