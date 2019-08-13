@@ -35,26 +35,44 @@
 $(document).ready(function(){
 	
 
-	var dp = ['#mainC1','#mainC2','#mainC3'];
+ 	var dp = ['#mainC1','#mainC2','#mainC3'];
 
 	
 	$('#mCon').click(function(){
 	 	$('#mainC1').css('display','block');
 	 	$('#mainC2').css('display','none');
 	 	$('#mainC3').css('display','none');
+	 	$('.wrap').css('display','none');
 	});
 	
 	$('#mMap').click(function(){
 	 	$('#mainC1').css('display','none');
 	 	$('#mainC2').css('display','block');
 	 	$('#mainC3').css('display','none');
+	 	$('.wrap').css('display','none');
 	});
 	
 	$('#mReView').click(function(){
 	 	$('#mainC1').css('display','none');
 	 	$('#mainC2').css('display','none');
 	 	$('#mainC3').css('display','block');
-	});
+	}); 
+	
+/* 	
+	var button=[
+		  {buttonName:'#mCon',c1:["#mainC1",'block'],c2:["#mainC2",'none'],c3:["#mainC3",'none']},
+		  {buttonName:'#mMap',c1:["#mainC1",'none'],c2:["#mainC2",'block'],c3:["#mainC3",'none']},
+		  {buttonName:'#mReView',c1:["#mainC1",'none'],c2:["#mainC2",'none'],c3:["#mainC3",'bloack']},
+		]
+
+		button.forEach(function(b,i){
+		  $(b.buttonName).click(function(){
+		       $(b.c1[0]).css('display',b.c1[0]);
+		       $(b.c1[1]).css('display',b.c1[1]);
+		       $(b.c1[2]).css('display',b.c1[2]);
+		   });
+		});
+	 */
 
 	
 	//글쓰기 이동
@@ -157,7 +175,7 @@ margin-top: 50px;
 
 .content{
 width: 100%;
-height: 1000px;
+height: 100%;
 text-align: center;
 border: 1px dotted #B0C4DE;
 }
@@ -266,10 +284,10 @@ table {
 	<div class="container content">
 		 <div id="mainC1">
 		 <div id="expla"><c:out value="${cdata.fcontents}"/></div>
-		 <img src="/semi/images/${cdata.fmainpath}" width="500px" height="500px" />
+		 <img src="/semi/images/${cdata.fmainpath}" width="90%;" />
 		 </div>
 		  <div id="mainC2" style="display:none; height: 100%">
-		 <iframe src="https://www.google.com/maps/embed?pb=${cdata.fmap }" width="100%" height=100%" frameborder="0" style="border:0" allowfullscreen></iframe>
+		 <iframe src="https://www.google.com/maps/embed?pb=${cdata.fmap }" width="100%" height="800px;" frameborder="0" style="border:0" allowfullscreen></iframe>
 		 </div>
 
 		 <div id="mainC3" style="display:none">

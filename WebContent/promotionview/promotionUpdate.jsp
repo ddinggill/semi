@@ -353,7 +353,6 @@ input {
 </style>
 <script type="text/javascript">
 	$(document).ready(function() {
-		alert("a");
 	});
 </script>
 </head>
