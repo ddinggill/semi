@@ -288,18 +288,17 @@ height: 100%; */
 	<div class="container content">
 		 <div id="mainC1">
 		 <div id="expla"><c:out value="${cdata.fcontents}"/></div>
-<<<<<<< HEAD
 		 <img src="/semi/images/${cdata.fmainpath}" width="90%;" />
-=======
-		 <img src="/semi/images/${cdata.fmainpath}"  width="80%;"/>
->>>>>>> branch 'master' of https://github.com/ddinggill/semi.git
+
+		
+
 		 </div>
 		  <div id="mainC2" style="display:none; height: 100%">
-<<<<<<< HEAD
+
 		 <iframe src="https://www.google.com/maps/embed?pb=${cdata.fmap }" width="100%" height="800px;" frameborder="0" style="border:0" allowfullscreen></iframe>
-=======
-		 <iframe src="https://www.google.com/maps/embed?pb=${cdata.fmap }" width="100%" height=1000px;" frameborder="0" style="border:0" allowfullscreen></iframe>
->>>>>>> branch 'master' of https://github.com/ddinggill/semi.git
+
+		
+
 		 </div>
 
 		 <div id="mainC3" style="display:none">
