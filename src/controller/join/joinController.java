@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.join.joinAction;
 import model.join.joinDAO;
 
+//회원가입 및 비밀번호찾기 담당 컨트롤러(joinForm.jsp,pwfinForm.jsp)
 @WebServlet("/help/*")
 public class joinController extends HttpServlet {
 	@Override
@@ -26,13 +27,14 @@ public class joinController extends HttpServlet {
 		path = path.substring(path.lastIndexOf("/") + 1);
 		String next = "";
 
+		// 회원가입요청
 		if (path.equals("join.do")) {
 			joinAction joinaction = new joinAction();
 			joinaction.execute(req, resp);
 			RequestDispatcher dis = req.getRequestDispatcher("/mainview/joinForm.jsp");
 			dis.forward(req, resp);
-		} // 회원가입요청
-
+		}
+		// 패스워드찾기
 		else if (path.equals("pwfind.do")) {
 			joinDAO dao = joinDAO.getInstance();	
 			
@@ -43,13 +45,14 @@ public class joinController extends HttpServlet {
 				req.setAttribute("find", 2);
 				req.setAttribute("newPW", newpassword); //새로운 패스워드 출력용
 			} else {
+				//아이디나 이메일을 잘못입력하였을때
 				System.out.println("입력 잘못햇습니다.");
 				req.setAttribute("find", 3);
 			}
 			RequestDispatcher dis = req.getRequestDispatcher("/mainview/pwfindForm.jsp");
 			dis.forward(req, resp);
-		} // 패스워드찾기
-		
+		} 
+		//아이디 중복체크
 		else if (path.equals("idchk.do")) {
 			System.out.println("아이디중복체크 작업요청");
 			String userid = req.getParameter("userid");
@@ -63,7 +66,7 @@ public class joinController extends HttpServlet {
 				resp.getWriter().append("false");
 			}
 			
-		}//아이디 중복체크
+		}
 		
 	}//end post()
 }

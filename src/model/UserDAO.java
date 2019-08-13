@@ -37,6 +37,7 @@ public class UserDAO {
 			JdbcTemplate.close(conn);
 	}// end exit()
 	
+	//로그인하는 해당 정보가 있으면 true리턴
 	public boolean loginCheck(UserDTO dto) {
 		boolean chk=false;;
 		
@@ -65,6 +66,7 @@ public class UserDAO {
 		return chk;
 	}//end loginCheck
 	
+	//해당 유저의 정보 리턴
 	public UserDTO userInfo(UserDTO dto) {
 		try {
 			conn = JdbcTemplate.getConnection();

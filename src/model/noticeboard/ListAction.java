@@ -20,6 +20,7 @@ public class ListAction implements NoticeAction{
 		int totalCount = dao.rowCount();
 		PageDTO pdto = new PageDTO(currentPage,totalCount);
 		List<NoticeDTO> aList = dao.listMethod(pdto);
+		//글정보와 페이지 정보
 		req.setAttribute("aList", aList);
 		req.setAttribute("pdto", pdto);
 	}//end execute()
