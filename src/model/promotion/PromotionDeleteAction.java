@@ -9,6 +9,7 @@ public class PromotionDeleteAction implements PromotionAction{
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
+		//사용자가 본인이 작성한 홍보문의글을 삭제시
 		String boardkey = req.getParameter("boardkey");
 		PromotionDAO dao = PromotionDAO.getInstance();
 		

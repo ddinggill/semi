@@ -11,7 +11,7 @@ public class ListAction implements PromotionAction{
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
-
+		//관리자가 홍보문의 메뉴를 클릭 시 리스트를 가져오는 액션
 		PromotionDAO dao = PromotionDAO.getInstance();
 		
 		String pageNum = req.getParameter("pageNum");

@@ -9,6 +9,7 @@ public class CommentWriteAction implements PromotionAction{
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
+		//관리자가 홍보문의의 글에 대한 답변을 입력하는 액션
 		String boardkey = req.getParameter("boardkey");
 		System.out.println("답변글 보드키 = " + boardkey);
 		PromotionDAO dao = PromotionDAO.getInstance();

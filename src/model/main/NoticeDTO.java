@@ -3,12 +3,12 @@ package model.main;
 import java.sql.Date;
 
 public class NoticeDTO {
-	private String boardkey;
-	private int usercode;
-	private String title;
-	private String contents;
-	private String isfile;
-	private Date day;
+	private String boardkey; //글의 보드키(기본키)
+	private int usercode;	//작성한 유저의 코드(외래키)
+	private String title; 	//글의 제목
+	private String contents; //글의 내용
+	private String isfile; //글의 첨부파일
+	private Date day;	//글의 작성일자
 	
 	public NoticeDTO() {
 	}

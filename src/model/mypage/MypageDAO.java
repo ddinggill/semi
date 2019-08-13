@@ -38,7 +38,7 @@ public class MypageDAO {
 			JdbcTemplate.close(conn);
 	}// end exit()
 	
-	 
+	 //사용자가 쓴 후기글을 유저코드로 비교해 가져온다.
 	public List<MypageDTO> myPageReview(int usercode){
 		List<MypageDTO> aList = new ArrayList<MypageDTO>();
 			try {
@@ -69,7 +69,7 @@ public class MypageDAO {
 		return aList;
 	}//end review//////////////////////////////////////////
 	
-	
+	//사용자가 쓴 댓글을 유저코드로 비교해 가져온다.
 	public List<MypageDTO> myPageRecomment(int usercode){
 		List<MypageDTO> aList = new ArrayList<MypageDTO>();
 			try {
@@ -100,7 +100,7 @@ public class MypageDAO {
 		return aList;
 	}//end recomment/////////////////
 	
-
+	//회원정보를  수정  
 	public void mypageInfoUpdate(int usercode , MypageUpdateDTO dto) {
 		
 		try {
@@ -128,7 +128,7 @@ public class MypageDAO {
 		
 	}//end /////////////////////////////
 	
-	
+	//사용자가 쓴 홍보문의글을 유저코드로 비교해 가져온다.
 	public List<PromotionDTO> myPagepromotion(int usercode){
 		List<PromotionDTO> aList = new ArrayList<PromotionDTO>();
 		
@@ -169,6 +169,7 @@ public class MypageDAO {
 		return aList;
 	}
 	
+	//모든 답변글의 정보를 리스트에 담는다.
 	public List<PromotionCommentDTO> addComment(){
 		List<PromotionCommentDTO> commentList = new ArrayList<PromotionCommentDTO>();
 		

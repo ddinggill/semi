@@ -62,6 +62,8 @@ font-size: 30px;
 </head>
 <body>
 	<jsp:include page="../mainview/nav.jsp"></jsp:include>
+	
+	<!-- 홍보문의에 대한 글을 쓰기위한 입력 폼 -->
 	<div class="container" id="write">
 		<h2>글쓰기</h2>
 		<form name="frm" method="post" enctype="multipart/form-data"
