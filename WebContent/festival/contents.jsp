@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>축제 상세페이지</title>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -157,7 +157,7 @@ margin-top: 50px;
 
 .content{
 width: 100%;
-height: 1000px;
+height: 100%;
 text-align: center;
 border: 1px dotted #B0C4DE;
 }
@@ -230,6 +230,10 @@ table {
 #mainC2 iframe{
 	
 }
+#mainC1{
+/* width: 100%;
+height: 100%; */
+}
 /* 내용보기 end  */
 </style>
 
@@ -266,10 +270,10 @@ table {
 	<div class="container content">
 		 <div id="mainC1">
 		 <div id="expla"><c:out value="${cdata.fcontents}"/></div>
-		 <img src="/semi/images/${cdata.fmainpath}" width="500px" height="500px" />
+		 <img src="/semi/images/${cdata.fmainpath}"  width="80%;"/>
 		 </div>
 		  <div id="mainC2" style="display:none; height: 100%">
-		 <iframe src="https://www.google.com/maps/embed?pb=${cdata.fmap }" width="100%" height=100%" frameborder="0" style="border:0" allowfullscreen></iframe>
+		 <iframe src="https://www.google.com/maps/embed?pb=${cdata.fmap }" width="100%" height=1000px;" frameborder="0" style="border:0" allowfullscreen></iframe>
 		 </div>
 
 		 <div id="mainC3" style="display:none">

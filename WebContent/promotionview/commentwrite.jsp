@@ -60,8 +60,8 @@ table {
 	<div class="container" id="write">
 		<h2>글쓰기</h2>
 		<form name="frm" method="post" action="/semi/promotion/commentinsert.do">
-			<input type="text" name="usercode" value="${sessionScope.loginOk.usercode }">
-			<input type="text" name="boardkey" value="${param.boardkey }" />
+			<input type="hidden" name="usercode" value="${sessionScope.loginOk.usercode }">
+			<input type="hidden" name="boardkey" value="${param.boardkey }" />
 			<table>
 			
 				<tr>
