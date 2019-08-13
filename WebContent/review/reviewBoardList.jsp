@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
+<!-- 후기글 리스트 출력 -->
 <html>
 <head>
 
@@ -70,33 +71,35 @@ li {
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
+	$(document).ready(function() {
+		//검색버튼 클릭시 검색정보에 맞는 후기글 리스트를 출력
+		$("#searchBtn").on('click', function() {
+			$('form').attr('action', 'reviewList.do');
+			$('form').submit();
+		});
 
-$(document).ready(function(){
-	$("#searchBtn").on('click' , function(){
-		$('form').attr('action', 'reviewList.do');
-		$('form').submit();
-	});
-	
-	$('[name=searchWord]').val('${pdto.searchWord}');
-	  if('${pdto.searchKey}' == 'null'){
-		$('[name=searchWord]').val(''); 
-	 } else{
-		
-		switch ('${pdto.searchKey}') {
-		case 'all': $('[value=all]').prop('selected','selected');
-					$('[name=searchWord]').val('');
-					break;
-		case 'subject' :$('[value=subject]').prop('selected','selected');
-						break;
-		case 'writer' :$('[value=writer]').prop('selected','selected');
-						break;				
-		case 'content' :$('[value=content]').prop('selected','selected');
-						break;
+		$('[name=searchWord]').val('${pdto.searchWord}');
+		if ('${pdto.searchKey}' == 'null') {
+			$('[name=searchWord]').val('');
+		} else {
+			switch ('${pdto.searchKey}') {
+			case 'all':
+				$('[value=all]').prop('selected', 'selected');
+				$('[name=searchWord]').val('');
+				break;
+			case 'subject':
+				$('[value=subject]').prop('selected', 'selected');
+				break;
+			case 'writer':
+				$('[value=writer]').prop('selected', 'selected');
+				break;
+			case 'content':
+				$('[value=content]').prop('selected', 'selected');
+				break;
+			}
 		}
-	}
-	
-});
 
+	});
 </script>
 </head>
 <body>
@@ -127,6 +130,7 @@ $(document).ready(function(){
 			</thead>
 
 			<tbody>
+			<!-- 후기글 목록 출력 -->
 				<c:forEach items="${requestScope.aList }" var="dto" varStatus="status">
                <tr>
                   <td>${pdto.number-status.count+1}</td>
@@ -138,7 +142,6 @@ $(document).ready(function(){
 								<c:param name="searchKey" value="${pdto.searchKey }"/>
 								<c:param name="searchWord" value="${pdto.searchWord }"/>
 							</c:url>
-							<%-- <a href="view.do?num=${dto.num }&pageNum=${pdto.currentPage}&number=${pdto.number}&searchKey=${pdto.searchKey}">${dto.subject }</a></td> --%>
 							<a href="${cpage}">${dto.btitle }</a>
 							</td>
 						<td>${dto.userName }</td>
@@ -153,6 +156,7 @@ $(document).ready(function(){
 			</tbody>
 		</table>
 		
+		<!-- 페이징 처리 -->
 		<div class="pagelist">
 		<!-- 이전 -->
 		<c:if test="${pdto.startPage > 1 }">
@@ -171,7 +175,6 @@ $(document).ready(function(){
 			</c:choose>
 			</span>
 		</c:forEach>
-		
 		<!-- 다음 -->
 		<c:if test="${pdto.endPage<pdto.totalPage }">
 			<a href="reviewList.do?pageNum=${pdto.startPage + pdto.blockPage}&searchKey=${pdto.searchKey}&searchWord=${pdto.searchWord}">다음</a>

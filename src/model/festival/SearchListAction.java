@@ -5,7 +5,11 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+/*
+ * 지역과 기간을 선택하여 보길 원하는 축제 리스트를 보여주는 모델
+ * 작성자 : 박종현
+ * 작성일 : 2019.08.13
+ */
 public class SearchListAction implements FestivalActionImp{
 
 	@Override

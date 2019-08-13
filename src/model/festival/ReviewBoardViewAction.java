@@ -3,7 +3,11 @@ package model.festival;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+/*
+ * 선택된 후기의 상세 내용을 보여주는 모델
+ * 작성자 : 박종현
+ * 작성일 : 2019.08.13
+ */
 public class ReviewBoardViewAction implements BoardActionImp{
 
 	@Override

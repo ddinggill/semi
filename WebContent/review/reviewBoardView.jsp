@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<!-- 후기글의 상세내용 보여주는 뷰 -->
 <html>
 <head>
 
@@ -86,25 +87,28 @@ table {
 <script type="text/javascript" src="/semi/review/jquery.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
+		//목록버튼 클릭시 후기글 리스트를 보여주는 페이지로 이동
 		$('.list').on('click', function(){
 			$('form').attr('action','reviewList.do');
 			$('form').submit();
 		})
-
+		//수정버튼 클릭시 후기글을 수정하는 페이지로 이동
 		$('.update').on('click' , function(){
 			$('form').attr('action', 'reviewUpdateForm.do');
 			$('form').submit();
 		});
-		
+		//삭제버튼 클릭시 후기글을 삭제
 		$('.del').on('click' , function(){
 			$('form').attr('action', 'reviewDelete.do');
 			$('form').submit();
 		});
 
+		//회원등급이 없을시 수정 삭제 버튼 숨기기
 		if("${sessionScope.loginOk.userlevel}"==""){
 			$('.update').attr('type','hidden');
 	        $('.del').attr('type','hidden');
 		}else{
+			//현재 접속한 회원과 글 작성자가 동일하거나 현재 접속한 회원의 회원등급이 관리자일경우 수정 삭제 버튼 보이고, 그 외에 경우에는 숨기기
 			if(("${sessionScope.loginOk.usercode}"=="${requestScope.dto.usercode}") || ("${sessionScope.loginOk.userlevel}"==0)){
 		         $('.update').attr('type','button');
 		         $('.del').attr('type','button');
@@ -114,7 +118,7 @@ table {
 		     }
 		}
 			
-
+		//비로그인시 댓글 작성 숨기기
 		if ("${sessionScope.loginOk.usercode }" == ""){
 		      $('#commentAdd').css('display','none');
 		}
@@ -147,13 +151,13 @@ table {
 	</table>
 
 	<form name="frm" method="post">		
-		<input type="hidden" name="pageNum" value="${param.pageNum}" /> 
-		<input type="hidden" id="boardkey" name="boardkey" value="${dto.boardkey}" />
-		<input type="hidden" id="fcode" name="fcode" value="${dto.fcode}" />
-		<input type="hidden" name="number" value="${param.number}" />
-		<input type="hidden" name="searchKey" value="${param.searchKey }"/>
-		<input type="hidden" name="searchWord" value="${param.searchWord }"/>
-		<input type="hidden" id="ucd" name="ucd" value="${sessionScope.loginOk.usercode }"/>
+		<input type="hidden" name="pageNum" value="${param.pageNum}" /> <!-- 현재페이지 -->
+		<input type="hidden" id="boardkey" name="boardkey" value="${dto.boardkey}" /> <!-- 게시글 코드 -->
+		<input type="hidden" id="fcode" name="fcode" value="${dto.fcode}" /> <!-- 축제코드 -->
+		<input type="hidden" name="number" value="${param.number}" /> <!-- 게시글 번호 -->
+		<input type="hidden" name="searchKey" value="${param.searchKey }"/> <!-- 검색 속성 -->
+		<input type="hidden" name="searchWord" value="${param.searchWord }"/> <!-- 검색어 -->
+		<input type="hidden" id="ucd" name="ucd" value="${sessionScope.loginOk.usercode }"/> <!-- 로그인 유저코드 -->
 		<div class="button">
 		<input type="button" style="float:right; margin-right: 3px;" value="목록" class="list btn btn-danger" /> 
 		<input type="button" style="float:right; margin-right: 3px;" value="수정" class="update btn btn-danger"  />
@@ -191,14 +195,3 @@ table {
 	<jsp:include page="../mainview/footer.jsp"></jsp:include>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-

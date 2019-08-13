@@ -5,6 +5,11 @@ import java.io.File;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/*
+ * 후기글을 삭제하는 모델
+ * 작성자 : 박종현
+ * 작성일 : 2019.08.13
+ */
 public class ReviewBoardDeleteAction implements BoardActionImp{
 
    @Override
@@ -19,7 +24,7 @@ public class ReviewBoardDeleteAction implements BoardActionImp{
          File file = new File(saveDirectory, filename);
          file.delete();
       }
-      //댓글  먼저 삭제   
+      //후기글에 작성된 댓글 먼저 삭제   
       dao.recommendDelAll(boardkey);
       //글삭제
       dao.deleteMethod(boardkey);

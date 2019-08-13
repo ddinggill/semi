@@ -7,11 +7,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-
+/*
+ * 축제에 관련된 데이터에 접근하여 처리하는 모델
+ * 작성자 : 박종현
+ * 작성일 : 2019.08.13
+ */
 public class ReviewBoardDAO {
 	private Connection conn;
 	private Statement stmt;
@@ -24,6 +27,7 @@ public class ReviewBoardDAO {
 		return dao;
 	}
 
+	//오라클 DB 접속
 	private Connection init() throws ClassNotFoundException, SQLException {
 		Class.forName("oracle.jdbc.OracleDriver");
 		String url = "jdbc:oracle:thin://@192.168.30.74:1521:xe";
@@ -92,7 +96,7 @@ public class ReviewBoardDAO {
 	
 	// sh add end
 	
-
+	// 현재 보여지는 모든 레코드 수를 계산
 	public int rowTotalCount(HashMap<String, String> map) {
 		int cnt = 0;
 		try {
@@ -101,10 +105,13 @@ public class ReviewBoardDAO {
 			if (map.get("searchKey") != null) {
 				String data = map.get("searchKey");
 				if (data.equals("title") || data.equals("contents") || data.equals("userName")) {
+					//검색 속성값이 제목일때
 					if (map.get("searchKey").equals("title")) {
 						sql += " where lower(title) like ?";
+					//검색 속성값이 내용일때
 					} else if (map.get("searchKey").equals("contents")) {
 						sql += " where lower(contents) like ?";
+					//검색 속성값이 작성자일때
 					} else if (map.get("searchKey").equals("userName")) {
 						sql += " where lower(name) like ?";
 					}
@@ -113,6 +120,7 @@ public class ReviewBoardDAO {
 			pstmt=conn.prepareStatement(sql);
 			if( map.get("searchKey") != null) {
 				String data = map.get("searchKey");
+				//검색 속성값이 제목 or 내용 or 작성자 일때 검색어와 일치하는 결과를 찾음
 				if(data.equals("title") || data.equals("contents") || data.equals("userName")){
 					pstmt.setString(1, "%"+map.get("searchWord").toLowerCase()+"%");
 				}
@@ -133,8 +141,9 @@ public class ReviewBoardDAO {
 		}
 		
 		return cnt;
-	}// end rowTotalCount() /////////////
+	}// end rowTotalCount() add pjh
 
+	// 후기글을 검색 조건에 맞게 검색하여 한 페이지에 5개씩 최신글부터 순서대로 출력
 	public List<ReviewBoardDTO> listMethod(PageDTO pdto){
 
 		List<ReviewBoardDTO> aList = new ArrayList<ReviewBoardDTO>();
@@ -179,9 +188,9 @@ public class ReviewBoardDAO {
 			}
 		}
 		return aList;
-	}//////// end listMethod() ////////////////////////////
+	}// end listMethod() add pjh
 
-	//게시판 뷰 페이지 정보 로딩
+	//후기게시판 상세내용 출력
 	public ReviewBoardDTO viewMethod(String boardkey) {
 		ReviewBoardDTO dto=null;
 		try {
@@ -192,14 +201,14 @@ public class ReviewBoardDAO {
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				dto = new ReviewBoardDTO();
-				dto.setUsercode(rs.getInt("usercode"));
-				dto.setFcode(rs.getInt("fcode"));
-				dto.setBoardkey(rs.getString("boardkey"));
-				dto.setBtitle(rs.getString("title"));
-				dto.setContents(rs.getString("contents"));
-				dto.setFilename(rs.getString("filename"));
-				dto.setUserName(rs.getString("name"));
-				dto.setDay(rs.getDate("day"));
+				dto.setUsercode(rs.getInt("usercode")); // 작성자 코드
+				dto.setFcode(rs.getInt("fcode")); //축제 코드
+				dto.setBoardkey(rs.getString("boardkey")); //게시글 코드
+				dto.setBtitle(rs.getString("title")); // 게시글 제목
+				dto.setContents(rs.getString("contents")); // 게시글 내용
+				dto.setFilename(rs.getString("filename")); // 첨부파일명
+				dto.setUserName(rs.getString("name")); // 게시글 작성자
+				dto.setDay(rs.getDate("day")); // 게시글 작성일
 			}
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
@@ -211,26 +220,24 @@ public class ReviewBoardDAO {
 			}
 		}
 		return dto;
-	}//////// end viewMethod() ////////////////////////////
+	}// end viewMethod() add pjh
 
-	//글생성
+	//후기글 작성
 	public void insertMethod(ReviewBoardDTO dto) {
 		try {
 			conn = init();
 			String sql = "insert into reviewboard (boardkey, usercode, fcode, title, contents, filename, day) values (('r'||(review_sq.nextval)),?,?,?,?,?,sysdate)";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, dto.getUsercode());
+			pstmt.setInt(1, dto.getUsercode()); 
 			pstmt.setInt(2, dto.getFcode());
 			pstmt.setString(3, dto.getBtitle());
 			pstmt.setString(4, dto.getContents());
 			pstmt.setString(5, dto.getFilename());
-
 			pstmt.executeUpdate();
-
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
-	}//////// end insertMethod() ////////////////////////////
+	}// end insertMethod() add pjh
 
 	//업로드한 파일 가져오기
 	public String fileMethod(String boardkey) {
@@ -256,9 +263,9 @@ public class ReviewBoardDAO {
 		}
 
 		return fileName;
-	}//end fileMethod()//////////////////////////////////
+	}//end fileMethod() add pjh
 
-	//수정할 뷰 페이지 정보 가져오기
+	//수정할 후기글 정보 가져오기
 	public ReviewBoardDTO oneSelect(String boardkey) {
 		ReviewBoardDTO dto = new ReviewBoardDTO();
 		try {
@@ -285,9 +292,9 @@ public class ReviewBoardDAO {
 			}
 		}
 		return dto;
-	}//end oneSelect() ///////////////////
+	}//end oneSelect() add pjh
 
-	//수정 메소드 
+	//후기글 수정 메소드
 	public void updateMethod(ReviewBoardDTO dto) {
 
 		try {
@@ -309,8 +316,9 @@ public class ReviewBoardDAO {
 			}
 		}
 
-	}//end updateMethod()/////////////////////////////////////////////
+	}//end updateMethod() add pjh
 
+	//후기글 삭제
 	public void deleteMethod(String boardkey) {
 		try {
 			conn=init();
@@ -327,7 +335,7 @@ public class ReviewBoardDAO {
 				e.printStackTrace();
 			}
 		}
-	}//end deleteMethod///////////////////////////////
+	}//end deleteMethod add pjh
 	
 	//원글삭제시 댓글도 삭제
 	   public void recommendDelAll(String key){
