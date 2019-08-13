@@ -97,30 +97,26 @@ public class ReviewBoardDAO {
 		int cnt = 0;
 		try {
 			conn=init();
-			String sql = "select count(*) from reviewboard ";
+			String sql = "select count(*) from(select r.*,m.NAME from reviewboard r, member m where r.USERCODE = m.USERCODE)a ";
 			if (map.get("searchKey") != null) {
 				String data = map.get("searchKey");
-				if (data.equals("subject") || data.equals("content") || data.equals("writer")) {
-
-					// System.out.println("searchKey");
-
-					if (map.get("searchKey").equals("subject")) {
-						sql += " where lower(subject) like ?";
-					} else if (map.get("searchKey").equals("content")) {
-						sql += " where lower(content) like ?";
-					} else if (map.get("searchKey").equals("writer")) {
-						sql += " where lower(writer) like ?";
+				if (data.equals("title") || data.equals("contents") || data.equals("userName")) {
+					if (map.get("searchKey").equals("title")) {
+						sql += " where lower(title) like ?";
+					} else if (map.get("searchKey").equals("contents")) {
+						sql += " where lower(contents) like ?";
+					} else if (map.get("searchKey").equals("userName")) {
+						sql += " where lower(name) like ?";
 					}
 				}
 			}
 			pstmt=conn.prepareStatement(sql);
 			if( map.get("searchKey") != null) {
 				String data = map.get("searchKey");
-				if(data.equals("subject") || data.equals("content") || data.equals("writer")){
+				if(data.equals("title") || data.equals("contents") || data.equals("userName")){
 					pstmt.setString(1, "%"+map.get("searchWord").toLowerCase()+"%");
 				}
 			}
-
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				cnt = rs.getInt(1);
@@ -135,7 +131,7 @@ public class ReviewBoardDAO {
 				e.printStackTrace();
 			}
 		}
-		System.out.println("cnt="+cnt);
+		
 		return cnt;
 	}// end rowTotalCount() /////////////
 
@@ -147,7 +143,6 @@ public class ReviewBoardDAO {
 			String sql = "select b.* ";
 			sql+= "from (select rownum as rm, a.* ";
 			sql+= "from (select r.*,m.NAME from reviewboard r, member m where r.USERCODE = m.USERCODE ";
-			//select r.*,m.NAME from reviewboard r, member m where r.USERCODE = m.USERCODE
 			if(pdto.getSearchKey() != null) {
 				String data = pdto.getSearchKey();
 				if(data.equals("title") || data.equals("contents") || data.equals("userName")){
