@@ -1,5 +1,10 @@
 package model.festival;
 
+/*
+ * 페이지 처리에 관련된 데이터 모델
+ * 작성자 : 박종현
+ * 작성일 : 2019.08.13
+ */
 public class PageDTO {
 	private int currentPage; // 현재페이지
 	private int totalCount; // 총 레코드수
@@ -11,8 +16,8 @@ public class PageDTO {
 	private int startPage; // 한 블록의 시작 페이지 번호
 	private int endPage; // 한 블록의 끝페이지 번호
 	private int number; //시퀀스와 상관없는 리스트의 레코드 번호
-	private String searchKey;
-	private String searchWord;
+	private String searchKey; //검색할 속성
+	private String searchWord; //검색어
 	
 	public PageDTO() {
 

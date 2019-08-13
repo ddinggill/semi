@@ -12,7 +12,11 @@ import java.net.URLEncoder;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+/*
+ * 후기글의 첨부파일을 다운로드하는 모델
+ * 작성자 : 박종현
+ * 작성일 : 2019.08.13
+ */
 public class FileDownLoadAction implements BoardActionImp{
 
 	@Override
@@ -40,7 +44,6 @@ public class FileDownLoadAction implements BoardActionImp{
 			
 			FileInputStream is= new FileInputStream(file);
 			BufferedInputStream bs= new BufferedInputStream(is);
-			
 			BufferedOutputStream bo= new BufferedOutputStream(resp.getOutputStream());
 			
 			byte buffer[]=new byte[1024];

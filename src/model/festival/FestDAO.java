@@ -13,7 +13,11 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-
+/*
+ * 축제에 관련된 데이터에 접근하여 처리하는 모델
+ * 작성자 : 박종현
+ * 작성일 : 2019.08.13
+ */
 public class FestDAO {
 	private Connection conn;
 	private Statement stmt;
@@ -144,8 +148,11 @@ public class FestDAO {
 	
 	
 	
+
+	//sh add sector stop 
 	
-	//메인 축제 페이지 추가 시작
+	// 축제의 축제명, 축제이미지, 축제기간을 리스트로 출력
+
 	public List<FestDTO> getFestList(String place, String month) {
 		List<FestDTO> list = new ArrayList<FestDTO>();
 		System.out.println(place + ","+ month);
@@ -160,46 +167,48 @@ public class FestDAO {
 			int lastDay = CAL.getActualMaximum(Calendar.DATE);
 			String sdate = "";
 			String edate = "";
-			sdate+= year + "/" + month+"/"+lastDay;
-			edate+= year + "/" + month+"/1";
-			//System.out.println(sdate + ","+edate);
+			sdate+= year + "/" + month+"/"+lastDay; 
+			edate+= year + "/" + month+"/1"; 
 			
+			//축제 검색 지역과 기간이 모두 전체가 아닐때
 			if(!(place.equals("0")) && !(month.equals("0"))) {
-				//System.out.println("지역 월 모두 0이 아님");
 				sql+=" where (fsdate <= ? and fedate >= ?) and floc = ?";
+				
+			// 축제 검색 지역은 전체이고 기간은 전체가 아닐때
 			}else if(place.equals("0") && !(month.equals("0"))) {
-				//System.out.println("지역은 0 월은 0이 아님");
 				sql+=" where (fsdate <= ? and fedate >= ?)";
 				
+			// 축제 검색 지역은 전체가 아니고 기간은 전체일때
 			}else if(!(place.equals("0")) && month.equals("0")) {
-				//System.out.println("지역은 0이 아니고 월은 0임");
 				sql+=" where floc = ?";
 			}
 			
 			pstmt=conn.prepareStatement(sql);
 			
+			//축제 검색 지역과 기간이 모두 전체가 아닐때
 			if(!(place.equals("0")) && !(month.equals("0"))) {
-				//System.out.println("지역 월 모두 0이 아님");
 				pstmt.setString(1, sdate);
 				pstmt.setString(2, edate);
 				pstmt.setString(3, place);
+			
+			// 축제 검색 지역은 전체이고 기간은 전체가 아닐때
 			}else if(place.equals("0") && !(month.equals("0"))) {
-				//System.out.println("지역은 0 월은 0이 아님");
 				pstmt.setString(1, sdate);
 				pstmt.setString(2, edate);
+				
+			// 축제 검색 지역은 전체가 아니고 기간은 전체일때
 			}else if(!(place.equals("0")) && month.equals("0")) {
-				//System.out.println("지역은 0이 아니고 월은 0임");
 				pstmt.setString(1, place);
 			}
-			System.out.println(sql);
+			
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				FestDTO dto = new FestDTO();
-				dto.setFcode(rs.getInt("fcode"));
-				dto.setFsdate(rs.getDate("fsdate"));
-				dto.setFedate(rs.getDate("fedate"));
-				dto.setFtitle(rs.getString("ftitle"));
-				dto.setFimgpath(rs.getString("fimgpath"));
+				dto.setFcode(rs.getInt("fcode")); //축제코드
+				dto.setFsdate(rs.getDate("fsdate")); //축제 시작일
+				dto.setFedate(rs.getDate("fedate")); //축제 종료일
+				dto.setFtitle(rs.getString("ftitle")); //축제명
+				dto.setFimgpath(rs.getString("fimgpath")); //축제이미지경로
 				list.add(dto);
 			}
 		} catch (ClassNotFoundException | SQLException e) {
@@ -213,10 +222,11 @@ public class FestDAO {
 		}
 
 		return list;
-	}// 메인 축제 페이지 추가 시작
 
+	}// end getFestList() add pjh
 	
-	// 인기축제  시작
+	// 조회수가 가장 많은 상위의 9개 인기 축제의 축제명, 축제이미지, 축제기간을 리스트로 출력
+
 	public List<FestDTO> getHotList() {
 		List<FestDTO> list = new ArrayList<FestDTO>();
 		try {
@@ -246,10 +256,11 @@ public class FestDAO {
 		}
 
 		return list;
-	}// 인기축제 끝
+
+	}// end getFestList() add pjh
 	
-	
-	//축제 내부보기 시작
+	// 축제의 상세 내용을 출력
+
 	public FestDTO getFestView(int fcode) {
 		FestDTO dto = null;
 		
@@ -267,12 +278,12 @@ public class FestDAO {
 				dto.setFtitle(rs.getString("ftitle"));
 				dto.setFimgpath(rs.getString("fimgpath"));
 				
-				dto.setFmainpath(rs.getString("fmainpath"));
-				dto.setFaddress(rs.getString("faddress"));
-				dto.setFcontents(rs.getString("fcontents"));
-				dto.setFview(rs.getInt("fview"));
-				dto.setFloc(rs.getInt("floc"));
-				dto.setRecommend(rs.getInt("recommend"));
+				dto.setFmainpath(rs.getString("fmainpath")); //축제 내용에 들어가는 메인 이미지
+				dto.setFaddress(rs.getString("faddress")); // 축제 주소
+				dto.setFcontents(rs.getString("fcontents")); // 축제 내용
+				dto.setFview(rs.getInt("fview")); //축제글 조회수
+				dto.setFloc(rs.getInt("floc")); //축제 지역코드
+				dto.setRecommend(rs.getInt("recommend")); // 축제의 추천코드
 			}
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
@@ -285,35 +296,7 @@ public class FestDAO {
 		}
 
 		return dto;
-	}//축제 내부 보기  끝
-	
-	//후기보기 시작
-	public List<ReviewBoardDTO> getReview(int fcode) {
 
-		List<ReviewBoardDTO> aList = new ArrayList<ReviewBoardDTO>();
-				try {
-					conn = init();
-					String sql = "select r.*,m.NAME from reviewboard r, member m where r.USERCODE = m.USERCODE and fcode=2 order by day desc";
-					pstmt=conn.prepareStatement(sql);
-					rs=pstmt.executeQuery();
-					while(rs.next()) {
-						ReviewBoardDTO dto = new ReviewBoardDTO();
-						dto.setBoardkey(rs.getString("boardkey")); //게시글 번호
-						dto.setBtitle(rs.getString("title")); //게시글 제목
-						dto.setUserName(rs.getString("name")); //게시글 작성자
-						dto.setDay(rs.getDate("day")); //게시글 작성일
-						dto.setFilename(rs.getString("filename")); //게시글 첨부파일
-						aList.add(dto);
-					}
-				} catch (ClassNotFoundException | SQLException e) {
-					e.printStackTrace();
-				} finally {
-					try {
-						exit();
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
-				}
-				return aList;
-	}//후기보기 끝
+	}// end getFestView() add pjh
+
 }

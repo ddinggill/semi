@@ -8,6 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+/*
+ * 후기글의 내용을 수정하는 모델
+ * 작성자 : 박종현
+ * 작성일 : 2019.08.13
+ */
 public class ReviewBoardUpdateProAction implements BoardMultiImp{
 
 	@Override
@@ -31,7 +36,7 @@ public class ReviewBoardUpdateProAction implements BoardMultiImp{
 		String boardkey = multi.getParameter("boardkey");
 		//board테이블에 첨부파일의 저장여부 검색
 		String filename = dao.fileMethod(boardkey);
-		//수정 첨부파일이 있으면
+		//수정하는 첨부파일이 있으면
 		if(multi.getFilesystemName("filename")!= null) {
 			//기존 첨부파일이 있으면
 			if(filename != null) {
@@ -41,19 +46,18 @@ public class ReviewBoardUpdateProAction implements BoardMultiImp{
 			}
 			//기존의 첨부파일이 없거나 삭제된 후
 			dto.setFilename(multi.getFilesystemName("filename"));
-		}else {//첨부파일이 없으면
+		}else {//수정하는 첨부파일이 없으면
 			if(filename!=null) {
 				//기존 첨부파일이 있으면
 				dto.setFilename(filename);
 			}
 		}
 		
-		dto.setBtitle(multi.getParameter("btitle"));
-		dto.setContents(multi.getParameter("contents"));
-		dto.setBoardkey(boardkey);
+		dto.setBtitle(multi.getParameter("btitle")); //후기명
+		dto.setContents(multi.getParameter("contents")); //후기내용
+		dto.setBoardkey(boardkey); //후기글 코드
 		dao.updateMethod(dto);
 		
 		return multi;
 	}
-
 }

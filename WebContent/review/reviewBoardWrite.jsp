@@ -5,6 +5,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="x" uri="http://java.sun.com/jsp/jstl/xml"%>
 <!DOCTYPE html>
+<!-- 후기글을 작성하는 뷰  -->
 <html>
 <head>
 
@@ -42,12 +43,12 @@
 <!-- 깃허브 테스트 주석처리 -->
 <script type="text/javascript">
   	$(document).ready(function(){
- 
+  		//여러개의 엔터를 <br/>로 바꿔준다.
   		$('form').on('submit', function(){
-  			$('[name=contents]').val($('[name=contents]').val().replace(/\n/gi,'<br/>'));//여러개의 엔터를 <br/>로 바꿔준다.
+  			$('[name=contents]').val($('[name=contents]').val().replace(/\n/gi,'<br/>'));
   			
   		});
-  		
+  		//취소버튼 클릭시 후기글 작성을 취소하고 해당 축제글 상세보기 페이지로 이동한다.
   		$('input[value="취소"]').on('click', function() {
   			$('form').attr('action', '/semi/district/view.do?fcode='+"${param.code}");
   			$('form').submit();
@@ -90,17 +91,14 @@ table {
 				<td align="center">축제</td>
 				<td><input type="text" name="fcode" value="${param.code}" readonly="readonly" /></td>
 			</tr>
-			
 			<tr>
 				<td align="center">제목</td>
 				<td><input type="text" name="title" class="subject" required="required"/></td>
 			</tr>
-
 			<tr>
 				<td align="center">내용</td>
 				<td><textarea class="content" name="contents" rows="23" cols="20" style="resize: none" required="required"></textarea></td>
 			</tr>
-
 			<tr>
 				<td align="center">파일첨부</td>
 				<td id="fileDiv"><input type="file" name="filename" /></td>
@@ -111,7 +109,6 @@ table {
 				<input type="submit" value="글쓰기" class="btn btn-danger"/>&nbsp;&nbsp;&nbsp;
 				<input type="reset" value="취소" class="btn btn-danger"/></td>
 			</tr>
-			
 		</table>
 	</form>
 	</div>

@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>    
 <!DOCTYPE html>
+<!-- DB에서 수정할 원글에 대한 정보를 가져와서 수정하는 뷰  -->
 <html>
 <head>
 
@@ -60,6 +61,7 @@ table {
 
 <script type="text/javascript">
   	$(document).ready(function(){
+  		//여러개의 엔터를 <br/>로 바꿔준다.
   		$('form').on('click',function(){
   			$('[name=contents]').val($('[name=contents]').val().replace(/\n/gi,'<br/>'));
   		});
