@@ -18,6 +18,7 @@ public class PromotionFileDownloadAction implements PromotionAction{
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
+		//홍보문의글의 첨부파일을 다운로드 받기 위한 액션
 		PromotionDAO dao = PromotionDAO.getInstance();
 		
 		String fImgfile = req.getParameter("fImgpath");

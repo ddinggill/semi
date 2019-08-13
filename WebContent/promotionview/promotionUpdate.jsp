@@ -351,17 +351,19 @@ input {
 }
 
 </style>
-<<<<<<< HEAD
+
 <script type="text/javascript">
 	$(document).ready(function() {
 	});
 </script>
-=======
->>>>>>> branch 'master' of https://github.com/ddinggill/semi.git
+
+
 </head>
 <body>
+<!-- 네비 -->
 <jsp:include page="../mainview/nav.jsp"></jsp:include>
 
+  <!-- 홍보문의의 글을 등록 하기위해 축제등록 폼에 홍보문의의 글 정보를 입력함 -->
   <div class="page-wrapper bg-blue p-t-100 p-b-100 font-robo">
         <div class="wrapper wrapper--w680">
             <div class="card card-1">

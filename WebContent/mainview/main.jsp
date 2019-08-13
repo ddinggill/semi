@@ -59,6 +59,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<!-- 메인페이지의 로고 -->
 	<div class="container-fluid ">
 		<div class="jumbotron mb-0">
 			<!-- <h1 class="text-center">축제알림 홈페이지</h1> -->
@@ -67,7 +68,10 @@
 		</div>
 		
 	</div>
+	<!-- 메이페이지 네비게이션 바 -->
 	<jsp:include page="nav.jsp"></jsp:include>
+	
+	<!-- 메인페이지의 축제 이미지 슬라이더 -->
 	<ul class="bxslider" id="bx1">
 		<li><img src="../images/부산불꽃축제.jpg" class="bximg" /></li>
 		<li><img src="../images/메인이미지1.jpg" class="bximg" /></li>
@@ -75,7 +79,7 @@
 		
 	</ul>
 	
-<!-- 배너 -->
+<!-- 메인페이지의  숙박업소 광고배너 -->
 <div class="container col-md-12">
 	<div class="row">
 		<div class="col-md-8">
@@ -85,6 +89,7 @@
 				<li><a href="https://www.hotelscombined.co.kr/"><img src="../images/호텔스컴바인.png" class="bximg" /></a></li>
 			</ul>
 		</div>
+		<!-- 메인페이지의 최근 공지사항 및 최근 후기게시글 -->
 		<div class="col-md-4">
 			<ul>
 				<li class="new_list"><h1 class="new_title">공지사항</h1></li>
@@ -105,7 +110,7 @@
 	</div>
 </div>
 	
-<!-- 추천 축제 -->
+<!-- 메인페이지의 추천 축제 -->
 
 <div class="container col-md-12" id="recommend">
 	<div class="row">
@@ -118,7 +123,7 @@
 	</div>
 
 </div>
-
+	<!-- 메인페이지의 풋터 -->
 	<jsp:include page="footer.jsp"></jsp:include>
 	
 </body>

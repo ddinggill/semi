@@ -4,11 +4,11 @@ import java.sql.Date;
 
 public class PromotionCommentDTO {
 
-	private String boardkey;
-	private String commentTitle;
-	private String commentContents;
-	private Date commentday;
-	private int commentcode;
+	private String boardkey;	//홍보문의글의 보드키(외래키)
+	private String commentTitle;	//답변글의 제목
+	private String commentContents;	//답변글의 내용
+	private Date commentday;		//답변글의 작성일
+	private int commentcode;		//답변글의 보드키(기본키)
 	
 	public PromotionCommentDTO() {
 		// TODO Auto-generated constructor stub

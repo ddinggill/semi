@@ -2,7 +2,7 @@ package model.mypage;
 
 public class MypageUpdateDTO {
 
-	private int usercode;
+	private int usercode;	//회원의 코드(기본키)
 	private String password;
 	private String nickname;
 	private String name;

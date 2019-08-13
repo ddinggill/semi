@@ -35,7 +35,7 @@ public class MainDAO {
 			JdbcTemplate.close(conn);
 	}// end exit()
 
-	
+	//최근 작성된 공지사항 6개를 담아서 보냄
 	public List<NoticeDTO> lastNoticeBoard(){
 		
 		List<NoticeDTO> aList = new ArrayList<NoticeDTO>();
@@ -68,7 +68,7 @@ public class MainDAO {
 		
 		return aList;
 	}/////////////////////최근공지사항//////////////////////////
-	
+	//최근 작성된 후기글 6개를 담아서 보냄
 	public List<ReviewDTO> lastReviewBoard(){
 		
 		List<ReviewDTO> aList = new ArrayList<ReviewDTO>();

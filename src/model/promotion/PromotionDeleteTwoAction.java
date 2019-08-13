@@ -9,6 +9,7 @@ public class PromotionDeleteTwoAction implements PromotionAction{
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
+		//관리자가 작성한 홍보문의의 답변글을 삭제시 
 		System.out.println("답글삭제 액션접근");
 		String boardkey = req.getParameter("boardkey");
 		int commentcode = Integer.parseInt(req.getParameter("commentcode"));

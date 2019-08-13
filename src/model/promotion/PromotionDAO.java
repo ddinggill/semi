@@ -38,7 +38,7 @@ public class PromotionDAO {
 			JdbcTemplate.close(conn);
 	}// end exit()
 	
-	
+	//홍보문의글의 등록
 	public void insertMethod(PromotionDTO dto ) {
 		try {
 			conn=JdbcTemplate.getConnection();
@@ -67,6 +67,7 @@ public class PromotionDAO {
 		
 	}//end insert();
 	
+	//홍보문의 글의 총 개수
 	public int rowCount() {
 		int cnt = 0;
 		try {
@@ -92,6 +93,7 @@ public class PromotionDAO {
 		return cnt;
 	}
 	
+	//홍보문의 게시판의 리스트를 위한 총 게시글을 한페이지씩 불러옴
 	public List<PromotionDTO> lsitMethod(PageDTO pdto){
 		List<PromotionDTO> aList = new ArrayList<PromotionDTO>();
 		
@@ -130,7 +132,7 @@ public class PromotionDAO {
 		}
 		return aList;
 	}
-	
+	//홍보문의의 보드키를 이용해 정보를 가져옴
 	public PromotionDTO viewMethod(String boardkey) {
 		PromotionDTO dto = new PromotionDTO();
 		
@@ -166,7 +168,7 @@ public class PromotionDAO {
 		return dto;
 	}//end view
 	
-	
+	//홍보문의의 첨부파일의 경로를 가져옴 
 	public PromotionDTO fileMethod(String boardkey) {
 		PromotionDTO dto = new PromotionDTO();
 		try {
@@ -187,7 +189,7 @@ public class PromotionDAO {
 		
 		return dto;
 	}//end file
-	
+	//홍보문의 수정을 함
 	public void updateMethod(PromotionDTO dto) {
 		
 		try {
@@ -220,6 +222,7 @@ public class PromotionDAO {
 		
 	}//end //////////
 	
+	//홍보문의의 답글을 작성
 	public void commentinsert(PromotionCommentDTO dto) {
 		
 		try {
@@ -243,6 +246,7 @@ public class PromotionDAO {
 		}
 	}//end  commentinsert////////////////////////
 	
+	//홍보문의글의 답변에 대한 정보를 가져옴 
 	public PromotionCommentDTO commentview(int commentcode) {
 		PromotionCommentDTO dto = new PromotionCommentDTO();
 		System.out.println("답변뷰dao접근");
@@ -275,7 +279,7 @@ public class PromotionDAO {
 		}
 		return dto;
 	}//////////////////end
-	
+	//홍보문의글의 답변글을  답변글 코드를 이용해 삭제
 	public void promotionCommentDelete(int commentcode) {
 		try {
 			conn = JdbcTemplate.getConnection();
@@ -294,7 +298,7 @@ public class PromotionDAO {
 		}
 	}//end////////////////////////////////////////////////////
 	
-	//본글삭제시 밑의 댓글 모두 삭제
+	//홍보문의글을 삭제시 그에따른 답변글  모두 삭제
 	public void promotionAllCommentDelete(String boardkey) {
 		try {
 			conn = JdbcTemplate.getConnection();
@@ -312,7 +316,7 @@ public class PromotionDAO {
 			}
 		}
 	}//end////////////////////////////////////////////////////
-	
+	//홍보문의글을 보드키를 이용하여 삭제
   public void promotionDelete(String boardkey) {
 	  try {
 		conn = JdbcTemplate.getConnection();
@@ -331,6 +335,7 @@ public class PromotionDAO {
 	}
   }//end ////////////////////////////////////////////////////
 	
+  //홍보문의 답변글 전부를 리스트에  담음 
   public List<PromotionCommentDTO> addComment(){
 		List<PromotionCommentDTO> commentList = new ArrayList<PromotionCommentDTO>();
 		
@@ -362,6 +367,7 @@ public class PromotionDAO {
 		return commentList;
 	}//////////////////////////////////////////
   
+  //홍보문의글의 수정을 위해 수정이전의 글 정보를 가져온다.
   public PromotionDTO updateForm(String boardkey){
 	  PromotionDTO dto = new PromotionDTO();
 	  

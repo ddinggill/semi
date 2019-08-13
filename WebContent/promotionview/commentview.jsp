@@ -94,7 +94,10 @@ table {
 </script>
 </head>
 <body>
+<!-- 네비 -->
 	<jsp:include page="../mainview/nav.jsp"></jsp:include>
+	
+	<!-- 홍보문의에 대한 답변글의 뷰페이징 -->
 	<div class="container" id="view">
 		<table>
 			<tr>
@@ -120,6 +123,7 @@ table {
 		</c:if>
 	</form>
 	</div>
+	<!-- 풋터 -->
 	<jsp:include page="../mainview/footer.jsp"></jsp:include>
 </body>
 </html>

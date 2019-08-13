@@ -56,7 +56,10 @@ table {
 </script>
 </head>
 <body>
+<!-- 네비  -->
 	<jsp:include page="../mainview/nav.jsp"></jsp:include>
+	
+	<!-- 홍보문의의 대한 답변글을 작성을 위해 입력하는 폼 -->
 	<div class="container" id="write">
 		<h2>글쓰기</h2>
 		<form name="frm" method="post" action="/semi/promotion/commentinsert.do">
@@ -84,6 +87,7 @@ table {
 			</table>
 		</form>
 	</div>
+	<!-- 풋터 -->
 	<jsp:include page="../mainview/footer.jsp"></jsp:include>
 
 </body>

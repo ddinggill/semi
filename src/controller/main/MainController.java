@@ -43,16 +43,19 @@ public class MainController extends HttpServlet{
 			RequestDispatcher dis = req.getRequestDispatcher("/mainview/lecture.jsp");
 			dis.forward(req, resp);
 		}else if(path.equals("login.do")){
-			
+			//네비바의 로그인 클릭시 로그인 페이지로 이동한다.
 			RequestDispatcher dis = req.getRequestDispatcher("/mainview/LoginForm.jsp");
 			dis.forward(req, resp);
 		}else if(path.equals("join.do")) {
+			//네비바의 회원가입 메뉴 클릭 시 회원가입 페이지로 이동한다.
 			RequestDispatcher dis = req.getRequestDispatcher("/mainview/joinForm.jsp");
 			dis.forward(req, resp);
 		}else if(path.equals("pwfind.do")) {
+			//로그인, 회원가입 폼에서 비밀번호 찾기 클릭 시  비밀번호 찾기 페이지로 이동 
 			RequestDispatcher dis = req.getRequestDispatcher("/mainview/pwfindForm.jsp");
 			dis.forward(req, resp);
 		}else if(path.equals("mypage.do")) {
+			//네비바의 마이페이지 버튼 클릭시 마이페이지로 이동한다.
 			RequestDispatcher dis = req.getRequestDispatcher("/mainview/mypage.jsp");
 			dis.forward(req, resp);
 		}

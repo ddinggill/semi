@@ -111,7 +111,9 @@ padding: 0;
 </script>
 </head>
 <body>
+<!-- 네비바 -->
 	<jsp:include page="../mainview/nav.jsp"></jsp:include>
+		<!-- 마이페이지 닉네임 출력 -->
 	<div class="container">
 		<div class="card-body">
 			<img class="lecture-logo" src="../images/user-icon.png" alt="JS Logo">
@@ -121,7 +123,8 @@ padding: 0;
 				<h2 id="Info_title">회원정보수정</h2>
 		</div>
 	</div>
-	<!-- 회원 정보를 보여주는 div -->
+	
+	<!-- 기존의 회원 정보를 보여주는 div -->
 	<div class="container memInfo">
 	
 	<form action="memberupdate.do" method="post">
@@ -138,6 +141,7 @@ padding: 0;
 		<input type="submit" value="정보수정"  id="info_btn"/>
 	</form>
 	</div>
+	<!-- 풋터 -->
 	<jsp:include page="../mainview/footer.jsp"></jsp:include>
 </body>
 </html>
