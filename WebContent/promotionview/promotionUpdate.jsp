@@ -351,6 +351,13 @@ input {
 }
 
 </style>
+<<<<<<< HEAD
+<script type="text/javascript">
+	$(document).ready(function() {
+	});
+</script>
+=======
+>>>>>>> branch 'master' of https://github.com/ddinggill/semi.git
 </head>
 <body>
 <jsp:include page="../mainview/nav.jsp"></jsp:include>

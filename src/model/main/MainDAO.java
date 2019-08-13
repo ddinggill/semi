@@ -74,7 +74,7 @@ public class MainDAO {
 		List<ReviewDTO> aList = new ArrayList<ReviewDTO>();
 		try {
 			conn=JdbcTemplate.getConnection();
-			String sql = "select a.boardkey, a.title ,a.day from (select * from REVIEWBOARD order by boardkey desc)a where rownum <= 6";
+			String sql = "select a.boardkey, a.title ,a.day from (select * from REVIEWBOARD order by day desc)a where rownum <= 6";
 			pstmt = conn.prepareStatement(sql);
 			//pstmt.setInt(1, 5);
 			rs = pstmt.executeQuery();
