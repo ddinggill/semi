@@ -23,7 +23,7 @@ public class WriteFestival {
 	public MultipartRequest execute(HttpServletRequest req, HttpServletResponse resp) {
 		MultipartRequest multi = null;
 		//저장경로
-		String saveDirectory="C:/study/workspace/semi/WebContent/images";
+		String saveDirectory="C:/Users/user1/git/semi/WebContent/images";
 		//C:/study/workspace/SemiPJ/WebContent/Festival/img
 
 				
