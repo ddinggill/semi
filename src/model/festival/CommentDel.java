@@ -9,7 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 public class CommentDel implements FestivalActionImp{
    @Override
    public void execute(HttpServletRequest req, HttpServletResponse resp) {
-      if (!(req.getParameter("rkey").equals("undefined"))) {
+      //리스트볼떄  undefined 에러처리 위해 if문 추가
+	   if (!(req.getParameter("rkey").equals("undefined"))) {
          
          int num = Integer.parseInt(req.getParameter("rkey"));
          ReviewBoardDAO dao = ReviewBoardDAO.getInstance();

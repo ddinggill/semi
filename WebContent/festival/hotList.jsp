@@ -98,9 +98,7 @@ div p:hover{
 
 <body>
 	<jsp:include page="../mainview/nav.jsp"></jsp:include>
-	
-	<!-- <input type="hidden" id="listDate" value="0" class="listState" /> -->
-	
+	<!-- 인기축제 영역보기 시작  -->
 	<ul class="list">
 
 		<div id="wrap">
@@ -129,6 +127,7 @@ div p:hover{
 		</div>
 
 	</ul>
+	<!-- 인기축제 영역보기 끝 -->
 	<jsp:include page="../mainview/footer.jsp"></jsp:include>
 </body>
 </html>
