@@ -24,12 +24,14 @@ public class DeleteAction implements NoticeAction{
 			File.delete();
 		}
 		
+		//db에서 삭제요청
 		dao.deleteMethod(boardkey);
 		
 		String pageNum = req.getParameter("pageNum");
 		int currentPage = Integer.parseInt(pageNum);
 		int cnt = dao.rowCount();
 		
+		//페이징 처리
 		if(cnt>0) {
 			PageDTO pdto = new PageDTO(currentPage, cnt);
 			if(pdto.getEndPage()<currentPage) {

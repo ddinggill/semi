@@ -82,7 +82,8 @@ public class AdminDAO {
 		
 	}//end userdelete 
 	
-public List<UserDTO> userAllInfo(PageDTO pdto) {
+	//모든 유저리스트 가져오기
+	public List<UserDTO> userAllInfo(PageDTO pdto) {
 		
 		List<UserDTO> alist = new ArrayList<UserDTO>();
 		
@@ -122,8 +123,9 @@ public List<UserDTO> userAllInfo(PageDTO pdto) {
 		}
 		
 		return alist;
-	}//end userInfo
+	}//end AlluserInfo
 
+	
 	public int rowCount() {
 		int row=0;
 		try {
@@ -145,6 +147,6 @@ public List<UserDTO> userAllInfo(PageDTO pdto) {
 		}
 		
 		return row;
-	}
+	}//end rowCount()
 
 }//end class

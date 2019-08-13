@@ -20,7 +20,7 @@ import model.noticeboard.ViewAction;
 import model.noticeboard.WriteAction;
 
 
-
+//공지사항 게시판 처리 컨트롤러
 @WebServlet("/notice/*")
 public class NoticeController extends HttpServlet{
 	
@@ -43,33 +43,48 @@ public class NoticeController extends HttpServlet{
 		String next="";
 		System.out.println(path);
 		
+		//목록작업 요청
 		if(path.equals("list.do")) {
 			ListAction list = new ListAction();
 			list.execute(req, resp);
 			next = "/noticeview/notice.jsp";
-		}else if(path.equals("writeform.do")) {
+		}
+		//글쓰기 페이지로 이동
+		else if(path.equals("writeform.do")) {
 			next = "/noticeview/write.jsp";
-		}else if(path.equals("write.do")) {
+		}
+		//글쓰기 작업 요청
+		else if(path.equals("write.do")) {
 			WriteAction write = new WriteAction();
 			write.execute(req, resp);
 			resp.sendRedirect("list.do");
-		}else if(path.equals("view.do")) {
+		}
+		//글보기 
+		else if(path.equals("view.do")) {
 			ViewAction view = new ViewAction();
 			view.execute(req, resp);
 			next = "/noticeview/view.jsp";
-		}else if(path.equals("download.do")) {
+		}
+		//첨부파일 다운로드
+		else if(path.equals("download.do")) {
 			FileDownLoadAction download = new FileDownLoadAction();
 			download.execute(req, resp);
-		}else if(path.equals("updateForm.do")) {
+		}
+		//수정페이지로
+		else if(path.equals("updateForm.do")) {
 			UpdateFormAction update = new UpdateFormAction();
 			update.execute(req, resp);
 			next = "/noticeview/update.jsp";
-		}else if(path.equals("updatePro.do")) {
+		}
+		//수정작업처리
+		else if(path.equals("updatePro.do")) {
 			UpdateProAction updatepro = new UpdateProAction();
 			MultipartRequest multi = updatepro.executeMulti(req);
 			String param="pageNum="+multi.getParameter("pageNum");
 			resp.sendRedirect("list.do?"+param);
-		}else if(path.equals("delete.do")) {
+		}
+		//글삭제
+		else if(path.equals("delete.do")) {
 			DeleteAction delete = new DeleteAction();
 			delete.execute(req, resp);
 			String param="pageNum="+req.getAttribute("pageNum");

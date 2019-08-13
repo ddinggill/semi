@@ -40,7 +40,7 @@ public class NoticeDAO {
 			JdbcTemplate.close(conn);
 	}// end exit()
 	
-	
+	//전체목록수
 	public int rowCount() {
 		int row=0;
 		try {
@@ -64,6 +64,7 @@ public class NoticeDAO {
 		return row;
 	}//end rowCount()
 	
+	//전체목록 가져오기
 	public List<NoticeDTO> listMethod(PageDTO pdto){
 		List<NoticeDTO> aList = new ArrayList<NoticeDTO>();
 		try {
@@ -100,7 +101,7 @@ public class NoticeDAO {
 		return aList;
 	}//end listMethod()
 	
-
+	//글추가
 	public void insertMethod(NoticeDTO dto) {
 		try {
 			conn = JdbcTemplate.getConnection();
@@ -123,6 +124,7 @@ public class NoticeDAO {
 		}
 	}//end insertMethod()
 	
+	//보드키에 맞는 글 내용 가지고오기
 	public NoticeDTO viewMethod(String boardkey) {
 		NoticeDTO dto = new NoticeDTO();
 		try {
@@ -152,7 +154,7 @@ public class NoticeDAO {
 		return dto;
 	}//end viewMethod();
 	
-	
+	//보드키에 맞는 첨부파일이름 리턴
 	public String fileMethod(String boardkey) {
 		String fileName = null;
 		
@@ -177,6 +179,7 @@ public class NoticeDAO {
 		return fileName;
 	}//end fileMethod()
 	
+	//글수정
 	public void updateMethod(NoticeDTO dto) {
 		try {
 			conn = JdbcTemplate.getConnection();
@@ -198,6 +201,7 @@ public class NoticeDAO {
 		}
 	}//end updateMethod()
 	
+	//db에서 해당글 삭제
 	public void deleteMethod(String boardkey){
 		try {
 			conn = JdbcTemplate.getConnection();

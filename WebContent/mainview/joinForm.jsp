@@ -20,6 +20,7 @@ $(document).ready(function(){
 			$(".id_check").css("color","#e74742");
 			return false;
 		};
+		//id정규식 조건 통과하면 서버에 중복된 아이디 있는지 체크요청
 		var userid = $("[name=userid]").val();
 		idchkprocess(userid);
 	});
@@ -52,6 +53,7 @@ $(document).ready(function(){
 		}
 	});//password check
 	
+	//비밀번호 입력값이 서로 다를 경우 submit되지않고 알려주기
 	$("button").on('click',function(){
 		var pwd1=$("[name=password]").val();
         var pwd2=$("[name=password2]").val();
@@ -60,7 +62,8 @@ $(document).ready(function(){
         	return false;
         }
 	});
-		
+	
+	//회원가입 성공시 알림창
 	if("${requestScope.joinOK}" == 1){
 	      alert("회원가입 성공했습니다.로그인 페이지로 이동하세요.");
 	}
@@ -68,6 +71,7 @@ $(document).ready(function(){
 	
 });
 
+//서버에 중복된 아이디 있는지 요청
 function idchkprocess(userid){
 	
 	$.ajax({

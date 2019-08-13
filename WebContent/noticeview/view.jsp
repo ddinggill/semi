@@ -71,16 +71,19 @@ table {
 
 <script type="text/javascript">
 	$(document).ready(function(){
+		//리스트요청
 		$("#list").on('click',function(){
 			$("form").attr("action","list.do");
 			$("form").submit();
 		});
 		
+		//수정요청
 		$("#change").on('click',function(){
 			$("form").attr("action","updateForm.do");
 			$("form").submit();
 		});
 		
+		//삭제요청
 		$("#delete").on('click',function(){
 			$("form").attr("action","delete.do");
 			$("form").submit();
