@@ -24,7 +24,6 @@ public class WriteFestival {
 		MultipartRequest multi = null;
 		//저장경로
 		String saveDirectory="C:/Users/user1/git/semi/WebContent/images";
-		//C:/study/workspace/SemiPJ/WebContent/Festival/img
 
 				
 		File file = new File(saveDirectory);
@@ -46,20 +45,18 @@ public class WriteFestival {
 		  FestDAO dao = FestDAO.getInstance(); 
 		  FestDTO dto = new FestDTO();
 		  
-		  String sdate = multi.getParameter("sdate");
-		  String edate = multi.getParameter("edate");
+		  String sdate = multi.getParameter("sdate"); //축제시작일자
+		  String edate = multi.getParameter("edate"); //축제종료일자
 		  
-		  dto.setFaddress(multi.getParameter("address"));
-		  dto.setFtitle(multi.getParameter("title"));
-		  dto.setFloc(Integer.parseInt(multi.getParameter("loc")));
-		
-		  dto.setFcontents(multi.getParameter("contents"));
-		  dto.setFmap(multi.getParameter("fmap"));
-		  System.out.println(multi.getParameter("fmap") + " : 지도주소");
+		  dto.setFaddress(multi.getParameter("address")); //축제주소
+		  dto.setFtitle(multi.getParameter("title"));  // 축제제목
+		  dto.setFloc(Integer.parseInt(multi.getParameter("loc"))); //축제지역코드
+		  dto.setFcontents(multi.getParameter("contents")); //축제내용
+		  dto.setFmap(multi.getParameter("fmap")); //축제 구글맵지도
 		  dto.setFmainpath(multi.getFilesystemName("mainImg")); //컨텐츠 안에 mainImg가 보일 내용
 		  dto.setFimgpath(multi.getFilesystemName("subImg"));  //subimg가 보일내용
 			
-		  dao.insertFestival(dto,sdate,edate );
+		  dao.insertFestival(dto,sdate,edate);
 			 
 
 		return null;

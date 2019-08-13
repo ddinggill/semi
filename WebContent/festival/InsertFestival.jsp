@@ -355,6 +355,8 @@ input {
 <body>
 <jsp:include page="../mainview/nav.jsp"></jsp:include>
 
+
+<!-- 축제 등록페이지 영역 시작  -->
   <div class="page-wrapper bg-blue p-t-100 p-b-100 font-robo">
         <div class="wrapper wrapper--w680">
             <div class="card card-1">
@@ -425,7 +427,7 @@ input {
             </div>
         </div>
     </div>
-
+<!-- 축제 등록페이지 영역 끝  -->
 
 <jsp:include page="../mainview/footer.jsp"></jsp:include>
 </body>

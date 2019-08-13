@@ -47,9 +47,7 @@ public class FestDAO {
 			conn.close();
 	}// end exit()
 	
-	// sh add sector start
-	
-	//조회수 증가 sh add
+	//조회수 증가 시작
 	public void readCount(int code) {
 		try {
 			conn = init();
@@ -68,10 +66,10 @@ public class FestDAO {
 					e.printStackTrace();
 				}
 			}
-	}//조회수 증가 sh add
+	}//조회수 증가 끝
 	
 	
-	//내부내용 contents start sh add
+	//축제 내부내용 contents start 
 	public FestDTO contents(int code){
 		
 		FestDTO dto = null;
@@ -107,7 +105,7 @@ public class FestDAO {
 		}
 		
 		return dto;
-	}//contents end sh add
+	}//축제 내부내용 contents end
 	
 	
 	//축제등록 start
@@ -146,9 +144,8 @@ public class FestDAO {
 	
 	
 	
-	//sh add sector stop 
 	
-	
+	//메인 축제 페이지 추가 시작
 	public List<FestDTO> getFestList(String place, String month) {
 		List<FestDTO> list = new ArrayList<FestDTO>();
 		System.out.println(place + ","+ month);
@@ -216,8 +213,10 @@ public class FestDAO {
 		}
 
 		return list;
-	}// end getFestList()//////////////////////
+	}// 메인 축제 페이지 추가 시작
+
 	
+	// 인기축제  시작
 	public List<FestDTO> getHotList() {
 		List<FestDTO> list = new ArrayList<FestDTO>();
 		try {
@@ -247,8 +246,10 @@ public class FestDAO {
 		}
 
 		return list;
-	}// end getFestList()//////////////////////
+	}// 인기축제 끝
 	
+	
+	//축제 내부보기 시작
 	public FestDTO getFestView(int fcode) {
 		FestDTO dto = null;
 		
@@ -284,8 +285,9 @@ public class FestDAO {
 		}
 
 		return dto;
-	}// end getFestView()//////////////////////
+	}//축제 내부 보기  끝
 	
+	//후기보기 시작
 	public List<ReviewBoardDTO> getReview(int fcode) {
 
 		List<ReviewBoardDTO> aList = new ArrayList<ReviewBoardDTO>();
@@ -313,5 +315,5 @@ public class FestDAO {
 					}
 				}
 				return aList;
-	}// end getReview()//////////////////////
+	}//후기보기 끝
 }
