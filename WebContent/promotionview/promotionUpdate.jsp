@@ -351,11 +351,6 @@ input {
 }
 
 </style>
-<script type="text/javascript">
-	$(document).ready(function() {
-		alert("a");
-	});
-</script>
 </head>
 <body>
 <jsp:include page="../mainview/nav.jsp"></jsp:include>
